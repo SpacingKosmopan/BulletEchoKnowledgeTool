@@ -76,7 +76,7 @@
             window.location.href = "heroes/index.html";
           });
           heroCard.innerHTML = `
-          <img src="skins/${hero.name}.png" alt="${hero.name}-card">
+          <img src="skins/${hero.name.toLocaleLowerCase()}.png" alt="${hero.name}-card">
           <div class="hero-name">${hero.name}</div>
         `;
           heroesCardsContainer.appendChild(heroCard);
