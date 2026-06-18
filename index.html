@@ -18,17 +18,20 @@
     <div class="page-wrapper">
       <main>
         <div class="container">
-          <div id="heroes-cards"></div>
+          <div id="content-cards"></div>
         </div>
       </main>
 
       <aside>
+        <a href="index.html"><i class="bi bi-house-fill"></i> Home</a>
         <details class="dropdown">
-          <summary>Heroes tips and tricks</summary>
+          <summary id="heroes-summary">
+            <p id="heroes-text">Heroes tips and tricks</p>
+          </summary>
           <nav class="dropdown-content" id="heroes-pages"></nav>
         </details>
         <details class="dropdown">
-          <summary>Calculators</summary>
+          <summary id="calculators-summary">Calculators</summary>
           <nav class="dropdown-content" id="calculators-pages">
             <a href="">Density</a>
             <a href="">Damage to enemy</a>
@@ -39,9 +42,16 @@
             <a href="">Mod upgrade cost</a>
           </nav>
         </details>
-        <details class="dropdown">
-          <summary>Minigames</summary>
-          <nav class="dropdown-content" id="minigames-pages"></nav>
+        <details class="dropdown" id="minigames-details">
+          <summary id="minigames-summary">
+            <p id="minigames-text">Minigames</p>
+          </summary>
+          <nav class="dropdown-content" id="minigames-pages">
+            <a href="">Guess the map</a>
+            <a href="">Guess the hero (by sound, gear, shadow, icon, emoji)</a>
+            <a href="">Depixelisation</a>
+            <a href="">Crossword</a>
+          </nav>
         </details>
         <a href="changelog.html">Changelog</a>
       </aside>
@@ -57,41 +67,6 @@
       </p>
     </footer>
 
-    <script>
-      const heroes = [
-        { name: "Alice", faction: "Renegades", class: "Scout" },
-        { name: "Angel", faction: "Skytech Megacorp", class: "Scout" },
-        { name: "Arnie", faction: "Renegades", class: "Enforcer" },
-        { name: "Bastion", faction: "Skytech Megacorp", class: "Gunner" },
-      ];
-      heroes.sort((a, b) => a.name.localeCompare(b.name));
-
-      function generateHeroesCards() {
-        const heroesCardsContainer = document.querySelector("#heroes-cards");
-        heroesCardsContainer.innerHTML = "";
-        heroes.forEach((hero) => {
-          const heroCard = document.createElement("div");
-          heroCard.className = "hero-card";
-          heroCard.addEventListener("click", () => {
-            window.location.href = "heroes/index.html";
-          });
-          heroCard.innerHTML = `
-          <img src="skins/${hero.name.toLocaleLowerCase()}.png" alt="${hero.name}-card">
-          <div class="hero-name">${hero.name}</div>
-        `;
-          heroesCardsContainer.appendChild(heroCard);
-        });
-      }
-      generateHeroesCards();
-
-      function generateAsideHeroesPagesLinks() {
-        const heroesPages = document.querySelector("#heroes-pages");
-        heroesPages.innerHTML = "";
-        heroes.forEach((hero) => {
-          heroesPages.innerHTML += `<a href="heroes/index.html">${hero.name}</a>`;
-        });
-      }
-      generateAsideHeroesPagesLinks();
-    </script>
+    <script src="main_script.js"></script>
   </body>
 </html>

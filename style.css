@@ -26,6 +26,10 @@ body {
   gap: 2rem;
 }
 
+.hidden {
+  display: none !important;
+}
+
 /** TEXT **/
 
 h1 {
@@ -41,6 +45,16 @@ a {
   display: inline-flex;
   align-items: center;
   vertical-align: middle;
+}
+
+#round-number {
+  font-size: x-large;
+  font-weight: lighter;
+}
+
+#answer-text,
+#question-regular p {
+  font-size: 250%;
 }
 
 /** SUMMARY & DROPDOWNS **/
@@ -117,7 +131,7 @@ details[open] summary::after {
 
 /** HERO CARDS **/
 
-.hero-card {
+.content-card {
   width: 100%;
   aspect-ratio: 1 / 1;
   overflow: hidden;
@@ -133,7 +147,7 @@ details[open] summary::after {
     border-color 0.25s ease;
 }
 
-.hero-card img {
+.content-card img {
   display: block;
   width: 100%;
   height: 100%;
@@ -148,14 +162,14 @@ details[open] summary::after {
   margin: 0 auto;
 }
 
-#heroes-cards {
+#content-cards {
   display: grid;
 
   grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
   gap: 1rem;
 }
 
-.hero-card:hover {
+.content-card:hover {
   transform: translateY(-8px);
   border-color: #3b82f6;
   box-shadow:
@@ -163,7 +177,7 @@ details[open] summary::after {
     0 0 20px rgba(59, 130, 246, 0.3);
 }
 
-.hero-name {
+.content-card-name {
   position: absolute;
 
   left: 0;
@@ -220,4 +234,53 @@ footer {
   aside {
     width: 100%;
   }
+}
+
+.centered {
+  margin: auto;
+  text-align: center;
+}
+
+/** BUTTONS **/
+#start-game-btn,
+#next-question-btn,
+#show-answer-btn {
+  border: none;
+  padding: 5px 10px;
+  font-size: 200%;
+  border-radius: 3px;
+}
+
+/** AUDIO CONTROLLS **/
+.audio-player {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  background: #f1f1f1;
+  padding: 10px;
+  border-radius: 8px;
+  width: fit-content;
+  font-family: sans-serif;
+}
+
+.audio-player button {
+  padding: 8px 12px;
+  cursor: pointer;
+  border: none;
+  background: #007bff;
+  color: white;
+  border-radius: 4px;
+}
+
+.audio-player button:hover {
+  background: #0056b3;
+}
+
+.audio-player input[type="range"] {
+  cursor: pointer;
+}
+
+.audio-player label,
+.audio-player span {
+  color: gray;
 }
