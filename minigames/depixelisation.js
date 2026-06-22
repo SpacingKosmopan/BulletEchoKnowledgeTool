@@ -44,9 +44,19 @@ function applyPixelation(pixelSize) {
 }
 
 function loadRandomImage() {
-  const randomImageNumber = getRandomIntInclusive(0, images.length - 1);
-  currentImage = images[randomImageNumber];
+  if (drawnImages.length === images.length) {
+    alert(`All ${images.length} images has been drawn.`);
+    drawnImages = [];
+  }
 
+  let randomImageNumber;
+  do {
+    randomImageNumber = getRandomIntInclusive(0, images.length - 1);
+  } while (drawnImages.includes(randomImageNumber));
+
+  drawnImages.push(randomImageNumber);
+
+  currentImage = images[randomImageNumber];
   img.src = currentImage.src;
   tipText.innerHTML = `Tip: ${currentImage.tip}`;
 }
@@ -89,6 +99,7 @@ const images = [
   },
 ];
 let currentImage = null;
+let drawnImages = [];
 
 // * MAIN GAME MECHANICS * //
 let currentPixelIndex = 0;
