@@ -1,0 +1,31 @@
+.image-wrapper {
+  margin: 10px auto 20px auto;
+  display: flex;
+  justify-content: center;
+}
+
+canvas {
+  display: block;
+  max-height: 450px;
+  width: auto;
+  height: 100%;
+}
+
+input[type="range"] {
+  width: 250px;
+  cursor: pointer;
+}
+
+label {
+  font-size: 14px;
+  letter-spacing: 0.5px;
+}
+
+button:disabled {
+  background-color: #aaa;
+  color: black;
+}
+
+#tip-text {
+  font-size: 150%;
+}
