@@ -1,0 +1,68 @@
+.crossword-grid {
+  display: grid;
+  grid-template-columns: repeat(13, 40px);
+  gap: 2px;
+  background-color: #ccc;
+  padding: 2px;
+  width: max-content;
+  margin-bottom: 20px;
+}
+
+.cell {
+  width: 40px;
+  height: 40px;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: Arial, sans-serif;
+  font-weight: bold;
+  text-transform: uppercase;
+  cursor: pointer;
+  user-select: none;
+  color: #4a4a4a;
+  font-size: 200%;
+}
+
+.cell.empty {
+  background-color: #333;
+  cursor: default;
+}
+
+.cell.word-cell .letter {
+  visibility: hidden;
+}
+
+.cell.word-cell.revealed .letter {
+  visibility: visible;
+}
+
+.cell.highlighted {
+  background-color: #e0f7fa;
+}
+
+#question-box {
+  font-family: Arial, sans-serif;
+  padding: 15px;
+  background-color: #4a4a4a;
+  border-left: 5px solid #00acc1;
+  max-width: 500px;
+  min-height: 40px;
+}
+
+.btn-view-results {
+  padding: 10px 20px;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  font-weight: bold;
+  background-color: #00acc1;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.btn-view-results:hover {
+  background-color: #00838f;
+}
