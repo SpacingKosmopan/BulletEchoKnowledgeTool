@@ -1,6 +1,9 @@
-let roundNumber = 0;
-let maxRounds = 10;
-let alreadyShownQuestions = [];
+let gamestate = {
+  roundNumber: 0,
+  maxRounds: 10,
+  alreadyShownQuestions: [],
+  currentQuestion: null,
+};
 
 // *****
 function getRandomIntInclusive(min, max) {
@@ -17,7 +20,7 @@ const questionRegular = document.querySelector("#question-regular");
 const answerContent = document.querySelector("#answer-content");
 
 (() => {
-  roundNumberText.innerHTML = `Round <b>${roundNumber < 1 ? "X" : roundNumber}</b> / ${maxRounds}`;
+  roundNumberText.innerHTML = `Round <b>${gamestate.roundNumber < 1 ? "X" : gamestate.roundNumber}</b> / ${gamestate.maxRounds}`;
 })();
 
 // * AUDIO PLAYER * //
@@ -67,7 +70,8 @@ const nextQuestionBtn = document.querySelector("#next-question-btn");
 const showAnswerBtn = document.querySelector("#show-answer-btn");
 
 startGameBtn.addEventListener("click", function () {
-  alreadyShownQuestions = [];
+  gamestate.alreadyShownQuestions = [];
+  gamestate.roundNumber = 0;
   nextRound(1);
   this.classList.add("hidden");
   nextQuestionBtn.classList.remove("hidden");
@@ -76,33 +80,35 @@ startGameBtn.addEventListener("click", function () {
 });
 nextQuestionBtn.addEventListener("click", nextRound);
 showAnswerBtn.addEventListener("click", () => {
-  if (currentQuestion.type === QUESTIONS_TYPES.SHADOW) {
-    answerContent.innerHTML = `<p id="answer-text">This is <u style="color: #7070ff;">${currentQuestion.answer}</u></p>
-    <img src="${currentQuestion.src}" style="height:300px; display:inline;" />`;
+  if (gamestate.currentQuestion.type === QUESTIONS_TYPES.SHADOW) {
+    answerContent.innerHTML = `<p id="answer-text">This is <u style="color: #7070ff;">${gamestate.currentQuestion.answer}</u></p>
+    <img src="${gamestate.currentQuestion.src}" style="height:300px; display:inline;" />`;
     questionRegular.innerHTML = ``;
     return;
   }
-  answerContent.innerHTML = `<p id="answer-text">This is <u style="color: #7070ff;">${currentQuestion.answer}</u></p>`;
+  answerContent.innerHTML = `<p id="answer-text">This is <u style="color: #7070ff;">${gamestate.currentQuestion.answer}</u></p>`;
 });
 
 // * QUESTIONS GENERATING * //
-let currentQuestion = null;
-
 function nextRound(newRoundNumber = -1) {
+  if (gamestate.roundNumber === gamestate.maxRounds) {
+    finishGame();
+    return;
+  }
   answerContent.innerHTML = `<p id="answer-text">This is ???</p>`;
   questionRegular.innerHTML = ``;
 
-  if (alreadyShownQuestions.length === questions.length) {
+  if (gamestate.alreadyShownQuestions.length === questions.length) {
     alert("Could not find any more questions");
     return;
   }
 
-  if (newRoundNumber >= 0 && newRoundNumber <= maxRounds) {
-    roundNumber = newRoundNumber;
-    roundNumberText.innerHTML = `Round <b>${roundNumber}</b> / ${maxRounds}`;
-  } else if (roundNumber < maxRounds) {
-    roundNumber++;
-    roundNumberText.innerHTML = `Round <b>${roundNumber}</b> / ${maxRounds}`;
+  if (newRoundNumber >= 0 && newRoundNumber <= gamestate.maxRounds) {
+    gamestate.roundNumber = newRoundNumber;
+    roundNumberText.innerHTML = `Round <b>${gamestate.roundNumber}</b> / ${gamestate.maxRounds}`;
+  } else if (gamestate.roundNumber < gamestate.maxRounds) {
+    gamestate.roundNumber++;
+    roundNumberText.innerHTML = `Round <b>${gamestate.roundNumber}</b> / ${gamestate.maxRounds}`;
   } else return;
 
   // generating question
@@ -110,31 +116,40 @@ function nextRound(newRoundNumber = -1) {
   let questionNumber = -1;
   do {
     questionNumber = getRandomIntInclusive(0, questions.length - 1);
-  } while (alreadyShownQuestions.includes(questionNumber));
+  } while (gamestate.alreadyShownQuestions.includes(questionNumber));
 
-  alreadyShownQuestions.push(questionNumber);
+  gamestate.alreadyShownQuestions.push(questionNumber);
 
   console.log(`Generated question: ${questionNumber}`);
-  currentQuestion = questions[questionNumber];
+  gamestate.currentQuestion = questions[questionNumber];
 
   audioPlayerDiv.classList.add("hidden");
   questionRegular.classList.add("hidden");
 
-  if (currentQuestion.type === QUESTIONS_TYPES.AUDIO) {
-    showAudioQuestion(currentQuestion);
+  if (gamestate.currentQuestion.type === QUESTIONS_TYPES.AUDIO) {
+    showAudioQuestion(gamestate.currentQuestion);
   }
-  if (currentQuestion.type === QUESTIONS_TYPES.EMOJI) {
-    showTextQuestion(currentQuestion);
+  if (gamestate.currentQuestion.type === QUESTIONS_TYPES.EMOJI) {
+    showTextQuestion(gamestate.currentQuestion);
   }
   if (
-    currentQuestion.type === QUESTIONS_TYPES.GEAR ||
-    currentQuestion.type === QUESTIONS_TYPES.ICON
+    gamestate.currentQuestion.type === QUESTIONS_TYPES.GEAR ||
+    gamestate.currentQuestion.type === QUESTIONS_TYPES.ICON
   ) {
-    showImageQuestion(currentQuestion);
+    showImageQuestion(gamestate.currentQuestion);
   }
-  if (currentQuestion.type === QUESTIONS_TYPES.SHADOW) {
-    showShadowQuestion(currentQuestion);
+  if (gamestate.currentQuestion.type === QUESTIONS_TYPES.SHADOW) {
+    showShadowQuestion(gamestate.currentQuestion);
   }
+}
+
+function finishGame() {
+  answerContent.innerHTML = `<p id="answer-text">Thank you for playing!</p>`;
+  questionRegular.innerHTML = ``;
+
+  nextQuestionBtn.classList.add("hidden");
+  showAnswerBtn.classList.add("hidden");
+  startGameBtn.classList.remove("hidden");
 }
 
 const audioPlayerDiv = document.querySelector("#audio-player");
