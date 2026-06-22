@@ -18,7 +18,81 @@
     <div class="page-wrapper">
       <main>
         <div class="container">
-          <div id="content-cards"></div>
+          <section class="welcome-hero">
+            <div class="welcome-text">
+              <h2>Level Up Your Bullet Echo Game! 🎯</h2>
+              <p>
+                Analyze stats, estimate upgrade costs, and test your knowledge
+                with interactive mini-games. Everything a pro player needs in
+                one place.
+              </p>
+            </div>
+            <div class="creator-badge">
+              <span class="badge-title">Creator Code</span>
+              <span class="badge-code">SPACING</span>
+              <p>Use it in Shop ➡ Premium to support!</p>
+            </div>
+          </section>
+
+          <section class="features-grid">
+            <div class="feature-card">
+              <div class="card-icon">
+                <i class="bi bi-person-lightning"></i>
+              </div>
+              <h3>Hero Guides</h3>
+              <p>
+                Discover tips, tricks, and the best gear setups for every hero.
+              </p>
+              <a href="#" class="card-btn" id="btn-browse-heroes"
+                >Browse Heroes</a
+              >
+            </div>
+
+            <div class="feature-card highlighted">
+              <div class="card-icon">
+                <i class="bi bi-calculator-fill"></i>
+              </div>
+              <h3>Calculators</h3>
+              <p>
+                Calculate precise damage, armor density, and resource upgrade
+                costs.
+              </p>
+              <a href="#calculators-summary" class="card-btn"
+                >Open Calculators</a
+              >
+            </div>
+
+            <div class="feature-card">
+              <div class="card-icon"><i class="bi bi-controller"></i></div>
+              <h3>Mini-Games</h3>
+              <p>
+                Bored between matches? Guess maps, audio cues, and pixelated
+                heroes.
+              </p>
+              <a href="#minigames-summary" class="card-btn">Play Now</a>
+            </div>
+          </section>
+
+          <section class="latest-section">
+            <div class="latest-video">
+              <h3><i class="bi bi-youtube"></i> Latest Content</h3>
+              <p>
+                Check out the newest guides, tier lists, and gameplay on my
+                channel.
+              </p>
+              <a href="https://youtube.com" target="_blank" class="yt-link">
+                <i class="bi bi-play-circle-fill"></i> Spacing Gaming on YouTube
+              </a>
+            </div>
+
+            <div class="quick-status">
+              <h3><i class="bi bi-info-circle"></i> Quick Tip</h3>
+              <p id="dynamic-tip">
+                Armor Density reduces incoming piercing damage. Maximize your
+                gear set bonuses!
+              </p>
+            </div>
+          </section>
         </div>
       </main>
 
@@ -31,7 +105,9 @@
           <nav class="dropdown-content" id="heroes-pages"></nav>
         </details>
         <details class="dropdown">
-          <summary id="calculators-summary">Calculators</summary>
+          <summary id="calculators-summary">
+            <p id="calculators-text">Calculators</p>
+          </summary>
           <nav class="dropdown-content" id="calculators-pages">
             <a href="">Density</a>
             <a href="">Damage to enemy</a>
@@ -69,6 +145,6 @@
       </p>
     </footer>
 
-    <script src="main_script.js"></script>
+    <script src="./main_script.js"></script>
   </body>
 </html>
