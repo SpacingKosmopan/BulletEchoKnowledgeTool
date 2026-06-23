@@ -1,0 +1,151 @@
+.calculations-box {
+  background-color: #1f2937;
+  border-left: 4px solid #3b82f6;
+  border-radius: 6px;
+  padding: 1rem;
+  margin: 1rem 0;
+  font-family: monospace;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #e5e7eb;
+  letter-spacing: 0.5px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2);
+}
+
+/** FORM **/
+
+.bekt-panel {
+  background-color: #0b0f19;
+  border: 3px solid #1a2233;
+  border-left: 6px solid #00ff66;
+  border-radius: 4px;
+  padding: 25px;
+  color: #e2e8f0;
+  font-family: "Courier New", Courier, monospace;
+  box-shadow: 0 0 20px rgba(0, 255, 102, 0.1);
+  max-width: 500px;
+  margin: 20px auto;
+}
+
+.bekt-title {
+  color: #b2ffd1;
+  text-transform: uppercase;
+  font-size: 1.5rem;
+  letter-spacing: 2px;
+  border-bottom: 2px solid #1a2233;
+  padding-bottom: 10px;
+  margin-top: 0;
+}
+
+.bekt-section-header {
+  background-color: #111827;
+  color: #ffaa00;
+  font-weight: bold;
+  text-transform: uppercase;
+  padding: 8px 12px;
+  margin: 15px 0 5px 0;
+  border-left: 4px solid #ffaa00;
+  letter-spacing: 1px;
+  font-size: 0.9rem;
+}
+
+.bekt-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.bekt-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.bekt-form-group label {
+  color: #94a3b8;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.bekt-form-group input[type="number"],
+.bekt-form-group select {
+  background-color: #1e293b;
+  border: 2px solid #334155;
+  border-radius: 4px;
+  color: #fff;
+  padding: 10px 12px;
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: bold;
+  transition: all 0.2s ease;
+  outline: none;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.bekt-form-group input[type="number"]:focus,
+.bekt-form-group select:focus {
+  border-color: #00ff66;
+  box-shadow: 0 0 10px rgba(0, 255, 102, 0.3);
+  background-color: #111827;
+}
+
+.bekt-form-group select option {
+  background-color: #1e293b;
+  color: #fff;
+}
+
+.bekt-action-wrapper {
+  display: flex;
+  justify-content: flex-start;
+  margin-top: 10px;
+}
+
+.bekt-form-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+  margin-top: 25px;
+  padding-top: 15px;
+  border-top: 1px solid #e2e8f0;
+}
+
+.bekt-btn {
+  padding: 10px 20px;
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: 1px solid transparent;
+}
+
+.bekt-btn-primary {
+  background-color: #2563eb;
+  color: #ffffff;
+}
+
+.bekt-btn-primary:hover {
+  background-color: #1d4ed8;
+}
+
+.bekt-btn-secondary {
+  background-color: #f1f5f9;
+  color: #334155;
+  border-color: #cbd5e1;
+}
+
+.bekt-btn-secondary:hover {
+  background-color: #e2e8f0;
+}
+
+.bekt-btn-link {
+  background-color: transparent;
+  color: #64748b;
+}
+
+.bekt-btn-link:hover {
+  color: #989aa1;
+  text-decoration: underline;
+}

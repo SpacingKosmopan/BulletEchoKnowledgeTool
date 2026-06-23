@@ -282,3 +282,15 @@ button {
 .audio-player span {
   color: gray;
 }
+
+/** LIST **/
+.standalone-ul-item {
+  display: list-item;
+  list-style-type: disc;
+  margin-left: 20px;
+}
+
+/** CLASSES **/
+.mw-100 {
+  max-width: 100%;
+}

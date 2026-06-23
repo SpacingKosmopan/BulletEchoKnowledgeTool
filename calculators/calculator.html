@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Bullet Echo Knowledge</title>
     <link rel="stylesheet" href="../style.css" />
+    <link rel="stylesheet" href="./calculators.css" />
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
@@ -17,7 +18,91 @@
 
     <div class="page-wrapper">
       <main>
-        <div class="container"></div>
+        <div class="container" id="main-container">
+          <div id="damage-to-enemy-panel" class="bekt-panel hidden">
+            <h1 class="bekt-title">Damage to enemy calculator</h1>
+
+            <form id="dmg-en-input-form" class="bekt-form">
+              <div class="standalone-ul-item bekt-section-header">
+                Fire power
+              </div>
+
+              <div class="bekt-form-group">
+                <label for="dmg-per-shot">Damage per shot</label>
+                <input
+                  type="number"
+                  name="dmg-per-shot"
+                  id="dmg-per-shot"
+                  min="0"
+                  step="1"
+                  value="1"
+                />
+              </div>
+
+              <div class="bekt-form-group">
+                <label for="pellets-per-shot">Pellets per shot</label>
+                <select name="pellets-per-shot" id="pellets-per-shot">
+                  <option value="1">Slayer (1)</option>
+                </select>
+              </div>
+
+              <div class="bekt-form-group">
+                <label for="health-multip">Health damage multiplier</label>
+                <input
+                  type="number"
+                  name="health-multip"
+                  id="health-multip"
+                  min="0"
+                  step="0.01"
+                  value="1"
+                />
+              </div>
+
+              <div class="bekt-form-group">
+                <label for="explosive-upgrade">Explosive rounds upgrade</label>
+                <select name="explosive-upgrade" id="explosive-upgrade">
+                  <option value="0">None</option>
+                  <option value="12">Green (+12%)</option>
+                </select>
+              </div>
+
+              <div class="standalone-ul-item bekt-section-header">Armor</div>
+
+              <div class="bekt-form-group">
+                <label for="armor-multip">Armor damage multiplier</label>
+                <input
+                  type="number"
+                  name="armor-multip"
+                  id="armor-multip"
+                  min="0"
+                  step="0.01"
+                  value="1"
+                />
+              </div>
+
+              <div class="bekt-form-group">
+                <label for="armor-penetration">Armor penetration</label>
+                <input
+                  type="number"
+                  name="armor-penetration"
+                  id="armor-penetration"
+                  min="0"
+                  step="1"
+                  value="0"
+                />
+              </div>
+
+              <div class="bekt-form-actions">
+                <button type="submit" class="bekt-btn bekt-btn-primary">
+                  Submit
+                </button>
+                <button type="reset" class="bekt-btn bekt-btn-link">
+                  Reset
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
       </main>
 
       <aside>
@@ -35,6 +120,6 @@
       </p>
     </footer>
 
-    <script src="main_script.js"></script>
+    <script src="calculators.js"></script>
   </body>
 </html>

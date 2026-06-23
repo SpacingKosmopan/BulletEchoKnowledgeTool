@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Bullet Echo Knowledge</title>
     <link rel="stylesheet" href="../style.css" />
+    <link rel="stylesheet" href="./calculators.css" />
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
@@ -18,6 +19,69 @@
     <div class="page-wrapper">
       <main>
         <div class="container">
+          <div id="information-box">
+            <h1 style="text-align: left">Information</h1>
+            <div class="standalone-ul-item">Damage and damage indicator</div>
+            <p>
+              When you shoot an enemy, a yellow indicator shows next to him. It
+              says, how much damage you dealt. But:
+            </p>
+            <img
+              src="./images/shenji_pre_damage.png"
+              alt="shenji before damage"
+            /><img
+              src="./images/shenji_post_damage.png"
+              alt="shenji after damage"
+            />
+            <p>Indicator says: <u>-3013</u>. Let's count how much was dealt.</p>
+            <div class="calculations-box">
+              health > 2734 - 620 = 2114 <br />armor > 899 - 0 = 899 <br />2114
+              + 899 = 3013
+            </div>
+            <p>
+              Seems right. But is it your real damage that you can use in your
+              calculations? Not really. Let's break it down into parts.
+            </p>
+            <img
+              src="./images/slayer_stats.jpg"
+              alt="slayer stats"
+              class="mw-100"
+            />
+            <p>
+              These are the stats of my Slayer. But I also had Green Explosive
+              Rounds
+            </p>
+            <img
+              src="./images/green_explosive_rounds.png"
+              alt="green explosive rounds"
+            />
+            <p>
+              which increase damage and Armor Penetration by 12%. <br />So let's
+              divide damage to health and armor by damage multipliers.
+            </p>
+            <div class="calculations-box">
+              health > 2114 / 1.09 = ~1939 <br />
+              armor > 899 / 2.00 = ~449 <br />
+              1939 + 449 = 2388 <br />
+              2388 / 1.12 = 2132
+            </div>
+            <p>
+              Wait... but the damage should be much higher than 2132. What's
+              wrong? <br />
+              Let me zoom out a bit.
+            </p>
+            <img
+              src="./images//zoomed_out_shenji_shot.png"
+              alt="zoomed out shenji shot"
+              class="mw-100"
+            />
+            <p>
+              Look. I didn't shoot Shenji directly - the bullet had to go
+              through wall (or two, hard to tell but most likely one). <br />The
+              wall decreased bullet damage a bit, because it has density.
+            </p>
+          </div>
+          <hr />
           <div id="content-cards">
             <div
               class="content-card"
@@ -26,27 +90,45 @@
               <img src="./images/" alt="content-card" />
               <div class="content-card-name">Density</div>
             </div>
-            <div class="content-card" onclick="setLocation(``)">
+            <div
+              class="content-card"
+              onclick="setLocation(`calculator.html?type=damage_to_enemy`)"
+            >
               <img src="./images/" alt="content-card" />
               <div class="content-card-name">Damage to enemy</div>
             </div>
-            <div class="content-card" onclick="setLocation(``)">
+            <div
+              class="content-card"
+              onclick="setLocation(`calculator.html?type=`)"
+            >
               <img src="./images/" alt="content-card" />
               <div class="content-card-name">Hero power</div>
             </div>
-            <div class="content-card" onclick="setLocation(``)">
+            <div
+              class="content-card"
+              onclick="setLocation(`calculator.html?type=`)"
+            >
               <img src="./images/" alt="content-card" />
               <div class="content-card-name">Hero upgrade cost</div>
             </div>
-            <div class="content-card" onclick="setLocation(``)">
+            <div
+              class="content-card"
+              onclick="setLocation(`calculator.html?type=`)"
+            >
               <img src="./images/" alt="content-card" />
               <div class="content-card-name">Drone upgrade cost</div>
             </div>
-            <div class="content-card" onclick="setLocation(``)">
+            <div
+              class="content-card"
+              onclick="setLocation(`calculator.html?type=`)"
+            >
               <img src="./images/" alt="content-card" />
               <div class="content-card-name">Gear upgrade cost</div>
             </div>
-            <div class="content-card" onclick="setLocation(``)">
+            <div
+              class="content-card"
+              onclick="setLocation(`calculator.html?type=`)"
+            >
               <img src="./images/" alt="content-card" />
               <div class="content-card-name">Mod upgrade cost</div>
             </div>
@@ -68,5 +150,10 @@
         | Support with creator code: <u>SPACING</u> in Shop ➡ Premium
       </p>
     </footer>
+    <script>
+      function setLocation(location) {
+        window.location.href = location;
+      }
+    </script>
   </body>
 </html>
