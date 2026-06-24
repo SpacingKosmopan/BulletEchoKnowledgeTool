@@ -19,8 +19,13 @@
     <div class="page-wrapper">
       <main>
         <div class="container" id="main-container">
-          <div id="damage-to-enemy-panel" class="bekt-panel hidden">
+          <div id="damage-to-enemy-panel" class="bekt-panel hidden trans-1-eio">
             <h1 class="bekt-title">Damage to enemy calculator</h1>
+            <p>
+              NOTE: Enemies have different Armor Resistance value. It affects
+              how much damage you will deal. If you want to know enemy's armor
+              resistance based on your shot, go to other calculator
+            </p>
 
             <form id="dmg-en-input-form" class="bekt-form">
               <div class="standalone-ul-item bekt-section-header">
@@ -63,6 +68,8 @@
                 <select name="explosive-upgrade" id="explosive-upgrade">
                   <option value="0">None</option>
                   <option value="12">Green (+12%)</option>
+                  <option value="19">Blue (+19%)</option>
+                  <option value="24">Purple (+24%)</option>
                 </select>
               </div>
 
@@ -102,6 +109,112 @@
               </div>
             </form>
           </div>
+
+          <div
+            id="enemy-armor-resistance-panel"
+            class="bekt-panel hidden trans-1-eio"
+          >
+            <h1 class="bekt-title">Enemy's armor resistance calculator</h1>
+            <p>
+              NOTE: Your shot must be clean: all pellets must hit, there must be
+              no piercing
+            </p>
+
+            <form id="en-armor-resistance-input-form" class="bekt-form">
+              <div class="standalone-ul-item bekt-section-header">
+                Your hero's stats
+              </div>
+
+              <div class="bekt-form-group">
+                <label for="health-multip">Health damage multiplier</label>
+                <input
+                  type="number"
+                  name="health-multip"
+                  id="health-multip"
+                  min="0"
+                  step="0.01"
+                  value="1"
+                />
+              </div>
+
+              <div class="bekt-form-group">
+                <label for="armor-multip">Armor damage multiplier</label>
+                <input
+                  type="number"
+                  name="armor-multip"
+                  id="armor-multip"
+                  min="0"
+                  step="0.01"
+                  value="1"
+                />
+              </div>
+
+              <div class="bekt-form-group">
+                <label for="armor-penetration">Armor penetration</label>
+                <input
+                  type="number"
+                  name="armor-penetration"
+                  id="armor-penetration"
+                  min="0"
+                  step="1"
+                  value="0"
+                />
+              </div>
+
+              <div class="standalone-ul-item bekt-section-header">
+                Damage to enemy stats
+              </div>
+
+              <div class="bekt-form-group">
+                <label for="armor-penetration"
+                  >Damage you dealt (yellow number)</label
+                >
+                <input
+                  type="number"
+                  name="damage-dealt"
+                  id="damage-dealt"
+                  min="0"
+                  step="1"
+                  value="0"
+                />
+              </div>
+
+              <div class="bekt-form-group">
+                <label for="armor-penetration">Damage dealt to health</label>
+                <input
+                  type="number"
+                  name="damage-dealt-health"
+                  id="damage-dealt-health"
+                  min="0"
+                  step="1"
+                  value="0"
+                />
+              </div>
+
+              <div class="bekt-form-group">
+                <label for="armor-penetration">Damage dealt to armor</label>
+                <input
+                  type="number"
+                  name="damage-dealt-armor"
+                  id="damage-dealt-armor"
+                  min="0"
+                  step="1"
+                  value="0"
+                />
+              </div>
+
+              <div class="bekt-form-actions">
+                <button type="submit" class="bekt-btn bekt-btn-primary">
+                  Submit
+                </button>
+                <button type="reset" class="bekt-btn bekt-btn-link">
+                  Reset
+                </button>
+              </div>
+            </form>
+          </div>
+
+          <div id="results-panel" class="bekt-panel trans-1-eio"></div>
         </div>
       </main>
 

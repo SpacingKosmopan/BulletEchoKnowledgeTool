@@ -294,3 +294,7 @@ button {
 .mw-100 {
   max-width: 100%;
 }
+
+.trans-1-eio {
+  transition: 1s ease-in-out;
+}

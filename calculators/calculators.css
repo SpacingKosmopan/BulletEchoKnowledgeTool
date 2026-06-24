@@ -14,6 +14,17 @@
 
 /** FORM **/
 
+#main-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 0;
+  width: 100%;
+  overflow: hidden;
+}
+
 .bekt-panel {
   background-color: #0b0f19;
   border: 3px solid #1a2233;
@@ -23,8 +34,19 @@
   color: #e2e8f0;
   font-family: "Courier New", Courier, monospace;
   box-shadow: 0 0 20px rgba(0, 255, 102, 0.1);
+
   max-width: 500px;
-  margin: 20px auto;
+  width: 100%;
+  margin: 20px 10px;
+  opacity: 1;
+  transform: scale(1);
+
+  transition:
+    max-width 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+    padding 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+    margin 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 0.4s ease,
+    transform 0.5s ease;
 }
 
 .bekt-title {
