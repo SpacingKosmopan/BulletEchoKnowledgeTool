@@ -214,6 +214,73 @@
             </form>
           </div>
 
+          <div
+            id="gear-upgrade-cost-panel"
+            class="bekt-panel hidden trans-1-eio"
+          >
+            <h1 class="bekt-title">Gear upgrade cost calculator</h1>
+
+            <form id="gear-upgrade-cost-form" class="bekt-form">
+              <div class="standalone-ul-item bekt-section-header">
+                Gear level
+              </div>
+
+              <div class="bekt-form-group">
+                <label for="gear-base-level">Gear at current level</label>
+                <select name="gear-base-level" id="gear-base-level">
+                  <option value="0">Common</option>
+                  <option value="1">Rare</option>
+                  <option value="2">Epic</option>
+                  <option value="3">Legendary</option>
+                  <option value="4">Mythic</option>
+                  <option value="5">Supreme</option>
+                  <option value="6">Ultimate</option>
+                  <option value="7">Celestial</option>
+                  <option value="8">Stellar</option>
+                  <option value="9">Immortal</option>
+                  <option value="10">Divine</option>
+                </select>
+              </div>
+
+              <div class="bekt-form-group">
+                <label for="gear-wanted-level">Level you want to achieve</label>
+                <select name="gear-wanted-level" id="gear-wanted-level">
+                  <option value="1">Rare</option>
+                  <option value="2">Epic</option>
+                  <option value="3">Legendary</option>
+                  <option value="4">Mythic</option>
+                  <option value="5">Supreme</option>
+                  <option value="6">Ultimate</option>
+                  <option value="7">Celestial</option>
+                  <option value="8">Stellar</option>
+                  <option value="9">Immortal</option>
+                  <option value="10">Divine</option>
+                </select>
+              </div>
+
+              <div class="standalone-ul-item bekt-section-header">
+                Gear type
+              </div>
+              <div class="bekt-form-group">
+                <label for="gear-type">Gear type</label>
+                <select name="gear-type" id="gear-type">
+                  <option value="common">Common</option>
+                  <option value="weaponry">Weaponry</option>
+                  <option value="personal">Personal</option>
+                </select>
+              </div>
+
+              <div class="bekt-form-actions">
+                <button type="submit" class="bekt-btn bekt-btn-primary">
+                  Submit
+                </button>
+                <button type="reset" class="bekt-btn bekt-btn-link">
+                  Reset
+                </button>
+              </div>
+            </form>
+          </div>
+
           <div id="results-panel" class="bekt-panel trans-1-eio"></div>
         </div>
       </main>
