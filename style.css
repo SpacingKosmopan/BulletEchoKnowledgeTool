@@ -41,6 +41,10 @@ a {
   color: white;
 }
 
+a[target="_blank"]::after {
+  content: " ↗";
+}
+
 .icon-button {
   display: inline-flex;
   align-items: center;
