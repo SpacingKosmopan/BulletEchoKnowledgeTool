@@ -14,7 +14,7 @@ function generateHeroesCards() {
     heroCard.className = "content-card";
     heroCard.addEventListener("click", () => {
       // * TODO: Change location
-      window.location.href = "heroes/index.html";
+      window.location.href = "index.html";
     });
     heroCard.innerHTML = `
         <img src="../skins/${hero.name.toLocaleLowerCase()}.png" alt="${hero.name}-card">

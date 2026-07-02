@@ -1,0 +1,88 @@
+/*
+<div class="hexagon-glow-wrap">
+  <div class="hexagon"></div>
+  <div class="hexagon-text">III</div>
+</div>
+*/
+
+/** OUTER GLOW **/
+.hexagon-glow-wrap {
+  display: inline-block;
+  filter: drop-shadow(0 0 15px rgba(67, 201, 254, 0.8));
+  margin: 30px;
+}
+
+/** HEXAGON WITH OUTER GLOW **/
+.hexagon {
+  --b: 10px;
+  height: 200px;
+  aspect-ratio: cos(30deg);
+  background: #43caff;
+  position: relative;
+  isolation: isolate;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #43caff;
+  font-weight: bold;
+  z-index: 1;
+
+  clip-path: polygon(
+    50% 0,
+    -50% 50%,
+    50% 100%,
+    150% 50%,
+    50% 0,
+    50% var(--b),
+    calc(100% - var(--b) * sin(60deg)) calc(25% + var(--b) * cos(60deg)),
+    calc(100% - var(--b) * sin(60deg)) calc(75% - var(--b) * cos(60deg)),
+    50% calc(100% - var(--b)),
+    calc(var(--b) * sin(60deg)) calc(75% - var(--b) * cos(60deg)),
+    calc(var(--b) * sin(60deg)) calc(25% + var(--b) * cos(60deg)),
+    50% var(--b)
+  );
+}
+
+/** INNER GLOW **/
+.hexagon::before {
+  content: "";
+  position: absolute;
+  inset: -10px;
+  background: transparent;
+  box-shadow: 0 0 25px rgba(67, 201, 254, 0.8);
+  filter: blur(10px);
+  z-index: -1;
+}
+
+/** Uaktualniony kontener rodzica **/
+.hexagon-glow-wrap {
+  display: inline-block;
+  filter: drop-shadow(0 0 15px rgba(67, 201, 254, 0.8));
+  margin: 30px;
+  position: relative;
+}
+
+.hexagon-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  pointer-events: none;
+
+  color: #a3e7ff;
+  font-weight: 700;
+  font-family: sans-serif;
+  font-size: 100px;
+  letter-spacing: 2px;
+
+  text-shadow:
+    0 0 5px rgba(67, 201, 254, 1),
+    0 0 10px rgba(67, 201, 254, 1),
+    0 0 20px rgba(67, 201, 254, 0.8),
+    0 0 35px rgba(67, 201, 254, 0.6),
+    0 0 50px rgba(67, 201, 254, 0.4);
+
+  filter: drop-shadow(0 0 8px rgba(67, 201, 254, 0.8));
+}
