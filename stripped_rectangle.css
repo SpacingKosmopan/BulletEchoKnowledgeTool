@@ -1,26 +1,37 @@
-/*
-    (0% 0%) P1 ----------------------------- P2 (85% 0%)
-    |                                       /
-    |                                      /
-    |                                     /
-    (0% 100%) P4 ----------------------- P3 (100% 100%)
-  
-  clip-path: polygon(0% 0%, 100% 0%, calc(100% - 40px) 100%, 0% 100%);
-  */
-
 :root {
-  --stripe-height: 80px; /* Zmień wysokość tutaj - wszystko się dostosuje */
-  --angle: 63.4deg; /* Kąt ścięcia (odpowiada Twoim początkowym 40px przy 80px wysokości) */
+  --stripe-height: 80px;
+  --angle: 63.4deg;
 
-  /* Automatyczne obliczenia */
   --stripe-offset: calc(var(--stripe-height) / tan(var(--angle)));
-  --base-width: 40px; /* Stała szerokość "światła" paska (bez ścięć) */
+  --base-width: 40px;
+
+  /* neon setup */
+  --neon-color: #0099ff;
+  --neon-glow: drop-shadow(0 0 10px rgba(0, 153, 255, 0.6));
+}
+
+.trimmed-rectangle,
+.after-stripe {
+  position: relative;
+  filter: var(--neon-glow);
+}
+
+.trimmed-rectangle::before,
+.after-stripe::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--neon-color);
 }
 
 .trimmed-rectangle {
   width: 400px;
   height: var(--stripe-height);
-  background-color: #0099ff;
+}
+.trimmed-rectangle::before {
   clip-path: polygon(
     0% 0%,
     100% 0%,
@@ -30,19 +41,17 @@
 }
 
 .after-stripe {
-  /* Szerokość rośnie wraz z wysokością elementu, aby pomieścić pochylenie */
   width: calc(var(--base-width) + var(--stripe-offset));
   height: var(--stripe-height);
-  background-color: #0099ff;
+  margin-left: calc(var(--stripe-offset) * -0.65);
+}
+.after-stripe::before {
   clip-path: polygon(
     var(--stripe-offset) 0%,
     100% 0%,
     calc(100% - var(--stripe-offset)) 100%,
     0% 100%
   );
-
-  /* Margines idealnie dosuwa pasek do poprzednika, eliminując dziury */
-  margin-left: calc(var(--stripe-offset) * -0.65);
 }
 
 .op-7 {
@@ -54,6 +63,7 @@
 }
 
 .shape-container {
-  display: flex; /* Układa elementy w jednym rzędzie */
+  display: flex;
   align-items: center;
+  padding: 60px;
 }
