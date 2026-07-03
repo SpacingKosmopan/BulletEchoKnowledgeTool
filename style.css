@@ -61,6 +61,64 @@ a[target="_blank"]::after {
   font-size: 250%;
 }
 
+header.welcome-header {
+  position: relative;
+  width: 80%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+
+  margin: -50px auto;
+}
+
+img.header-bg {
+  width: 80%;
+  height: auto;
+  display: block;
+}
+
+h1.welcome-header-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  width: 90%;
+  margin: 0;
+  font-size: clamp(1rem, 4vw, 2.5rem);
+}
+
+@media (max-width: 1400px) {
+  img.header-bg {
+    width: 110%;
+  }
+
+  header.welcome-header {
+    margin: -40px auto;
+  }
+
+  h1.welcome-header-text {
+    width: 95%;
+  }
+}
+
+@media (max-width: 768px) {
+  img.header-bg {
+    width: 100%;
+  }
+
+  header.welcome-header {
+    margin: -20px auto;
+    width: 100%;
+  }
+
+  h1.welcome-header-text {
+    width: 95%;
+    font-size: 170%;
+  }
+}
+
 /** SUMMARY & DROPDOWNS **/
 
 aside {
