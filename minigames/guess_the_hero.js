@@ -90,7 +90,7 @@ showAnswerBtn.addEventListener("click", () => {
 });
 
 // * QUESTIONS GENERATING * //
-function nextRound(newRoundNumber = -1) {
+function nextRound(newRoundNumber = -1, selectedQuestionNumber = -1) {
   if (gamestate.roundNumber === gamestate.maxRounds) {
     finishGame();
     return;
@@ -114,13 +114,15 @@ function nextRound(newRoundNumber = -1) {
   // generating question
 
   let questionNumber = -1;
-  do {
-    questionNumber = getRandomIntInclusive(0, questions.length - 1);
-  } while (gamestate.alreadyShownQuestions.includes(questionNumber));
+  if (selectedQuestionNumber >= 0) questionNumber = selectedQuestionNumber;
+  else {
+    do {
+      questionNumber = getRandomIntInclusive(0, questions.length - 1);
+    } while (gamestate.alreadyShownQuestions.includes(questionNumber));
+  }
 
   gamestate.alreadyShownQuestions.push(questionNumber);
 
-  console.log(`Generated question: ${questionNumber}`);
   gamestate.currentQuestion = questions[questionNumber];
 
   audioPlayerDiv.classList.add("hidden");
@@ -141,6 +143,8 @@ function nextRound(newRoundNumber = -1) {
   if (gamestate.currentQuestion.type === QUESTIONS_TYPES.SHADOW) {
     showShadowQuestion(gamestate.currentQuestion);
   }
+
+  return { questionNumber };
 }
 
 function finishGame() {
@@ -186,8 +190,38 @@ const questions = [
   //* AUDIOS
   {
     type: QUESTIONS_TYPES.AUDIO,
-    src: "sounds/error.mp3",
-    answer: "error",
+    src: "sounds/slayer_sound.mp4",
+    answer: "Slayer",
+  },
+  {
+    type: QUESTIONS_TYPES.AUDIO,
+    src: "sounds/sparkle_sound.mp4",
+    answer: "Sparkle",
+  },
+  {
+    type: QUESTIONS_TYPES.AUDIO,
+    src: "sounds/satoshi_sound.mp4",
+    answer: "Satoshi",
+  },
+  {
+    type: QUESTIONS_TYPES.AUDIO,
+    src: "sounds/mirage_sound.mp4",
+    answer: "Mirage",
+  },
+  {
+    type: QUESTIONS_TYPES.AUDIO,
+    src: "sounds/dragoon_sound.mp4",
+    answer: "Dragoon",
+  },
+  {
+    type: QUESTIONS_TYPES.AUDIO,
+    src: "sounds/tess_sound.mp4",
+    answer: "Tess",
+  },
+  {
+    type: QUESTIONS_TYPES.AUDIO,
+    src: "sounds/vi_sound.mp4",
+    answer: "Vi",
   },
   //* EMOJIS
   {
