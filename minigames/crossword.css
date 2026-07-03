@@ -5,7 +5,6 @@
   background-color: #ccc;
   padding: 2px;
   width: max-content;
-  margin-bottom: 20px;
 }
 
 .cell {
@@ -38,7 +37,7 @@
 }
 
 .cell.highlighted {
-  background-color: #e0f7fa;
+  background-color: #c9f9ff;
 }
 
 #question-box {
@@ -48,6 +47,7 @@
   border-left: 5px solid #00acc1;
   max-width: 500px;
   min-height: 40px;
+  margin: 20px 0 10px 0;
 }
 
 .btn-view-results {
