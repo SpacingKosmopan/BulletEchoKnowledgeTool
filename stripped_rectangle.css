@@ -1,19 +1,71 @@
+/*
+<div class="shape-container">
+  <div class="trimmed-rectangle"></div>
+  <div class="after-stripe op-7"></div>
+  <div class="after-stripe op-4"></div>
+</div>
+
+---
+
+<div onclick="" class="stripe-button-element">
+  <div class="trimmed-rectangle">
+    <span class="button-text">TWÓJ TEKST</span>
+  </div>
+  <div class="after-stripe op-7"></div>
+  <div class="after-stripe op-4"></div>
+</div>
+
+*/
+
 :root {
-  --stripe-height: 80px;
   --angle: 63.4deg;
-
-  --stripe-offset: calc(var(--stripe-height) / tan(var(--angle)));
-  --base-width: 40px;
-
-  /* neon setup */
+  --base-width: 20px;
   --neon-color: #0099ff;
-  --neon-glow: drop-shadow(0 0 10px rgba(0, 153, 255, 0.6));
+  --neon-glow: drop-shadow(0 0 8px rgba(0, 153, 255, 0.4));
+  --neon-glow-hover: drop-shadow(0 0 8px rgba(0, 153, 255, 0.4))
+    drop-shadow(0 0 5px rgba(0, 153, 255, 0.4));
+}
+
+.shape-container {
+  --current-height: 80px;
+  --stripe-offset: calc(var(--current-height) / tan(var(--angle)));
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: var(--current-height);
+  width: 100%;
+}
+
+.stripe-button-element {
+  --current-height: 40px;
+  --stripe-offset: calc(var(--current-height) / tan(var(--angle)));
+
+  display: flex;
+  align-items: center;
+  height: var(--current-height);
+
+  width: 300px;
+
+  transform-origin: left;
+  transition: transform 0.2s ease-in-out;
+}
+
+.stripe-button-element:hover {
+  cursor: pointer;
+  transform: scale(1.05, 1);
+}
+.stripe-button-element:hover .trimmed-rectangle,
+.stripe-button-element:hover .after-stripe {
+  filter: var(--neon-glow-hover);
 }
 
 .trimmed-rectangle,
 .after-stripe {
   position: relative;
+  height: 100%;
   filter: var(--neon-glow);
+  transition: filter 0.2s ease-in-out;
 }
 
 .trimmed-rectangle::before,
@@ -28,9 +80,9 @@
 }
 
 .trimmed-rectangle {
-  width: 400px;
-  height: var(--stripe-height);
+  flex: 1;
 }
+
 .trimmed-rectangle::before {
   clip-path: polygon(
     0% 0%,
@@ -42,9 +94,10 @@
 
 .after-stripe {
   width: calc(var(--base-width) + var(--stripe-offset));
-  height: var(--stripe-height);
   margin-left: calc(var(--stripe-offset) * -0.65);
+  flex-shrink: 0;
 }
+
 .after-stripe::before {
   clip-path: polygon(
     var(--stripe-offset) 0%,
@@ -57,13 +110,25 @@
 .op-7 {
   opacity: 0.7;
 }
-
 .op-4 {
   opacity: 0.4;
 }
 
-.shape-container {
-  display: flex;
-  align-items: center;
-  padding: 60px;
+.button-text {
+  position: absolute;
+
+  top: 50%;
+  transform: translateY(-50%);
+
+  left: 20px;
+
+  z-index: 1;
+
+  color: #ffffff;
+  font-weight: lighter;
+  font-size: 18px;
+  white-space: nowrap; /* Zapobiega łamaniu tekstu do nowej linii */
+  letter-spacing: 2px;
+
+  pointer-events: none;
 }

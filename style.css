@@ -304,3 +304,8 @@ button {
 .trans-1-eio {
   transition: 1s ease-in-out;
 }
+
+/*! testing feature - delete if needed */
+html {
+  scroll-behavior: smooth;
+}

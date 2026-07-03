@@ -9,6 +9,9 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
     />
+
+    <!--! Stripe Button Component -->
+    <script src="./stripe_button_component.js" defer></script>
   </head>
   <body>
     <header>
@@ -97,7 +100,9 @@
       </main>
 
       <aside>
-        <a href="index.html"><i class="bi bi-house-fill"></i> Home</a>
+        <stripe-button href="./index.html"
+          ><i class="bi bi-house-fill"></i> Home</stripe-button
+        >
         <details class="dropdown">
           <summary id="heroes-summary">
             <p id="heroes-text">Heroes tips and tricks</p>
@@ -131,7 +136,7 @@
             <a href="./minigames/crossword.html">Crossword</a>
           </nav>
         </details>
-        <a href="changelog.html">Changelog</a>
+        <stripe-button href="./changelog.html">Changelog</stripe-button>
       </aside>
     </div>
 
