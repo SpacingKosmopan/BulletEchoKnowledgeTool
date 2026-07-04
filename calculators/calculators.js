@@ -8,13 +8,17 @@ const DOM = {
     "#enemy-armor-resistance-panel",
   ),
   gearUpgradeCostPanel: document.querySelector("#gear-upgrade-cost-panel"),
+  modUpgradeCostPanel: document.querySelector("#mod-upgrade-cost-panel"),
 };
 
 if (calculatorType === "damage_to_enemy") showPanel(DOM.damageToEnemyPanel);
 else if (calculatorType === "armor_resistance")
   showPanel(DOM.enemyArmorResistancePanel);
 else if (calculatorType === "gear_upgrade") showPanel(DOM.gearUpgradeCostPanel);
-else DOM.resultPanel.innerHTML = `This page is being prepared`;
+else if (calculatorType === "mod_upgrade") {
+  showPanel(DOM.modUpgradeCostPanel);
+  DOM.resultPanel.innerHTML = `<p>Click mod to check how many coils and which previous tiers you need to get this level</p>`;
+} else DOM.resultPanel.innerHTML = `This page is being prepared`;
 
 function showPanel(panel) {
   panel.classList.remove("hidden");
@@ -115,6 +119,168 @@ const levelNames = {
   DIVINE: 10,
 };
 
+// * MOD UPGRADE COST * //
+const modsCost = [100, 50, 150, 250, 500];
+//TODO: zrobić takie klikalne drzewo jak na obrazku
+
+/**
+ * calculates amount of coils needed to acquire specific level of weapon mod
+ * @param {*} 1-5
+ * @returns amount of coils needed to acquire specific level of weapon mod
+ */
+function calculateModUpgradeCost(wantedLevel) {
+  if (wantedLevel < 1 || wantedLevel > 5) return 0;
+
+  let totalCost = 0;
+
+  if (wantedLevel === 5) {
+    const branchCost = modsCost[0] + modsCost[1] + modsCost[2] + modsCost[3];
+    totalCost = 3 * branchCost + modsCost[4];
+  } else {
+    for (let i = 0; i < wantedLevel; i++) {
+      totalCost += modsCost[i];
+    }
+  }
+
+  return totalCost;
+}
+
+// * LEVEL TREE * //
+let activeTracks = { 0: null, 1: null, 2: null, 3: null, 4: null };
+
+function handleSkillSelection(tier, position) {
+  const cost = calculateModUpgradeCost(tier + 1);
+  DOM.resultPanel.innerHTML = `<p>Cost: <u>${cost}</u> coils</p>`;
+
+  activeTracks = { 0: null, 1: null, 2: null, 3: null, 4: null };
+  document
+    .querySelectorAll(".hexagon")
+    .forEach((h) => h.classList.remove("active"));
+
+  if (tier === 0) {
+    activeTracks[0] = position;
+  } else if (tier === 1) {
+    activeTracks[0] = position;
+    activeTracks[1] = position;
+  } else if (tier === 2) {
+    activeTracks[0] = position;
+    activeTracks[1] = position;
+    activeTracks[2] = position;
+  } else if (tier === 3) {
+    activeTracks[0] = position;
+    activeTracks[1] = position;
+    activeTracks[2] = position;
+    activeTracks[3] = position;
+  } else if (tier === 4) {
+    activeTracks[0] = "all";
+    activeTracks[1] = "all";
+    activeTracks[2] = "all";
+    activeTracks[3] = "all";
+    activeTracks[4] = position;
+  }
+
+  for (let t = 0; t <= 4; t++) {
+    const currentTrack = activeTracks[t];
+    if (!currentTrack) continue;
+
+    const row = document.getElementById(`tier-${t}`);
+    if (!row) continue;
+
+    if (currentTrack === "all") {
+      row
+        .querySelectorAll(".hexagon")
+        .forEach((h) => h.classList.add("active"));
+    } else {
+      const targetHex = row.querySelector(
+        `.hexagon[onclick*="'${currentTrack}'"]`,
+      );
+      if (targetHex) {
+        targetHex.classList.add("active");
+      }
+    }
+  }
+  refreshAllLines();
+}
+
+function refreshAllLines() {
+  const tier0Lines = ["line-left-0", "line-mid-0", "line-right-0"];
+  const tier1Lines = ["line-left-1", "line-mid-1", "line-right-1"];
+  const tier2Lines = ["line-left-2", "line-mid-2", "line-right-2"];
+  const tier3Lines = ["line-left-3", "line-mid-3", "line-right-3"];
+  const tier3Paths = ["path-final-1", "path-final-2", "path-final-4"];
+
+  // --- Reset ---
+  tier0Lines.forEach((id) =>
+    document.getElementById(id).classList.remove("active-gray"),
+  );
+  tier1Lines.forEach((id) =>
+    document.getElementById(id).classList.remove("active-green"),
+  );
+  tier2Lines.forEach((id) =>
+    document.getElementById(id).classList.remove("active-blue"),
+  );
+  tier3Lines.forEach((id) =>
+    document.getElementById(id).classList.remove("active-blue"),
+  );
+  tier3Paths.forEach((id) =>
+    document.getElementById(id).classList.remove("active-yellow"),
+  );
+
+  // --- Tier 0  ---
+  if (activeTracks[0] === "all") {
+    tier0Lines.forEach((id) =>
+      document.getElementById(id).classList.add("active-gray"),
+    );
+  } else if (activeTracks[0]) {
+    document
+      .getElementById(`line-${activeTracks[0]}-0`)
+      .classList.add("active-gray");
+  }
+
+  // --- Tier 1 ---
+  if (activeTracks[1] === "all") {
+    tier1Lines.forEach((id) =>
+      document.getElementById(id).classList.add("active-green"),
+    );
+  } else if (activeTracks[1]) {
+    document
+      .getElementById(`line-${activeTracks[1]}-1`)
+      .classList.add("active-green");
+  }
+
+  // --- Tier 2 ---
+  if (activeTracks[2] === "all") {
+    tier2Lines.forEach((id) =>
+      document.getElementById(id).classList.add("active-blue"),
+    );
+  } else if (activeTracks[2]) {
+    document
+      .getElementById(`line-${activeTracks[2]}-2`)
+      .classList.add("active-blue");
+  }
+
+  // --- Tier 3 ---
+  if (activeTracks[3] === "all") {
+    tier3Lines.forEach((id) =>
+      document.getElementById(id).classList.add("active-blue"),
+    );
+  } else if (activeTracks[3]) {
+    document
+      .getElementById(`line-${activeTracks[3]}-3`)
+      .classList.add("active-blue");
+  }
+
+  // --- Tier 4 ---
+  if (activeTracks[4] === "final-1") {
+    document.getElementById("path-final-1").classList.add("active-yellow");
+    document.getElementById("path-final-2").classList.add("active-yellow");
+  } else if (activeTracks[4] === "final-2") {
+    document.getElementById("path-final-1").classList.add("active-yellow");
+    document.getElementById("path-final-4").classList.add("active-yellow");
+  }
+}
+
+// * GEAR UPGRADE COST * //
 DOMforms.gearUpgradeCost.form.addEventListener("submit", (e) => {
   e.preventDefault();
 

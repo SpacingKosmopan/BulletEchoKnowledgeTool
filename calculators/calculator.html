@@ -6,6 +6,7 @@
     <title>Bullet Echo Knowledge</title>
     <link rel="stylesheet" href="../style.css" />
     <link rel="stylesheet" href="./calculators.css" />
+    <link rel="stylesheet" href="../levels_tree.css" />
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
@@ -116,6 +117,145 @@
                 </button>
               </div>
             </form>
+          </div>
+
+          <div
+            id="mod-upgrade-cost-panel"
+            class="bekt-panel hidden trans-1-eio"
+          >
+            <h1 class="bekt-title">Mod upgrade cost calculator</h1>
+            <div class="tree-container">
+              <!-- Connecting SVG Paths -->
+              <svg class="lines">
+                <!--
+                M 69,430 (Move to)
+                L 69,460 (Line to)
+                -->
+                <line id="line-left-0" x1="69" y1="50" x2="69" y2="135" />
+                <line id="line-mid-0" x1="187" y1="50" x2="187" y2="135" />
+                <line id="line-right-0" x1="305" y1="50" x2="305" y2="135" />
+
+                <line id="line-left-1" x1="69" y1="135" x2="69" y2="225" />
+                <line id="line-mid-1" x1="187" y1="135" x2="187" y2="225" />
+                <line id="line-right-1" x1="305" y1="135" x2="305" y2="225" />
+
+                <line id="line-left-2" x1="69" y1="225" x2="69" y2="315" />
+                <line id="line-mid-2" x1="187" y1="225" x2="187" y2="315" />
+                <line id="line-right-2" x1="305" y1="225" x2="305" y2="315" />
+
+                <!--TODO-->
+                <line id="line-left-3" x1="69" y1="315" x2="69" y2="370" />
+                <line id="line-mid-3" x1="187" y1="315" x2="187" y2="370" />
+                <line id="line-right-3" x1="305" y1="315" x2="305" y2="370" />
+                <!--TODO-->
+
+                <!--TODO-->
+                <path
+                  id="path-final-1"
+                  d="M 69,430 L 69,460 L 187,460 L 187,430 M 187,460 L 305,460 L 305,430"
+                />
+                <!--! lines to delete -->
+                <path id="path-final-2" d="M 119,462 L 119,480" />
+                <path id="path-final-3" d="" />
+                <path id="path-final-4" d="M 255,462 L 255,480" />
+                <!--TODO-->
+              </svg>
+
+              <!-- Node Elements Structure -->
+              <div class="skills-layer">
+                <!-- Tier 0  -->
+                <div class="row row-3 tier-0" id="tier-0">
+                  <div
+                    class="hexagon"
+                    onclick="handleSkillSelection(0, 'left')"
+                  >
+                    <div class="hexagon-inner"></div>
+                  </div>
+                  <div class="hexagon" onclick="handleSkillSelection(0, 'mid')">
+                    <div class="hexagon-inner"></div>
+                  </div>
+                  <div
+                    class="hexagon"
+                    onclick="handleSkillSelection(0, 'right')"
+                  >
+                    <div class="hexagon-inner"></div>
+                  </div>
+                </div>
+
+                <!-- Tier 1  -->
+                <div class="row row-3 tier-1" id="tier-1">
+                  <div
+                    class="hexagon"
+                    onclick="handleSkillSelection(1, 'left')"
+                  >
+                    <div class="hexagon-inner"></div>
+                  </div>
+                  <div class="hexagon" onclick="handleSkillSelection(1, 'mid')">
+                    <div class="hexagon-inner"></div>
+                  </div>
+                  <div
+                    class="hexagon"
+                    onclick="handleSkillSelection(1, 'right')"
+                  >
+                    <div class="hexagon-inner"></div>
+                  </div>
+                </div>
+
+                <!-- Tier 2  -->
+                <div class="row row-3 tier-2" id="tier-2">
+                  <div
+                    class="hexagon"
+                    onclick="handleSkillSelection(2, 'left')"
+                  >
+                    <div class="hexagon-inner"></div>
+                  </div>
+                  <div class="hexagon" onclick="handleSkillSelection(2, 'mid')">
+                    <div class="hexagon-inner"></div>
+                  </div>
+                  <div
+                    class="hexagon"
+                    onclick="handleSkillSelection(2, 'right')"
+                  >
+                    <div class="hexagon-inner"></div>
+                  </div>
+                </div>
+
+                <!-- Tier 3  -->
+                <div class="row row-3 tier-3" id="tier-3">
+                  <div
+                    class="hexagon"
+                    onclick="handleSkillSelection(3, 'left')"
+                  >
+                    <div class="hexagon-inner"></div>
+                  </div>
+                  <div class="hexagon" onclick="handleSkillSelection(3, 'mid')">
+                    <div class="hexagon-inner"></div>
+                  </div>
+                  <div
+                    class="hexagon"
+                    onclick="handleSkillSelection(3, 'right')"
+                  >
+                    <div class="hexagon-inner"></div>
+                  </div>
+                </div>
+
+                <!-- Tier 4  -->
+                <div class="row row-2 tier-4" id="tier-4">
+                  <div
+                    class="hexagon"
+                    onclick="handleSkillSelection(4, 'final-1')"
+                  >
+                    <div class="hexagon-inner"></div>
+                  </div>
+                  <div
+                    class="hexagon"
+                    onclick="handleSkillSelection(4, 'final-2')"
+                  >
+                    <div class="hexagon-inner"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
 
           <div
