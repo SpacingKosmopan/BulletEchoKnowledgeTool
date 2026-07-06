@@ -22,7 +22,6 @@ body {
   padding: 2rem;
   background: #111827;
   color: white;
-  font-family: Arial, Helvetica, sans-serif;
   gap: 1rem;
 }
 
@@ -67,7 +66,7 @@ header.welcome-header {
   display: flex;
   justify-content: center;
   align-items: center;
-  overflow: hidden;
+  overflow: visible;
 
   margin: -50px auto;
 }
@@ -75,7 +74,34 @@ header.welcome-header {
 img.header-bg {
   width: 80%;
   height: auto;
-  display: block;
+}
+
+img#long-header {
+  display: block !important;
+}
+
+img#small-header {
+  display: none !important;
+}
+
+@media (max-width: 600px) {
+  h1.welcome-header-text {
+    width: 75%;
+    font-size: clamp(1rem, 6vw, 5rem);
+  }
+  img#long-header {
+    display: none !important;
+  }
+  img#small-header {
+    display: block !important;
+  }
+}
+
+@media (min-width: 601px) {
+  h1.welcome-header-text {
+    width: 95%;
+    font-size: clamp(1rem, 3.5vw, 2.5rem);
+  }
 }
 
 h1.welcome-header-text {
@@ -84,9 +110,8 @@ h1.welcome-header-text {
   left: 50%;
   transform: translate(-50%, -50%);
   text-align: center;
-  width: 90%;
+  /*width: 90%;*/
   margin: 0;
-  font-size: clamp(1rem, 4vw, 2.5rem);
 }
 
 @media (max-width: 1400px) {
@@ -96,10 +121,6 @@ h1.welcome-header-text {
 
   header.welcome-header {
     margin: -40px auto;
-  }
-
-  h1.welcome-header-text {
-    width: 95%;
   }
 }
 
@@ -111,11 +132,6 @@ h1.welcome-header-text {
   header.welcome-header {
     margin: -20px auto;
     width: 100%;
-  }
-
-  h1.welcome-header-text {
-    width: 95%;
-    font-size: 170%;
   }
 }
 
@@ -369,29 +385,22 @@ html {
 }
 
 /** MAIN PAGE **/
-/* ==========================================
-   BULLET ECHO - GLOBAL CONTAINER STYLE
-   ========================================== */
 
-/* Główny kontener o charakterze wojskowego taktycznego huba */
 .container {
   margin: 0 auto;
   max-width: 1200px;
   padding: 20px;
-  background-color: #0b0f12; /* Bardzo ciemny grafit */
+  background-color: #0b0f12;
   color: #e0e6ed;
   font-family: "Segoe UI", Impact, Roboto, sans-serif;
 }
 
-/* ==========================================
-   SEKCJA HERO (NAGŁÓWEK KONTENERA)
-   ========================================== */
 .welcome-hero {
   display: flex;
   justify-content: space-between;
   align-items: center;
   background: linear-gradient(135deg, #141a22 0%, #1a2430 100%);
-  border-left: 5px solid #00ff66; /* Jaskrawa zieleń Bullet Echo */
+  border-left: 5px solid #00ff66;
   padding: 25px;
   margin-bottom: 30px;
   clip-path: polygon(
@@ -420,9 +429,8 @@ html {
   line-height: 1.5;
 }
 
-/* Odznaka Kodu Twórcy stylizowana na skrzynkę z zaopatrzeniem */
 .creator-badge {
-  background: #1e1112; /* Ciemnoczerwone tło ostrzegawcze */
+  background: #1e1112;
   border: 2px solid #ff3344;
   padding: 15px;
   text-align: center;
@@ -461,9 +469,6 @@ html {
   color: #ffb3b9;
 }
 
-/* ==========================================
-   SIATKA FUNKCJI (KARTY)
-   ========================================== */
 .features-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -471,7 +476,6 @@ html {
   margin-bottom: 30px;
 }
 
-/* Standardowa karta taktyczna */
 .feature-card {
   background: #121820;
   border: 2px solid #26354a;
@@ -497,9 +501,8 @@ html {
   border-color: #00ff66;
 }
 
-/* Karta wyróżniona (np. Kalkulatory) */
 .feature-card.highlighted {
-  border-color: #ffcc00; /* Żółty legendarny kolor */
+  border-color: #ffcc00;
   background: linear-gradient(145deg, #121820 0%, #1c1a10 100%);
 }
 
@@ -532,7 +535,6 @@ html {
   margin-bottom: 20px;
 }
 
-/* Przyciski na kartach akcji */
 .card-btn {
   display: block;
   text-align: center;
@@ -561,9 +563,6 @@ html {
   border-color: #ffcc00;
 }
 
-/* ==========================================
-   SEKCJA LATEST & STATUS (DOLNE PANELE)
-   ========================================= */
 .latest-section {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -604,10 +603,10 @@ html {
 
 .latest-video h3 {
   color: #ff0044;
-} /* Kolor YouTube */
+}
 .quick-status h3 {
   color: #00bfff;
-} /* Kolor informacji cyfrowej */
+}
 
 .yt-link {
   display: inline-flex;
