@@ -150,7 +150,7 @@ let activeTracks = { 0: null, 1: null, 2: null, 3: null, 4: null };
 
 function handleSkillSelection(tier, position) {
   const cost = calculateModUpgradeCost(tier + 1);
-  DOM.resultPanel.innerHTML = `<p>Cost: <u>${cost}</u> coils</p>`;
+  DOM.resultPanel.innerHTML = `<p>Cost: ${cost} <img src="./images/resources/coils.png" class="resource-result-image"></p>`;
 
   activeTracks = { 0: null, 1: null, 2: null, 3: null, 4: null };
   document
@@ -207,76 +207,56 @@ function refreshAllLines() {
   const tier1Lines = ["line-left-1", "line-mid-1", "line-right-1"];
   const tier2Lines = ["line-left-2", "line-mid-2", "line-right-2"];
   const tier3Lines = ["line-left-3", "line-mid-3", "line-right-3"];
-  const tier3Paths = ["path-final-1", "path-final-2", "path-final-4"];
+  const tier4Paths = ["path-final-1", "path-final-2", "path-final-4"];
 
-  // --- Reset ---
-  tier0Lines.forEach((id) =>
-    document.getElementById(id).classList.remove("active-gray"),
-  );
-  tier1Lines.forEach((id) =>
-    document.getElementById(id).classList.remove("active-green"),
-  );
-  tier2Lines.forEach((id) =>
-    document.getElementById(id).classList.remove("active-blue"),
-  );
-  tier3Lines.forEach((id) =>
-    document.getElementById(id).classList.remove("active-blue"),
-  );
-  tier3Paths.forEach((id) =>
-    document.getElementById(id).classList.remove("active-yellow"),
-  );
+  const setClass = (id, className, add) => {
+    const el = document.getElementById(id);
+    if (!el) return;
+    if (add) el.classList.add(className);
+    else el.classList.remove(className);
+  };
 
-  // --- Tier 0  ---
+  tier0Lines.forEach((id) => setClass(id, "active-gray", false));
+  tier1Lines.forEach((id) => setClass(id, "active-green", false));
+  tier2Lines.forEach((id) => setClass(id, "active-blue", false));
+  tier3Lines.forEach((id) => setClass(id, "active-yellow", false));
+  tier4Paths.forEach((id) => setClass(id, "active-orange", false));
+
+  // --- Tier 0 (Gray) ---
   if (activeTracks[0] === "all") {
-    tier0Lines.forEach((id) =>
-      document.getElementById(id).classList.add("active-gray"),
-    );
+    tier0Lines.forEach((id) => setClass(id, "active-gray", true));
   } else if (activeTracks[0]) {
-    document
-      .getElementById(`line-${activeTracks[0]}-0`)
-      .classList.add("active-gray");
+    setClass(`line-${activeTracks[0]}-0`, "active-gray", true);
   }
 
-  // --- Tier 1 ---
+  // --- Tier 1 (Green) ---
   if (activeTracks[1] === "all") {
-    tier1Lines.forEach((id) =>
-      document.getElementById(id).classList.add("active-green"),
-    );
+    tier1Lines.forEach((id) => setClass(id, "active-green", true));
   } else if (activeTracks[1]) {
-    document
-      .getElementById(`line-${activeTracks[1]}-1`)
-      .classList.add("active-green");
+    setClass(`line-${activeTracks[1]}-1`, "active-green", true);
   }
 
-  // --- Tier 2 ---
+  // --- Tier 2 (Blue) ---
   if (activeTracks[2] === "all") {
-    tier2Lines.forEach((id) =>
-      document.getElementById(id).classList.add("active-blue"),
-    );
+    tier2Lines.forEach((id) => setClass(id, "active-blue", true));
   } else if (activeTracks[2]) {
-    document
-      .getElementById(`line-${activeTracks[2]}-2`)
-      .classList.add("active-blue");
+    setClass(`line-${activeTracks[2]}-2`, "active-blue", true);
   }
 
-  // --- Tier 3 ---
+  // --- Tier 3 (Yellow) ---
   if (activeTracks[3] === "all") {
-    tier3Lines.forEach((id) =>
-      document.getElementById(id).classList.add("active-blue"),
-    );
+    tier3Lines.forEach((id) => setClass(id, "active-yellow", true));
   } else if (activeTracks[3]) {
-    document
-      .getElementById(`line-${activeTracks[3]}-3`)
-      .classList.add("active-blue");
+    setClass(`line-${activeTracks[3]}-3`, "active-yellow", true);
   }
 
-  // --- Tier 4 ---
+  // --- Tier 4 (Orange) ---
   if (activeTracks[4] === "final-1") {
-    document.getElementById("path-final-1").classList.add("active-yellow");
-    document.getElementById("path-final-2").classList.add("active-yellow");
+    setClass("path-final-1", "active-orange", true);
+    setClass("path-final-2", "active-orange", true);
   } else if (activeTracks[4] === "final-2") {
-    document.getElementById("path-final-1").classList.add("active-yellow");
-    document.getElementById("path-final-4").classList.add("active-yellow");
+    setClass("path-final-1", "active-orange", true);
+    setClass("path-final-4", "active-orange", true);
   }
 }
 
@@ -303,7 +283,14 @@ DOMforms.gearUpgradeCost.form.addEventListener("submit", (e) => {
     cost.nuts += gearUpgradeCost[gearType][i].nuts;
     cost.copies += gearUpgradeCost[gearType][i].copies;
   }
-  DOM.resultPanel.innerHTML = `<p>Cost: <u>${cost.nuts}</u> nuts and <u>${cost.copies}</u> gear copies</p>`;
+  DOM.resultPanel.innerHTML = `<p>Cost: <u>${cost.nuts}</u> <img src="./images/resources/nuts.png" class="resource-result-image"> and <u>${cost.copies}</u> 
+  ${
+    gearType === "personal"
+      ? '<img src="./images/resources/gear_personal.png" class="resource-result-image">'
+      : gearType === "common"
+        ? '<img src="./images/resources/gear_common.png" class="resource-result-image">'
+        : '<img src="./images/resources/gear_weapon.png" class="resource-result-image">'
+  }</p>`;
 });
 
 DOMforms.enemyArmorResistance.form.addEventListener("submit", (e) => {

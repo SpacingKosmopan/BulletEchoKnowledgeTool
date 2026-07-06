@@ -171,3 +171,12 @@
   color: #989aa1;
   text-decoration: underline;
 }
+
+.resource-result-image {
+  vertical-align: middle;
+  height: 30px;
+}
+
+#results-panel {
+  font-size: 30px;
+}

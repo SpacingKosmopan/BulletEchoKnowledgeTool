@@ -54,9 +54,13 @@
   stroke: var(--blue);
   filter: drop-shadow(0 0 5px var(--blue));
 }
-.lines path.active-yellow {
+.lines line.active-yellow {
   stroke: var(--yellow);
   filter: drop-shadow(0 0 5px var(--yellow));
+}
+.lines path.active-orange {
+  stroke: var(--orange);
+  filter: drop-shadow(0 0 5px var(--orange));
 }
 
 .skills-layer {
