@@ -33,13 +33,18 @@ function generateHeroesCards() {
       window.location.href = `index.html?hero=${hero.name.toLowerCase()}`;
     });
 
+    // Dodano pojemnik .content-card-badge ze zdjęciem klasy bohatera
     heroCard.innerHTML = `
+        <div class="content-card-badge">
+          <img src="../classes/${hero.class.toLowerCase()}.png" alt="${hero.class}-icon">
+        </div>
         <img src="../skins/${hero.name.toLowerCase()}.png" alt="${hero.name}-card">
         <div class="content-card-name">${hero.name}</div>
     `;
     heroesCardsContainer.appendChild(heroCard);
   });
 }
+
 generateHeroesCards();
 
 //! UPDATE

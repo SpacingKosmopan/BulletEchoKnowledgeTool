@@ -1,30 +1,48 @@
-/*
-na końcu head
-<script src="../stripe_button_component.js" defer></script>
-
-<stripe-button href="../index.html"
-  ><i class="bi bi-house-fill"></i> Home</stripe-button
->
- */
-
 class StripeButton extends HTMLElement {
   constructor() {
     super();
-    // Tworzymy Shadow DOM, aby style komponentu nie mieszały się z globalnymi
     this.attachShadow({ mode: "open" });
+  }
+
+  static get observedAttributes() {
+    return ["color", "href"];
+  }
+
+  attributeChangedCallback(name, oldValue, newValue) {
+    if (oldValue !== newValue) {
+      if (name === "color") {
+        this.updateColor();
+      } else if (name === "href" && this.shadowRoot) {
+        const link = this.shadowRoot.querySelector("a");
+        if (link) link.setAttribute("href", newValue || "#");
+      }
+    }
+  }
+
+  getColor() {
+    return this.getAttribute("color") || "#0099ff";
+  }
+
+  updateColor() {
+    const color = this.getColor();
+    this.style.setProperty("--neon-color", color);
   }
 
   connectedCallback() {
     const href = this.getAttribute("href") || "#";
+
+    this.updateColor();
 
     this.shadowRoot.innerHTML = `
       <style>
         :host {
           --angle: 63.4deg;
           --base-width: 20px;
-          --neon-color: #0099ff;
-          --neon-glow: drop-shadow(0 0 8px rgba(0, 153, 255, 0.4));
-          --neon-glow-hover: drop-shadow(0 0 8px rgba(0, 153, 255, 0.4)) drop-shadow(0 0 5px rgba(0, 153, 255, 0.4));
+          
+          /* Subtelny, nieagresywny glow o promieniu 3px */
+          --neon-glow: drop-shadow(0 0 3px var(--neon-color));
+          --neon-glow-hover: drop-shadow(0 0 5px var(--neon-color));
+          
           display: inline-block;
           width: 300px;
         }
@@ -92,7 +110,6 @@ class StripeButton extends HTMLElement {
           display: flex;
           align-items: center;
           gap: 8px;
-
           position: absolute;
           top: 50%;
           transform: translateY(-50%);
@@ -116,7 +133,6 @@ class StripeButton extends HTMLElement {
         <div class="after-stripe op-7"></div>
         <div class="after-stripe op-4"></div>
       </a>
-
     `;
   }
 }

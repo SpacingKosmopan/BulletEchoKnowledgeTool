@@ -122,37 +122,59 @@
         >
         <details class="dropdown">
           <summary id="heroes-summary">
-            <p id="heroes-text">Heroes tips and tricks</p>
+            <stripe-button id="heroes-text"
+              >Heroes tips and tricks</stripe-button
+            >
           </summary>
           <nav class="dropdown-content" id="heroes-pages"></nav>
         </details>
         <details class="dropdown">
           <summary id="calculators-summary">
-            <p id="calculators-text">Calculators</p>
+            <stripe-button id="calculators-text">Calculators</stripe-button>
           </summary>
           <nav class="dropdown-content" id="calculators-pages">
-            <a href="">Density</a>
-            <a href="">Damage to enemy</a>
-            <a href="">Hero power</a>
-            <a href="">Hero upgrade cost</a>
-            <a href="">Drone upgrade cost</a>
-            <a href="">Gear upgrade cost</a>
-            <a href="">Mod upgrade cost</a>
+            <stripe-button href="" color="#0066BB">Density</stripe-button
+            ><stripe-button href="" color="#0066BB"
+              >Damage to enemy</stripe-button
+            >
+            <stripe-button href="" color="#0066BB">Hero power</stripe-button>
+            <stripe-button href="" color="#0066BB"
+              >Hero upgrade cost</stripe-button
+            >
+            <stripe-button href="" color="#0066BB"
+              >Drone upgrade cost</stripe-button
+            ><stripe-button href="" color="#0066BB"
+              >Gear upgrade cost</stripe-button
+            >
+            <stripe-button href="" color="#0066BB"
+              >Mod upgrade cost</stripe-button
+            >
           </nav>
         </details>
         <details class="dropdown" id="minigames-details">
           <summary id="minigames-summary">
-            <p id="minigames-text">Minigames</p>
+            <stripe-button id="minigames-text">Minigames</stripe-button>
           </summary>
           <nav class="dropdown-content" id="minigames-pages">
-            <a href="./minigames/guess_the_map.html">Guess the map</a>
-            <a href="./minigames/guess_the_hero.html"
-              >Guess the hero (by sound, gear, shadow, icon, emoji)</a
+            <stripe-button href="./minigames/guess_the_map.html" color="#0066BB"
+              >Guess the map</stripe-button
             >
-            <a href="./minigames/depixelisation.html">Depixelisation</a>
-            <a href="./minigames/crossword.html">Crossword</a>
+            <stripe-button
+              href="./minigames/guess_the_hero.html"
+              color="#0066BB"
+              >Guess the hero</stripe-button
+            >
+            <stripe-button
+              href="./minigames/depixelisation.html"
+              color="#0066BB"
+              >Depixelisation</stripe-button
+            >
+            <stripe-button href="./minigames/crossword.html" color="#0066BB"
+              >Crossword</stripe-button
+            >
           </nav>
         </details>
+
         <stripe-button href="./changelog.html">Changelog</stripe-button>
       </aside>
     </div>
@@ -168,5 +190,28 @@
     </footer>
 
     <script src="./main_script.js"></script>
+    <script>
+      /* dropdown animation */
+      document.addEventListener("DOMContentLoaded", () => {
+        document.querySelectorAll("details.dropdown").forEach((details) => {
+          const content = details.querySelector(".dropdown-content");
+          if (!content) return;
+
+          const updateIndices = () => {
+            Array.from(content.children).forEach((child, index) => {
+              child.style.setProperty("--i", index);
+            });
+          };
+
+          updateIndices();
+
+          details.addEventListener("toggle", () => {
+            if (details.open) {
+              updateIndices();
+            }
+          });
+        });
+      });
+    </script>
   </body>
 </html>

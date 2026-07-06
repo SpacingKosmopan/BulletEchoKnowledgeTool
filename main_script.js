@@ -10,7 +10,7 @@ function generateAsideHeroesPagesLinks() {
   const heroesPages = document.querySelector("#heroes-pages");
   heroesPages.innerHTML = "";
   heroes.forEach((hero) => {
-    heroesPages.innerHTML += `<a href="heroes/index.html">${hero.name}</a>`;
+    heroesPages.innerHTML += `<stripe-button href="heroes/index.html?hero=${hero.name}" color="#0066BB">${hero.name}</stripe-button>`;
   });
 }
 generateAsideHeroesPagesLinks();
