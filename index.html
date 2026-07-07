@@ -12,6 +12,8 @@
 
     <!--! Stripe Button Component -->
     <script src="./stripe_button_component.js" defer></script>
+    <!--! tally form -->
+    <script async src="https://tally.so/widgets/embed.js"></script>
   </head>
   <body>
     <header class="welcome-header">
@@ -176,14 +178,33 @@
         </details>
 
         <stripe-button href="./changelog.html">Changelog</stripe-button>
+        <stripe-button
+          data-tally-open="D4yxlR"
+          data-tally-overlay="1"
+          data-tally-emoji-text="🐛"
+          data-tally-emoji-animation="heart-beat"
+          data-tally-form-events-forwarding="1"
+        >
+          <i class="bi bi-bug"></i> Reports<i class="bi bi-lightbulb"></i>
+          Feedback</stripe-button
+        >
       </aside>
     </div>
 
     <footer>
       <p>
         Made by: Spacing Kosmopan |
-        <a href="https://www.youtube.com/@Spacing_Gaming" target="_blank"
-          ><i class="bi bi-youtube icon-button"></i
+        <a
+          href="https://www.youtube.com/@Spacing_Gaming"
+          target="_blank"
+          class="icon-button"
+          >YouTube &nbsp;<i class="bi bi-youtube"></i></a
+        >&nbsp;
+        <a
+          href="https://www.discord.gg/JZfqCRvVsA"
+          target="_blank"
+          class="icon-button"
+          >Discord &nbsp;<i class="bi bi-discord"></i
         ></a>
         | Support with creator code: <u>SPACING</u> in Shop ➡ Premium
       </p>
