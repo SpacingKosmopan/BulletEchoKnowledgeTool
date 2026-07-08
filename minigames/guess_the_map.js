@@ -1,3 +1,11 @@
+// *****
+function getRandomIntInclusive(min, max) {
+  const minCeil = Math.ceil(min);
+  const maxFloor = Math.floor(max);
+  return Math.floor(Math.random() * (maxFloor - minCeil + 1)) + minCeil;
+}
+// *****
+
 const mapFragments = [
   // 1
   {
@@ -52,6 +60,11 @@ const mapFragments = [
     mapsrc: "./images/hotel.png",
     fragmentsrc: "./images/39.png",
   },
+  {
+    mapname: "Hotel222222",
+    mapsrc: "./images/hotel.png",
+    fragmentsrc: "./images/39.png",
+  },
 ];
 
 let currentFragment = null;
@@ -61,15 +74,53 @@ const startBtn = document.querySelector("#start-btn");
 const answerBtn = document.querySelector("#answer-btn");
 const answerText = document.querySelector("#answer-text");
 
+let gamestate = {
+  roundNumber: 0,
+  maxRounds: 10,
+  alreadyShownQuestions: [],
+  currentQuestion: null,
+};
+
 startBtn.addEventListener("click", getRandomFragment);
 
+const roundNumberText = document.querySelector("#round-number");
 function getRandomFragment() {
-  if (mapNumber + 1 === mapFragments.length) {
-    alert("No more maps!");
+  gamestate.roundNumber++;
+  if (gamestate.roundNumber === gamestate.maxRounds + 1) {
+    fragmentImage.classList.add("hidden");
+    answerBtn.classList.add("hidden");
+
+    answerText.innerHTML = `Thank you for playing!`;
+    startBtn.innerHTML = `<p>Finish</p>`;
+    return;
+  } else if (gamestate.roundNumber === gamestate.maxRounds + 2) {
+    gamestate = {
+      roundNumber: 0,
+      maxRounds: 10,
+      alreadyShownQuestions: [],
+      currentQuestion: null,
+    };
+
+    roundNumberText.innerHTML = `Round <b>X</b> / ?`;
+    answerText.innerHTML = `This map is called ???`;
+    startBtn.innerHTML = `<p>Start</p>`;
     return;
   }
-  mapNumber++;
-  currentFragment = mapFragments[mapNumber];
+
+  roundNumberText.innerHTML = `Round <b>${gamestate.roundNumber}</b> / ${gamestate.maxRounds}`;
+
+  if (gamestate.alreadyShownQuestions.length === mapFragments.length) {
+    alert("Could not find any more questions");
+    return;
+  }
+
+  let questionNumber = -1;
+  do {
+    questionNumber = getRandomIntInclusive(0, mapFragments.length - 1);
+  } while (gamestate.alreadyShownQuestions.includes(questionNumber));
+
+  currentFragment = mapFragments[questionNumber];
+  gamestate.alreadyShownQuestions.push(questionNumber);
   fragmentImage.src = currentFragment.fragmentsrc;
 
   fragmentImage.classList.remove("hidden");
