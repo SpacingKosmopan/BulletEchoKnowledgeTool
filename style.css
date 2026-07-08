@@ -143,33 +143,33 @@ aside {
   gap: 0.5rem;
 }
 
-aside summary,
+summary,
 aside > a {
   display: block;
   width: 100%;
+  max-width: 350px;
   color: white;
   text-decoration: none;
   cursor: pointer;
   transition: background-color 0.2s ease;
 }
 
-aside summary:hover,
 aside > a:hover {
   background-color: #374151;
 }
 
-aside summary {
+summary {
   list-style: none;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-aside summary::-webkit-details-marker {
+summary::-webkit-details-marker {
   display: none;
 }
 
-aside summary::after {
+summary::after {
   content: "▼";
   font-size: 0.8rem;
   transition: transform 0.2s ease;

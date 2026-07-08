@@ -75,14 +75,14 @@ function getRandomFragment() {
   fragmentImage.classList.remove("hidden");
   answerBtn.classList.remove("hidden");
 
-  answerText.innerHTML = `This is ???`;
+  answerText.innerHTML = `This map is called ???`;
   answerText.classList.remove("hidden");
 
-  startBtn.textContent = "Next";
+  startBtn.innerHTML = `<p>Next</p>`;
 }
 
 answerBtn.addEventListener("click", () => {
-  answerText.innerHTML = `This is <u>${currentFragment.mapname}</u>`;
+  answerText.innerHTML = `This map is called <u>${currentFragment.mapname}</u>`;
   fragmentImage.src = currentFragment.mapsrc;
 });
 

@@ -117,7 +117,7 @@ startBtn.addEventListener("click", function () {
   tipText.innerHTML = ``;
 
   depixBtn.disabled = false;
-  depixBtn.textContent = "Depixelise";
+  depixBtn.innerHTML = "<p>Depixelise</p>";
 
   currentPixelIndex = 0;
   loadRandomImage();
@@ -133,11 +133,11 @@ depixBtn.addEventListener("click", function () {
   }
 
   if (currentPixelIndex === pixelChangeList.length - 1) {
-    depixBtn.innerHTML = `Revealed! <u>${currentImage.answer}</u>`;
+    depixBtn.innerHTML = `<p>Revealed! <u>${currentImage.answer}</p></u>`;
     depixBtn.disabled = true;
 
     startBtn.classList.remove("hidden");
-    startBtn.textContent = "Restart";
+    startBtn.innerHTML = "<p>Restart</p>";
   } else if (currentPixelIndex === pixelChangeList.length - 2)
-    depixBtn.textContent = "Last chance!";
+    depixBtn.innerHTML = "<p>Last chance!</p>";
 });

@@ -81,12 +81,12 @@ startGameBtn.addEventListener("click", function () {
 nextQuestionBtn.addEventListener("click", nextRound);
 showAnswerBtn.addEventListener("click", () => {
   if (gamestate.currentQuestion.type === QUESTIONS_TYPES.SHADOW) {
-    answerContent.innerHTML = `<p id="answer-text">This is <u style="color: #7070ff;">${gamestate.currentQuestion.answer}</u></p>
+    answerContent.innerHTML = `<p id="answer-text">This hero is called <u style="color: #7070ff;">${gamestate.currentQuestion.answer}</u></p>
     <img src="${gamestate.currentQuestion.src}" style="height:300px; display:inline;" />`;
     questionRegular.innerHTML = ``;
     return;
   }
-  answerContent.innerHTML = `<p id="answer-text">This is <u style="color: #7070ff;">${gamestate.currentQuestion.answer}</u></p>`;
+  answerContent.innerHTML = `<p id="answer-text">This hero is called <u style="color: #7070ff;">${gamestate.currentQuestion.answer}</u></p>`;
 });
 
 // * QUESTIONS GENERATING * //
@@ -95,7 +95,7 @@ function nextRound(newRoundNumber = -1, selectedQuestionNumber = -1) {
     finishGame();
     return;
   }
-  answerContent.innerHTML = `<p id="answer-text">This is ???</p>`;
+  answerContent.innerHTML = `<p id="answer-text">This hero is called ???</p>`;
   questionRegular.innerHTML = ``;
 
   if (gamestate.alreadyShownQuestions.length === questions.length) {

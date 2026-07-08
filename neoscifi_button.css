@@ -1,0 +1,85 @@
+.be-btn-container {
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+  align-items: center;
+  justify-content: center;
+}
+
+.be-neon-button {
+  position: relative;
+  min-width: 180px;
+  height: 50px;
+  padding: 0 24px;
+  cursor: pointer;
+  outline: none;
+
+  border-radius: 0;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  background: linear-gradient(180deg, #0099ff 0%, #0075c3 100%);
+  border: 2px solid #4eb8ff;
+
+  box-shadow: 0 0 15px rgba(0, 153, 255, 0.5);
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+
+.be-neon-button p {
+  color: #ffffff;
+  font-size: 1.2rem;
+  font-weight: bold;
+  letter-spacing: 0.3rem;
+  text-transform: uppercase;
+
+  margin: 0;
+
+  position: relative;
+  z-index: 1;
+}
+
+.be-neon-button::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 70px;
+  height: 18px;
+  background-color: #4eb8ff;
+  clip-path: polygon(12px 0, 100% 0, 100% 100%, 0 100%);
+  box-shadow: 0 0 10px rgba(78, 184, 255, 0.7);
+  transition: all 0.3s ease;
+}
+
+.be-neon-button::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 10%;
+  width: 80%;
+  height: 8px;
+  background: radial-gradient(
+    ellipse at bottom,
+    rgba(78, 184, 255, 0.8) 0%,
+    rgba(78, 184, 255, 0) 70%
+  );
+  pointer-events: none;
+}
+
+.be-neon-button:hover {
+  filter: brightness(1.15);
+  border-color: #86cfff;
+  box-shadow: 0 0 25px rgba(78, 184, 255, 0.8);
+}
+
+.be-neon-button:hover::before {
+  background-color: #86cfff;
+  box-shadow: 0 0 8px #4eb8ff;
+}
+
+.be-neon-button:active {
+  transform: scale(0.97);
+}

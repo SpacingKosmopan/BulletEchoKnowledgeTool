@@ -6,6 +6,7 @@
     <title>Bullet Echo Knowledge</title>
     <link rel="stylesheet" href="../style.css" />
     <link rel="stylesheet" href="./depixelisation.css" />
+    <link rel="stylesheet" href="../neoscifi_button.css" />
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
@@ -38,8 +39,14 @@
           <div class="centered">
             <div id="game-controlls">
               <h1>Depixelisation - guess what is this!</h1>
-              <button id="generate-image">Start</button>
-              <button id="depixelise" class="hidden">Depixelise</button>
+              <div class="be-btn-container">
+                <button id="generate-image" class="be-neon-button">
+                  <p>Start</p>
+                </button>
+                <button id="depixelise" class="be-neon-button hidden">
+                  <p>Depixelise</p>
+                </button>
+              </div>
               <p id="tip-text"></p>
             </div>
             <div class="image-wrapper">

@@ -35,6 +35,28 @@
     <div class="page-wrapper">
       <main>
         <div class="container">
+          <hr style="margin: 20px 0" />
+          <h1 id="calculators-header">Check out some minigames!</h1>
+          <details class="dropdown" id="minigames-details">
+            <summary id="minigames-summary">
+              <stripe-button id="minigames-text"
+                >Selected mode: streaming</stripe-button
+              >
+            </summary>
+            <nav
+              class="dropdown-content"
+              id="minigames-pages"
+              style="position: absolute; z-index: 5"
+            >
+              <stripe-button color="#0066BB"
+                ><i class="bi bi-camera-reels"></i> Streaming</stripe-button
+              >
+              <stripe-button color="#0066BB"
+                ><i class="bi bi-person"></i> (soon) live play</stripe-button
+              >
+            </nav>
+          </details>
+
           <div id="content-cards">
             <div
               class="content-card"
