@@ -359,6 +359,7 @@ button {
 /*! testing feature - delete if needed */
 html {
   scroll-behavior: smooth;
+  scrollbar-gutter: stable;
 }
 
 /** MAIN PAGE **/
