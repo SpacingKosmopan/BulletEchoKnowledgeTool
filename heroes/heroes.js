@@ -15,9 +15,27 @@ const heroes = [
     abilityDescription: "Creates linked portals for instant travel",
     medkitType: medkitTypes.Stim,
   },
+  {
+    name: "Bonnie",
+    faction: "Force and Arms",
+    class: "Scout",
+    abilityName: "Toxic Hounds",
+    abilityDescription: "-",
+    medkitType: medkitTypes.Stim,
+  },
 ];
+const newestHeroName = "Bonnie";
 
-heroes.sort((a, b) => a.name.localeCompare(b.name));
+heroes.sort((a, b) => {
+  const aNew = a.name === newestHeroName;
+  const bNew = b.name === newestHeroName;
+
+  if (aNew !== bNew) {
+    return bNew - aNew;
+  }
+
+  return a.name.localeCompare(b.name);
+});
 
 function generateHeroesCards() {
   const heroesCardsContainer = document.querySelector("#content-cards");
@@ -28,6 +46,7 @@ function generateHeroesCards() {
   heroes.forEach((hero) => {
     const heroCard = document.createElement("div");
     heroCard.className = "content-card";
+    if (newestHeroName === hero.name) heroCard.classList.add("new-hero");
 
     heroCard.addEventListener("click", () => {
       window.location.href = `index.html?hero=${hero.name.toLowerCase()}`;
@@ -35,6 +54,7 @@ function generateHeroesCards() {
 
     // Dodano pojemnik .content-card-badge ze zdjęciem klasy bohatera
     heroCard.innerHTML = `
+    <div class="new-hero-tag">NEW</div> 
         <div class="content-card-badge">
           <img src="../classes/${hero.class.toLowerCase()}.png" alt="${hero.class}-icon">
         </div>
