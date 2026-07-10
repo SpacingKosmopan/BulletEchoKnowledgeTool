@@ -173,7 +173,7 @@ function showImageQuestion(question) {
 }
 
 function showShadowQuestion(question) {
-  questionRegular.innerHTML = `<img src="${question.src}" alt="${question.src}" style="filter:brightness(0); height:300px; display:inline;" />`;
+  questionRegular.innerHTML = `<img src="${question.src}" alt="${question.src}" style="filter:brightness(0) drop-shadow(0 0 20px #ffffff67); height:300px; display:inline;" />`;
   questionRegular.classList.remove("hidden");
 }
 
