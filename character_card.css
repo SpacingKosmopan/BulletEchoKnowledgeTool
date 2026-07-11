@@ -182,38 +182,118 @@
   border-radius: 12px;
   padding: 45px;
   position: relative;
-  box-shadow:
-    0 0 40px rgba(0, 0, 0, 0.9),
-    inset 0 0 20px rgba(3, 10, 33, 0.8);
+  overflow: hidden;
 }
 
 .cyber-grid-bg {
   position: absolute;
-  inset: 0;
+  inset: 2px;
+  background-color: #04040c;
   background-image:
     linear-gradient(rgba(11, 20, 54, 0.05) 1px, transparent 1px),
     linear-gradient(90deg, rgba(11, 20, 54, 0.05) 1px, transparent 1px);
   background-size: 20px 20px;
   pointer-events: none;
+  z-index: 2;
+  border-radius: 10px;
 }
 
 .cyber-corner-accent {
   position: absolute;
-  width: 16px;
-  height: 16px;
+  width: 20px;
+  height: 20px;
   border: 3px solid transparent;
+  z-index: 3;
+  pointer-events: none;
 }
+
 .cyber-corner-accent.top-left {
-  top: -2px;
-  left: -2px;
+  top: 0;
+  left: 0;
   border-top-color: #00f0ff;
   border-left-color: #00f0ff;
+  filter: drop-shadow(0 0 5px #00f0ff);
+  border-top-left-radius: 10px;
 }
+
 .cyber-corner-accent.bottom-right {
-  bottom: -2px;
-  right: -2px;
+  bottom: 0;
+  right: 0;
   border-bottom-color: #ff007f;
   border-right-color: #ff007f;
+  filter: drop-shadow(0 0 5px #ff007f);
+  border-bottom-right-radius: 10px;
+}
+
+.cyber-sparkle,
+.cyber-header,
+.cyber-body {
+  position: relative;
+  z-index: 3;
+}
+
+.cyber-panel::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0deg,
+    transparent 120deg,
+    #00f0ff 150deg,
+    transparent 180deg,
+    transparent 360deg
+  );
+  z-index: 1;
+  pointer-events: none;
+  animation: leftLightMove 6s linear infinite;
+}
+
+.cyber-panel::after {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: conic-gradient(
+    from 180deg,
+    transparent 0deg,
+    transparent 120deg,
+    #ff007f 150deg,
+    transparent 180deg,
+    transparent 360deg
+  );
+  z-index: 1;
+  pointer-events: none;
+  animation: rightLightMove 6s linear infinite;
+}
+
+@keyframes leftLightMove {
+  0% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(180deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes rightLightMove {
+  0% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(-180deg);
+  }
+  100% {
+    transform: rotate(-360deg);
+  }
 }
 
 .cyber-sparkle {
