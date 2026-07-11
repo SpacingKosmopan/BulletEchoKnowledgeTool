@@ -180,3 +180,172 @@
 #results-panel {
   font-size: 30px;
 }
+
+/* * HERO UPGRADE PANEL * */
+#dmg-en-input-form {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.border-color-stroke {
+  stroke: #a4d0e9;
+}
+.border-color-fill {
+  fill: #a4d0e9;
+}
+
+.common-color {
+  stroke: #7baba8;
+  fill: #7baba8;
+}
+.common-gradient stop:nth-child(1) {
+  stop-color: #7baba8;
+  stop-opacity: 0;
+}
+.common-gradient stop:nth-child(2) {
+  stop-color: #7baba8;
+  stop-opacity: 0.5;
+}
+
+.rare-color {
+  stroke: #6cde38;
+  fill: #6cde38;
+}
+.rare-gradient stop:nth-child(1) {
+  stop-color: #6cde38;
+  stop-opacity: 0;
+}
+.rare-gradient stop:nth-child(2) {
+  stop-color: #6cde38;
+  stop-opacity: 0.5;
+}
+
+.epic-color {
+  stroke: #1998fd;
+  fill: #1998fd;
+}
+.epic-gradient stop:nth-child(1) {
+  stop-color: #1998fd;
+  stop-opacity: 0;
+}
+.epic-gradient stop:nth-child(2) {
+  stop-color: #1998fd;
+  stop-opacity: 0.5;
+}
+
+.legendary-color {
+  stroke: #ffc006;
+  fill: #ffc006;
+}
+.legendary-gradient stop:nth-child(1) {
+  stop-color: #ffc006;
+  stop-opacity: 0;
+}
+.legendary-gradient stop:nth-child(2) {
+  stop-color: #ffc006;
+  stop-opacity: 0.5;
+}
+
+.mythic-color {
+  stroke: #e97012;
+  fill: #e97012;
+}
+.mythic-gradient stop:nth-child(1) {
+  stop-color: #e97012;
+  stop-opacity: 0;
+}
+.mythic-gradient stop:nth-child(2) {
+  stop-color: #e97012;
+  stop-opacity: 0.5;
+}
+
+.supreme-color {
+  stroke: #f6412c;
+  fill: #f6412c;
+}
+.supreme-gradient stop:nth-child(1) {
+  stop-color: #f6412c;
+  stop-opacity: 0;
+}
+.supreme-gradient stop:nth-child(2) {
+  stop-color: #f6412c;
+  stop-opacity: 0.5;
+}
+
+.ultimate-color {
+  stroke: #731fff;
+  fill: #731fff;
+}
+.ultimate-gradient stop:nth-child(1) {
+  stop-color: #731fff;
+  stop-opacity: 0;
+}
+.ultimate-gradient stop:nth-child(2) {
+  stop-color: #731fff;
+  stop-opacity: 0.5;
+}
+
+.celestial-color {
+  stroke: #0132d1;
+  fill: #0132d1;
+}
+.celestial-gradient stop:nth-child(1) {
+  stop-color: #0132d1;
+  stop-opacity: 0;
+}
+.celestial-gradient stop:nth-child(2) {
+  stop-color: #0132d1;
+  stop-opacity: 0.5;
+}
+
+.stellar-color {
+  stroke: #cd24eb;
+  fill: #cd24eb;
+}
+.stellar-gradient stop:nth-child(1) {
+  stop-color: #cd24eb;
+  stop-opacity: 0;
+}
+.stellar-gradient stop:nth-child(2) {
+  stop-color: #cd24eb;
+  stop-opacity: 0.5;
+}
+
+.immortal-color {
+  stroke: #7b140d;
+  fill: #7b140d;
+}
+.immortal-gradient stop:nth-child(1) {
+  stop-color: #7b140d;
+  stop-opacity: 0;
+}
+.immortal-gradient stop:nth-child(2) {
+  stop-color: #7b140d;
+  stop-opacity: 0.5;
+}
+
+.divine-color {
+  stroke: #262641;
+  fill: #262641;
+}
+.divine-gradient stop:nth-child(1) {
+  stop-color: #262641;
+  stop-opacity: 0;
+}
+.divine-gradient stop:nth-child(2) {
+  stop-color: #262641;
+  stop-opacity: 0.5;
+}
+
+.divine-gold-color {
+  stroke: #;
+  fill: #;
+}
+.divine-gold-gradient stop:nth-child(1) {
+  stop-color: #;
+  stop-opacity: 0;
+}
+.divine-gold-gradient stop:nth-child(2) {
+  stop-color: #;
+  stop-opacity: 0.5;
+}

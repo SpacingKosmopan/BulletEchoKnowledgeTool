@@ -9,6 +9,7 @@ const DOM = {
   ),
   gearUpgradeCostPanel: document.querySelector("#gear-upgrade-cost-panel"),
   modUpgradeCostPanel: document.querySelector("#mod-upgrade-cost-panel"),
+  heroUpgradeCostPanel: document.querySelector("#hero-upgrade-cost-panel"),
 };
 
 if (calculatorType === "damage_to_enemy") showPanel(DOM.damageToEnemyPanel);
@@ -18,7 +19,9 @@ else if (calculatorType === "gear_upgrade") showPanel(DOM.gearUpgradeCostPanel);
 else if (calculatorType === "mod_upgrade") {
   showPanel(DOM.modUpgradeCostPanel);
   DOM.resultPanel.innerHTML = `<p>Click mod to check how many coils and which previous tiers you need to get this level</p>`;
-} else DOM.resultPanel.innerHTML = `This page is being prepared`;
+} else if (calculatorType === "hero_upgrade")
+  showPanel(DOM.heroUpgradeCostPanel);
+else DOM.resultPanel.innerHTML = `This page is being prepared`;
 
 function showPanel(panel) {
   panel.classList.remove("hidden");
@@ -34,6 +37,9 @@ const DOMforms = {
   },
   gearUpgradeCost: {
     form: document.querySelector("#gear-upgrade-cost-form"),
+  },
+  heroUpgradeCost: {
+    form: document.querySelector("#hero-upgrade-cost-form"),
   },
 };
 
@@ -105,7 +111,7 @@ const gearUpgradeCost = {
     { nuts: 69000, copies: 60 },
   ],
 };
-const levelNames = {
+const tierNames = {
   COMMON: 0,
   RARE: 1,
   EPIC: 2,
@@ -118,10 +124,831 @@ const levelNames = {
   IMMORTAL: 9,
   DIVINE: 10,
 };
+const tierValues = Object.fromEntries(
+  Object.entries(tierNames).map(([key, value]) => [value, key]),
+);
+/**
+ * Use: tierColors[tierNames.COMMON]
+ */
+const tierColors = [
+  "#7baba8",
+  "#6cde38",
+  "#1998fd",
+  "#ffc006",
+  "#e97012",
+  "#f6412c",
+  "#731fff",
+  "#0132d1",
+  "#cd24eb",
+  "#7b140d",
+  "#262641",
+];
+
+// * HERO UPGRADE COST * //
+
+const heroUpgradeCost = [
+  { finalLevel: 2, cards: 0, coins: 200, newTier: tierNames.COMMON },
+  { finalLevel: 3, cards: 0, coins: 300, newTier: tierNames.COMMON },
+  { finalLevel: 4, cards: 0, coins: 400, newTier: tierNames.COMMON },
+  { finalLevel: 5, cards: 0, coins: 500, newTier: tierNames.COMMON },
+  { finalLevel: 6, cards: 0, coins: 600, newTier: tierNames.COMMON },
+  { finalLevel: 7, cards: 0, coins: 700, newTier: tierNames.COMMON },
+  { finalLevel: 8, cards: 0, coins: 800, newTier: tierNames.COMMON },
+  { finalLevel: 9, cards: 0, coins: 900, newTier: tierNames.COMMON },
+  { finalLevel: 10, cards: 0, coins: 1000, newTier: tierNames.COMMON },
+  {
+    finalLevel: 10,
+    cards: 35,
+    coins: 750,
+    newTier: tierNames.RARE,
+    tierBoost: true,
+  },
+  { finalLevel: 11, cards: 0, coins: 1100, newTier: tierNames.RARE },
+  { finalLevel: 12, cards: 0, coins: 1200, newTier: tierNames.RARE },
+  { finalLevel: 13, cards: 0, coins: 1300, newTier: tierNames.RARE },
+  { finalLevel: 14, cards: 0, coins: 1400, newTier: tierNames.RARE },
+  { finalLevel: 15, cards: 0, coins: 1500, newTier: tierNames.RARE },
+  { finalLevel: 16, cards: 0, coins: 1600, newTier: tierNames.RARE },
+  { finalLevel: 17, cards: 0, coins: 1700, newTier: tierNames.RARE },
+  { finalLevel: 18, cards: 0, coins: 1800, newTier: tierNames.RARE },
+  { finalLevel: 19, cards: 0, coins: 1900, newTier: tierNames.RARE },
+  { finalLevel: 20, cards: 0, coins: 2000, newTier: tierNames.RARE },
+  {
+    finalLevel: 20,
+    cards: 65,
+    coins: 1500,
+    newTier: tierNames.EPIC,
+    tierBoost: true,
+  },
+  { finalLevel: 21, cards: 0, coins: 2100, newTier: tierNames.EPIC },
+  { finalLevel: 22, cards: 0, coins: 2200, newTier: tierNames.EPIC },
+  { finalLevel: 23, cards: 0, coins: 2300, newTier: tierNames.EPIC },
+  { finalLevel: 24, cards: 0, coins: 2400, newTier: tierNames.EPIC },
+  { finalLevel: 25, cards: 0, coins: 2500, newTier: tierNames.EPIC },
+  { finalLevel: 26, cards: 0, coins: 2600, newTier: tierNames.EPIC },
+  { finalLevel: 27, cards: 0, coins: 2700, newTier: tierNames.EPIC },
+  { finalLevel: 28, cards: 0, coins: 2800, newTier: tierNames.EPIC },
+  { finalLevel: 29, cards: 0, coins: 2900, newTier: tierNames.EPIC },
+  { finalLevel: 30, cards: 0, coins: 3000, newTier: tierNames.EPIC },
+  {
+    finalLevel: 30,
+    cards: 100,
+    coins: 3000,
+    newTier: tierNames.LEGENDARY,
+    tierBoost: true,
+  },
+  { finalLevel: 31, cards: 0, coins: 3100, newTier: tierNames.LEGENDARY },
+  { finalLevel: 32, cards: 0, coins: 3200, newTier: tierNames.LEGENDARY },
+  { finalLevel: 33, cards: 0, coins: 3300, newTier: tierNames.LEGENDARY },
+  { finalLevel: 34, cards: 0, coins: 3400, newTier: tierNames.LEGENDARY },
+  { finalLevel: 35, cards: 0, coins: 3500, newTier: tierNames.LEGENDARY },
+  { finalLevel: 36, cards: 0, coins: 3600, newTier: tierNames.LEGENDARY },
+  { finalLevel: 37, cards: 0, coins: 3700, newTier: tierNames.LEGENDARY },
+  { finalLevel: 38, cards: 0, coins: 3800, newTier: tierNames.LEGENDARY },
+  { finalLevel: 39, cards: 0, coins: 3900, newTier: tierNames.LEGENDARY },
+  { finalLevel: 40, cards: 0, coins: 4000, newTier: tierNames.LEGENDARY },
+  {
+    finalLevel: 40,
+    cards: 140,
+    coins: 6000,
+    newTier: tierNames.MYTHIC,
+    tierBoost: true,
+  },
+  {
+    finalLevel: 41,
+    cards: 0,
+    coins: 4050,
+    newTier: tierNames.MYTHIC,
+  },
+  {
+    finalLevel: 42,
+    cards: 0,
+    coins: 4100,
+    newTier: tierNames.MYTHIC,
+  },
+  {
+    finalLevel: 43,
+    cards: 0,
+    coins: 4150,
+    newTier: tierNames.MYTHIC,
+  },
+  {
+    finalLevel: 44,
+    cards: 0,
+    coins: 4200,
+    newTier: tierNames.MYTHIC,
+  },
+  {
+    finalLevel: 45,
+    cards: 0,
+    coins: 4250,
+    newTier: tierNames.MYTHIC,
+  },
+  {
+    finalLevel: 46,
+    cards: 0,
+    coins: 4300,
+    newTier: tierNames.MYTHIC,
+  },
+  {
+    finalLevel: 47,
+    cards: 0,
+    coins: 4350,
+    newTier: tierNames.MYTHIC,
+  },
+  {
+    finalLevel: 48,
+    cards: 0,
+    coins: 4400,
+    newTier: tierNames.MYTHIC,
+  },
+  {
+    finalLevel: 49,
+    cards: 0,
+    coins: 4450,
+    newTier: tierNames.MYTHIC,
+  },
+  {
+    finalLevel: 50,
+    cards: 0,
+    coins: 4500,
+    newTier: tierNames.MYTHIC,
+  },
+  {
+    finalLevel: 50,
+    cards: 200,
+    coins: 12000,
+    newTier: tierNames.SUPREME,
+    tierBoost: true,
+  },
+  {
+    finalLevel: 51,
+    cards: 0,
+    coins: 4550,
+    newTier: tierNames.SUPREME,
+  },
+  {
+    finalLevel: 52,
+    cards: 0,
+    coins: 4600,
+    newTier: tierNames.SUPREME,
+  },
+  {
+    finalLevel: 53,
+    cards: 0,
+    coins: 4650,
+    newTier: tierNames.SUPREME,
+  },
+  {
+    finalLevel: 54,
+    cards: 0,
+    coins: 4700,
+    newTier: tierNames.SUPREME,
+  },
+  {
+    finalLevel: 55,
+    cards: 0,
+    coins: 4750,
+    newTier: tierNames.SUPREME,
+  },
+  {
+    finalLevel: 56,
+    cards: 0,
+    coins: 4800,
+    newTier: tierNames.SUPREME,
+  },
+  {
+    finalLevel: 57,
+    cards: 0,
+    coins: 4850,
+    newTier: tierNames.SUPREME,
+  },
+  {
+    finalLevel: 58,
+    cards: 0,
+    coins: 4900,
+    newTier: tierNames.SUPREME,
+  },
+  {
+    finalLevel: 59,
+    cards: 0,
+    coins: 4950,
+    newTier: tierNames.SUPREME,
+  },
+  {
+    finalLevel: 60,
+    cards: 0,
+    coins: 5000,
+    newTier: tierNames.SUPREME,
+  },
+  {
+    finalLevel: 60,
+    cards: 300,
+    coins: 25000,
+    newTier: tierNames.ULTIMATE,
+    tierBoost: true,
+  },
+  {
+    finalLevel: 61,
+    cards: 5,
+    coins: 5300,
+    newTier: tierNames.ULTIMATE,
+  },
+  {
+    finalLevel: 62,
+    cards: 13,
+    coins: 5600,
+    newTier: tierNames.ULTIMATE,
+  },
+  {
+    finalLevel: 63,
+    cards: 18,
+    coins: 5900,
+    newTier: tierNames.ULTIMATE,
+  },
+  {
+    finalLevel: 64,
+    cards: 23,
+    coins: 6200,
+    newTier: tierNames.ULTIMATE,
+  },
+  {
+    finalLevel: 65,
+    cards: 27,
+    coins: 6550,
+    newTier: tierNames.ULTIMATE,
+  },
+  {
+    finalLevel: 66,
+    cards: 30,
+    coins: 6900,
+    newTier: tierNames.ULTIMATE,
+  },
+  {
+    finalLevel: 67,
+    cards: 33,
+    coins: 7300,
+    newTier: tierNames.ULTIMATE,
+  },
+  {
+    finalLevel: 68,
+    cards: 36,
+    coins: 7700,
+    newTier: tierNames.ULTIMATE,
+  },
+  {
+    finalLevel: 69,
+    cards: 38,
+    coins: 8100,
+    newTier: tierNames.ULTIMATE,
+  },
+  {
+    finalLevel: 70,
+    cards: 41,
+    coins: 8550,
+    newTier: tierNames.ULTIMATE,
+  },
+  {
+    finalLevel: 70,
+    cards: 360,
+    coins: 38000,
+    newTier: tierNames.CELESTIAL,
+    tierBoost: true,
+  },
+  {
+    finalLevel: 71,
+    cards: 43,
+    coins: 38000,
+    newTier: tierNames.CELESTIAL,
+  },
+  {
+    finalLevel: 72,
+    cards: 46,
+    coins: 9500,
+    newTier: tierNames.CELESTIAL,
+  },
+  {
+    finalLevel: 73,
+    cards: 48,
+    coins: 10000,
+    newTier: tierNames.CELESTIAL,
+  },
+  {
+    finalLevel: 74,
+    cards: 50,
+    coins: 10550,
+    newTier: tierNames.CELESTIAL,
+  },
+  {
+    finalLevel: 75,
+    cards: 53,
+    coins: 11150,
+    newTier: tierNames.CELESTIAL,
+  },
+  {
+    finalLevel: 76,
+    cards: 55,
+    coins: 11750,
+    newTier: tierNames.CELESTIAL,
+  },
+  {
+    finalLevel: 77,
+    cards: 57,
+    coins: 12400,
+    newTier: tierNames.CELESTIAL,
+  },
+  {
+    finalLevel: 78,
+    cards: 59,
+    coins: 13100,
+    newTier: tierNames.CELESTIAL,
+  },
+  {
+    finalLevel: 79,
+    cards: 61,
+    coins: 13800,
+    newTier: tierNames.CELESTIAL,
+  },
+  {
+    finalLevel: 80,
+    cards: 63,
+    coins: 14550,
+    newTier: tierNames.CELESTIAL,
+  },
+  {
+    finalLevel: 80,
+    cards: 420,
+    coins: 57000,
+    newTier: tierNames.STELLAR,
+    tierBoost: true,
+  },
+  {
+    finalLevel: 81,
+    cards: 64,
+    coins: 14850,
+    newTier: tierNames.STELLAR,
+  },
+  {
+    finalLevel: 82,
+    cards: 64,
+    coins: 15600,
+    newTier: tierNames.STELLAR,
+  },
+  {
+    finalLevel: 83,
+    cards: 64,
+    coins: 16300,
+    newTier: tierNames.STELLAR,
+  },
+  {
+    finalLevel: 84,
+    cards: 64,
+    coins: 17100,
+    newTier: tierNames.STELLAR,
+  },
+  {
+    finalLevel: 85,
+    cards: 64,
+    coins: 17900,
+    newTier: tierNames.STELLAR,
+  },
+  {
+    finalLevel: 85,
+    cards: 110,
+    coins: 82000,
+    newTier: tierNames.IMMORTAL,
+    tierBoost: true,
+  },
+  {
+    finalLevel: 86,
+    cards: 64,
+    coins: 18800,
+    newTier: tierNames.IMMORTAL,
+  },
+  {
+    finalLevel: 87,
+    cards: 64,
+    coins: 19550,
+    newTier: tierNames.IMMORTAL,
+  },
+  {
+    finalLevel: 88,
+    cards: 64,
+    coins: 20400,
+    newTier: tierNames.IMMORTAL,
+  },
+  {
+    finalLevel: 89,
+    cards: 64,
+    coins: 21300,
+    newTier: tierNames.IMMORTAL,
+  },
+  {
+    finalLevel: 90,
+    cards: 64,
+    coins: 22200,
+    newTier: tierNames.IMMORTAL,
+  },
+  {
+    finalLevel: 90,
+    cards: 130,
+    coins: 107000,
+    newTier: tierNames.DIVINE,
+    tierBoost: true,
+  },
+];
+
+function getHeroUpgradeCost(
+  currentLevel,
+  finalLevel,
+  isFinalTierBoost = false,
+) {
+  if (finalLevel <= currentLevel) return null;
+  if (currentLevel <= 0) return null;
+
+  let cost = { cards: 0, coins: 0 };
+
+  // we have level 1, we want 5
+  // 1=>2, 2=>3, 3=>4, 4=>5 + possible tier boost
+  // that was four iterations + ptb
+  for (let i = currentLevel; i < finalLevel; i++) {
+    // 1-10
+    if (i >= 1 && i <= 10 - 1) {
+      cost.coins += (i + 1) * 100;
+      if (
+        i == 10 - 1 &&
+        ((finalLevel == 10 && isFinalTierBoost) || finalLevel > 10)
+      ) {
+        cost.coins += 750;
+        cost.cards += 35;
+      }
+    }
+
+    // 10-20
+    else if (i >= 10 && i <= 20 - 1) {
+      cost.coins += (i + 1) * 100;
+      if (
+        i == 20 - 1 &&
+        ((finalLevel == 20 && isFinalTierBoost) || finalLevel > 20)
+      ) {
+        cost.coins += 1500;
+        cost.cards += 65;
+      }
+    }
+
+    // 20-30
+    else if (i >= 20 && i <= 30 - 1) {
+      cost.coins += (i + 1) * 100;
+      if (
+        i == 30 - 1 &&
+        ((finalLevel == 30 && isFinalTierBoost) || finalLevel > 30)
+      ) {
+        cost.coins += 3000;
+        cost.cards += 100;
+      }
+    }
+
+    // 30-40
+    else if (i >= 30 && i <= 40 - 1) {
+      cost.coins += (i + 1) * 100;
+      if (
+        i == 40 - 1 &&
+        ((finalLevel == 40 && isFinalTierBoost) || finalLevel > 40)
+      ) {
+        cost.coins += 6000;
+        cost.cards += 140;
+      }
+    }
+
+    // 40-50
+    else if (i >= 40 && i <= 50 - 1) {
+      // 40=>41 4050coins
+      // 41=>42 4100coins
+      // 42=>43 4150coins
+      cost.coins += 4050 + (i - 40) * 50;
+      if (
+        i == 50 - 1 &&
+        ((finalLevel == 50 && isFinalTierBoost) || finalLevel > 50)
+      ) {
+        cost.coins += 12000;
+        cost.cards += 200;
+      }
+    }
+
+    // 50-60
+    else if (i >= 50 && i <= 60 - 1) {
+      cost.coins += 4550 + (i - 50) * 50;
+      if (
+        i == 60 - 1 &&
+        ((finalLevel == 60 && isFinalTierBoost) || finalLevel > 60)
+      ) {
+        cost.coins += 25000;
+        cost.cards += 300;
+      }
+    }
+
+    // 60-70
+    else if (i >= 60 && i <= 70 - 1) {
+      // buying level 64
+      if (i <= 63) {
+        cost.coins += 5300 + (i - 60) * 300;
+        if (i == 60) cost.cards += 5;
+        else if (i == 61) cost.cards += 13;
+        else cost.cards += 13 + (i - 61) * 5;
+      }
+      // buying level 65
+      else if (i == 64) {
+        cost.coins += 6550;
+        cost.cards += 27;
+      }
+      // buying levels 66-69
+      else if (i >= 65 && i <= 68) {
+        cost.coins += 6900 + (i - 65) * 400;
+        if (i < 68) cost.cards += 27 + (i - 64) * 3;
+        else cost.cards += 38;
+      } else if (i == 69) {
+        cost.coins += 8550;
+        cost.cards += 41;
+      }
+
+      if (
+        i == 70 - 1 &&
+        ((finalLevel == 70 && isFinalTierBoost) || finalLevel > 70)
+      ) {
+        cost.coins += 38000;
+        cost.cards += 360;
+      }
+    }
+  }
+
+  //* I'm done. I'll use regular array.
+}
+
+/**
+ * Function calculates the cost of upgrading hero
+ * @param {number} currentLevel (1-90)
+ * @param {number} finalLevel (2-90)
+ * @param {boolean} isFinalTierBoost (true | false) default: false
+ * @param {boolean} isStartingTierBoost (true | false) default: false
+ * @returns \{ cards: number, coins: number \} | null - Object with amount of cards and coins
+ */
+function getHeroUpgradeCostv2(
+  currentLevel,
+  finalLevel,
+  isFinalTierBoost = false,
+  isStartingTierBoost = false,
+) {
+  if (finalLevel <= currentLevel && !isStartingTierBoost) return null;
+  if (currentLevel <= 0 || currentLevel > 90) return null;
+  if (currentLevel == 90 && !isFinalTierBoost) return { cards: 0, coins: 0 };
+
+  let cost = { cards: 0, coins: 0 };
+
+  // for (1,5) iterations are for [1,2,3,4]
+  // for (5,10) iterations are for [5,6,7,8,9]
+  // for (5,10,true) iterations are for [5,6,7,8,9,B]
+  // for (5,11) iterations are for [5,6,7,8,9,10]
+  //
+  // for upgrading (1->2): array element [0]
+  // for upgrading (5->6): array element [0]
+  heroUpgradeCost.forEach((levelUpgradeCost) => {
+    // lower levels
+    if (levelUpgradeCost.finalLevel < currentLevel) return;
+
+    // possible tier boost at the beggining
+    if (levelUpgradeCost.finalLevel === currentLevel) {
+      // we are not doing tier boost at the current level
+      if (levelUpgradeCost.tierBoost && !isStartingTierBoost) return;
+      if (!levelUpgradeCost.tierBoost) return;
+    }
+
+    // higher levels
+    if (levelUpgradeCost.finalLevel > finalLevel) return;
+
+    // possible final tier boost
+    if (levelUpgradeCost.finalLevel === finalLevel) {
+      // we are not doing final tier boost
+      if (levelUpgradeCost.tierBoost && !isFinalTierBoost) return;
+    }
+
+    cost.cards += levelUpgradeCost.cards;
+    cost.coins += levelUpgradeCost.coins;
+  });
+
+  return cost;
+}
+
+/**
+ * Element 0 is upgrading from 1 to 2
+ * 18 levels, 17 upgrades
+ */
+const talentUpgradeCost = [
+  { batteries: 40, requiredHeroTier: tierNames.RARE },
+  { batteries: 60, requiredHeroTier: tierNames.RARE },
+  { batteries: 75, requiredHeroTier: tierNames.RARE },
+  { batteries: 100, requiredHeroTier: tierNames.RARE },
+  { batteries: 150, requiredHeroTier: tierNames.EPIC },
+  { batteries: 200, requiredHeroTier: tierNames.EPIC },
+  { batteries: 300, requiredHeroTier: tierNames.EPIC },
+  { batteries: 400, requiredHeroTier: tierNames.LEGENDARY },
+  { batteries: 500, requiredHeroTier: tierNames.LEGENDARY },
+  { batteries: 750, requiredHeroTier: tierNames.LEGENDARY },
+  { batteries: 1000, requiredHeroTier: tierNames.MYTHIC },
+  { batteries: 1250, requiredHeroTier: tierNames.MYTHIC },
+  { batteries: 1500, requiredHeroTier: tierNames.SUPREME },
+  { batteries: 2000, requiredHeroTier: tierNames.ULTIMATE },
+  { batteries: 2500, requiredHeroTier: tierNames.CELESTIAL },
+  { batteries: 3250, requiredHeroTier: tierNames.CELESTIAL },
+  { batteries: 4500, requiredHeroTier: tierNames.STELLAR },
+];
+/**
+ * Upgrade 0 is upgrading from rank 1 to 2
+ * 20 levels, 19 upgrades
+ */
+const divineUpgradeCost = [
+  {
+    experience: 40,
+    stones: 10,
+  },
+  {
+    experience: 75,
+    stones: 18,
+  },
+  {
+    experience: 90,
+    stones: 22,
+  },
+  {
+    experience: 100,
+    stones: 28,
+  },
+  {
+    experience: 115,
+    stones: 32,
+  },
+  {
+    experience: 120,
+    stones: 36,
+  },
+  {
+    experience: 130,
+    stones: 40,
+  },
+  {
+    experience: 135,
+    stones: 46,
+  },
+  {
+    experience: 145,
+    stones: 50,
+  },
+  {
+    experience: 150,
+    stones: 54,
+  },
+  {
+    experience: 155,
+    stones: 60,
+  },
+  {
+    experience: 160,
+    stones: 64,
+  },
+  {
+    experience: 160,
+    stones: 68,
+  },
+  {
+    experience: 165,
+    stones: 72,
+  },
+  {
+    experience: 170,
+    stones: 72,
+  },
+  {
+    experience: 175,
+    stones: 72,
+  },
+  {
+    experience: 175,
+    stones: 82,
+  },
+  {
+    experience: 180,
+    stones: 82,
+  },
+  {
+    experience: 185,
+    stones: 90,
+  },
+];
+
+const baseHeroSVG = {
+  background: document.querySelector("#base-hero-background"),
+  bottomGradient: document.querySelector("#base-hero-bottom-gradient"),
+  topStripe: document.querySelector("#base-hero-top-stripe"),
+  bottomStripe: document.querySelector("#base-hero-bottom-stripe"),
+};
+setElementColorClass(baseHeroSVG.background, "common-color");
+setElementColorClass(baseHeroSVG.topStripe, "common-color");
+setElementColorClass(baseHeroSVG.bottomGradient, "common-gradient");
+
+function setElementColorClass(element, newClassName) {
+  element.classList.remove("common-color");
+  element.classList.remove("rare-color");
+  element.classList.remove("epic-color");
+  element.classList.remove("legendary-color");
+  element.classList.remove("mythic-color");
+  element.classList.remove("supreme-color");
+  element.classList.remove("ultimate-color");
+  element.classList.remove("celestial-color");
+  element.classList.remove("stellar-color");
+  element.classList.remove("immortal-color");
+  element.classList.remove("divine-color");
+
+  element.classList.remove("common-gradient");
+  element.classList.remove("rare-gradient");
+  element.classList.remove("epic-gradient");
+  element.classList.remove("legendary-gradient");
+  element.classList.remove("mythic-gradient");
+  element.classList.remove("supreme-gradient");
+  element.classList.remove("ultimate-gradient");
+  element.classList.remove("celestial-gradient");
+  element.classList.remove("stellar-gradient");
+  element.classList.remove("immortal-gradient");
+  element.classList.remove("divine-gradient");
+
+  element.classList.add(newClassName);
+}
+
+// selects fill
+const baseHeroTierSelect = document.querySelector("#upgrade-hero-base-level");
+baseHeroTierSelect.innerHTML = ``;
+
+//TODO
+baseHeroTierSelect.addEventListener("change", () => {
+  const tierValue = baseHeroTierSelect.value;
+  console.log(tierValue);
+  const isPureNumber = !isNaN(Number(tierValue));
+  const pureNumber = parseInt(tierValue, 10);
+  let tierNumber = 0;
+  if (pureNumber < 85) {
+    tierNumber = Math.floor(pureNumber / 10);
+    if (pureNumber % 10 == 0) {
+      if (!isPureNumber) tierNumber--;
+    }
+  } else if (pureNumber == 85) {
+    if (isPureNumber) tierNumber = 9;
+    else tierNumber = 8;
+  } else if (pureNumber < 90 || (pureNumber == 90 && !isPureNumber))
+    tierNumber = 9;
+  else tierNumber = 10;
+  const tierName = tierValues[tierNumber].toLowerCase();
+
+  setElementColorClass(baseHeroSVG.background, `${tierName}-color`);
+});
+
+const finalHeroTierSelect = document.querySelector("#upgrade-hero-final-level");
+finalHeroTierSelect.innerHTML = ``;
+
+//TODO
+finalHeroTierSelect.addEventListener("change", () => {
+  console.log(finalHeroTierSelect.value);
+});
+
+let lastHadTierBoost = false;
+heroUpgradeCost.forEach((cost) => {
+  const optionTierValue = cost.tierBoost ? cost.newTier - 1 : cost.newTier;
+  const optionColor = tierColors[optionTierValue];
+  const optionLevelNumber = cost.tierBoost
+    ? cost.finalLevel
+    : cost.finalLevel - 1;
+
+  const option = `
+  <option value="${optionLevelNumber + (cost.tierBoost ? "-b" : "")}"
+    style="background-color:${optionColor}; color:${optionLevelNumber >= 80 ? "#d6d6d6" : "black"}">${optionLevelNumber} - ${lastHadTierBoost ? "after tier boost" : tierValues[optionTierValue]}
+  </option>
+  `;
+  baseHeroTierSelect.innerHTML += option;
+  if (optionLevelNumber > 1) finalHeroTierSelect.innerHTML += option;
+
+  if (lastHadTierBoost) lastHadTierBoost = false;
+  if (cost.tierBoost) lastHadTierBoost = true;
+});
+const option = `
+  <option value="90"
+    style="background-color:${tierColors[10]}; color:white">DIVINE
+  </option>
+  `;
+finalHeroTierSelect.innerHTML += option;
+
+DOMforms.heroUpgradeCost.form.addEventListener("submit", (e) => {
+  e.preventDefault();
+});
 
 // * MOD UPGRADE COST * //
 const modsCost = [100, 50, 150, 250, 500];
-//TODO: zrobić takie klikalne drzewo jak na obrazku
 
 /**
  * calculates amount of coils needed to acquire specific level of weapon mod

@@ -128,6 +128,130 @@
           </div>
 
           <div
+            id="hero-upgrade-cost-panel"
+            class="bekt-panel hidden trans-1-eio"
+          >
+            <h1 class="bekt-title">Hero upgrade cost calculator</h1>
+            <form id="hero-upgrade-cost-form" class="bekt-form">
+              <!-- viewBox is the original size of shape. width/height is size scalled -->
+              <svg width="200" height="300" viewBox="0 0 200 300">
+                <defs>
+                  <linearGradient
+                    id="base-hero-bottom-gradient"
+                    x1="50%"
+                    y1="0%"
+                    x2="50%"
+                    y2="100%"
+                  >
+                    <stop offset="0%" />
+                    <stop offset="100%" />
+                  </linearGradient>
+                </defs>
+                <!-- background -->
+                <rect
+                  x="0"
+                  y="0"
+                  width="100%"
+                  height="100%"
+                  fill-opacity="0.5"
+                  id="base-hero-background"
+                />
+                <!-- top stripe -->
+                <path
+                  d="
+                    M 0 0 
+                    l 0 30
+                    L 200 30
+                    l 0 -30
+                    Z"
+                  fill-opacity="0.5"
+                  class="border-color-fill"
+                  id="base-hero-top-stripe"
+                />
+                <!-- bottom stripe -->
+                <rect
+                  x="0"
+                  y="200"
+                  width="200"
+                  height="100"
+                  fill="url(#base-hero-bottom-gradient)"
+                  id="base-hero-bottom-stripe"
+                />
+                <!-- top border -->
+                <path
+                  d="
+                    M 0 0 
+                    l 0 12 
+                    l 7 -7
+                    L 200 5
+                    L 200 0
+                    Z"
+                  class="border-color-fill"
+                  id="base-hero-top-border"
+                />
+                <!-- left border -->
+                <line
+                  x1="0"
+                  y1="0"
+                  x2="0"
+                  y2="300"
+                  stroke-width="5"
+                  id="base-hero-left-border"
+                  class="border-color-stroke"
+                />
+                <!-- right border -->
+                <line
+                  x1="200"
+                  y1="0"
+                  x2="200"
+                  y2="300"
+                  stroke-width="5"
+                  id="base-hero-right-border"
+                  class="border-color-stroke"
+                />
+                <!-- bottom border -->
+                <path
+                  d="
+                    M 0 300
+                    l 0 -20
+                    l 30 0
+                    l 5 10
+                    L 165 290
+                    l 5 -10
+                    l 30 0
+                    L 200 300 
+                    Z"
+                  class="border-color-fill"
+                  id="base-hero-bottom-border"
+                />
+              </svg>
+              <select
+                name="upgrade-hero-base-level"
+                id="upgrade-hero-base-level"
+              ></select>
+              <select
+                name="upgrade-hero-final-level"
+                id="upgrade-hero-final-level"
+              ></select>
+            </form>
+            <img
+              src="./images/hero_card_look.png"
+              alt="hero-card-look"
+              style="max-height: 200px"
+            />
+            <img
+              src="./images/divine_hero_card_look.png"
+              alt="hero-card-look"
+              style="max-height: 200px"
+            />
+            <img
+              src="./images/old_hero_stats_look"
+              alt="hero-card-look"
+              style="max-height: 200px"
+            />
+          </div>
+
+          <div
             id="mod-upgrade-cost-panel"
             class="bekt-panel hidden trans-1-eio"
           >
