@@ -48,3 +48,9 @@ Let's build the best knowledge base together!
 [#FF7034]\[#FF7034\][/#] <br>
 [#8a2be2]\[#8a2be2\][/#] <br>
 [#bf3eff]\[#bf3eff\][/#] <br>
+
+--
+
+# Credits
+
+[#FF343E]RogueNinja[/#] - Deathglow Lynx Skin presentation - https://www.youtube.com/shorts/pcmg15ZL6hM

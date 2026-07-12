@@ -441,7 +441,7 @@
 }
 
 .cyber-card img {
-  width: 300px;
+  height: 300px;
 }
 
 .cyber-card-indicator {
@@ -671,5 +671,43 @@
   }
   .cyber-render-img {
     max-height: 300px;
+  }
+}
+
+.unique-skin-star {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  width: 28px;
+  height: 28px;
+  z-index: 10;
+
+  clip-path: polygon(
+    50% 0%,
+    63% 37%,
+    100% 50%,
+    63% 63%,
+    50% 100%,
+    37% 63%,
+    0% 50%,
+    37% 37%
+  );
+
+  background:
+    radial-gradient(circle, #ffffff 10%, transparent 50%),
+    linear-gradient(135deg, #00f0ff 0%, #ff007f 100%);
+
+  animation: skinStarPulse 3s infinite ease-in-out;
+}
+
+@keyframes skinStarPulse {
+  0%,
+  100% {
+    transform: scale(1);
+    filter: drop-shadow(0 0 5px #00f0ff) drop-shadow(0 0 10px #ff007f);
+  }
+  50% {
+    transform: scale(1.15);
+    filter: drop-shadow(0 0 8px #00f0ff) drop-shadow(0 0 16px #ff007f);
   }
 }

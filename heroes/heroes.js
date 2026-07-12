@@ -32,6 +32,8 @@ const heroes = [
     medkitType: medkitTypes.None,
     hasUniqueSkin: true,
     uniqueSkinName: "Deathglow Lynx",
+    uniqueSkinGifSrc: "../skins/unique_lynx_gif.gif",
+    uniqueSkinAbilityImage: "../skins/unique_lynx_ability.png",
   },
   {
     name: "Twinkle",
@@ -80,6 +82,7 @@ function generateHeroesCards() {
         <div class="content-card-badge">
           <img src="../classes/${hero.class.toLowerCase()}.png" alt="${hero.class}-icon">
         </div>
+        <div class="unique-skin-star ${hero.hasUniqueSkin ? "" : "hidden"}" title="Unique Skin"></div>
         <img src="../skins/${hero.name.toLowerCase()}.png" alt="${hero.name}-card">
         <div class="content-card-name">${hero.name}</div>
     `;
