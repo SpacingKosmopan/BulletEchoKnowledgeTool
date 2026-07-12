@@ -16,7 +16,13 @@
         text-align: center;
       }
 
-      /* Pasek narzędzi */
+      #editor *:empty::before {
+        content: attr(data-placeholder);
+        color: #aaa;
+        cursor: text;
+        display: inline-block;
+      }
+
       .toolbar {
         display: flex;
         gap: 5px;
@@ -39,9 +45,8 @@
         background: #e0e0e0;
       }
 
-      /* Pole edycji */
       .editor-container {
-         #eee;
+        background: #eee;
       }
       #editor {
         height: 400px;
@@ -56,7 +61,6 @@
         border-color: #007bff;
       }
 
-      /* Sekcja przycisków na dole */
       .actions {
         margin-top: 20px;
         display: flex;
@@ -70,90 +74,210 @@
         border-radius: 5px;
         color: white;
       }
-      #pobierz-btn {
+      #download-btn {
         background: #007bff;
       }
-      #pobierz-btn:hover {
+      #download-btn:hover {
         background: #0056b3;
+      }
+
+      .article-span.bold {
+        background-color: #00000011;
+        font-weight: bold;
+        border: 1px solid black;
+        border-radius: 3px;
+        padding: 2px 4px;
+        margin: 0 2px;
+      }
+
+      #save-status {
+        font-size: 12px;
+        color: #666;
+        margin-top: 5px;
+        font-family: sans-serif;
       }
     </style>
   </head>
   <body>
-    <h1>Edytor artykułów</h1>
+    <h1>Article Editor</h1>
 
-    <!-- Pasek narzędzi (Zrobiony ręcznie) -->
+    <!-- toolbar -->
     <div class="toolbar">
       <select id="formatBlock">
-        <option value="p">Tekst zwykły</option>
-        <option value="h2">Nagłówek H2</option>
-        <option value="h3">Nagłówek H3</option>
+        <option value="" disabled selected>Format</option>
+        <option value="p">Paragraph</option>
+        <option value="h1">Header H1</option>
+        <option value="h2">Header H2</option>
+        <option value="h3">Header H3</option>
       </select>
-      <button id="boldBtn"><b>B</b></button>
-      <button id="italicBtn"><i>I</i></button>
-      <button id="underlineBtn"><u>U</u></button>
-      <button id="ulBtn">• Lista</button>
+      <button onclick="toggleBoldSpan()">Bold</button>
+      <button
+        onclick="forceSave()"
+        style="background: #28a745; color: white; border-color: #218838"
+      >
+        Save Now
+      </button>
+      <span id="save-status">Save status: not saved</span>
     </div>
 
-    <!-- Wbudowane pole edycji w przeglądarkę -->
     <div class="editor-container">
-      <div id="editor" contenteditable="true">
-        <h2>Mój nowy artykuł</h2>
-        <p>Zacznij pisać tutaj...</p>
+      <div id="editor" contenteditable="true" oninput="triggerAutoSave()">
+        <h2 data-placeholder="Title..."></h2>
+        <p data-placeholder="Write here..."></p>
       </div>
     </div>
 
     <div class="actions">
-      <button id="pobierz-btn" class="btn">
-        Pobierz artykuł dla dewelopera
+      <button type="button" id="download-btn" class="btn">
+        Download article in HTML
       </button>
     </div>
 
     <script>
+      const saveStatus = document.getElementById("save-status");
       const editor = document.getElementById("editor");
+      let saveTimeout;
 
-      // Funkcja wykonująca formatowanie tekstu wbudowana w przeglądarkę
-      function formatuj(komenda, wartosc = null) {
-        document.execCommand(komenda, false, wartosc);
-        editor.focus();
-      }
-
-      // Obsługa przycisków formatowania
-      document
-        .getElementById("boldBtn")
-        .addEventListener("click", () => formatuj("bold"));
-      document
-        .getElementById("italicBtn")
-        .addEventListener("click", () => formatuj("italic"));
-      document
-        .getElementById("underlineBtn")
-        .addEventListener("click", () => formatuj("underline"));
-      document
-        .getElementById("ulBtn")
-        .addEventListener("click", () => formatuj("insertUnorderedList"));
-
-      document.getElementById("formatBlock").addEventListener("change", (e) => {
-        formatuj("formatBlock", e.target.value);
-        e.target.value = "p"; // Reset wyboru w liście rozwijanej
+      window.addEventListener("DOMContentLoaded", () => {
+        const savedContent = localStorage.getItem("my_editor_content");
+        if (savedContent) {
+          editor.innerHTML = savedContent;
+        }
       });
 
-      // Pobieranie pliku HTML z gotowym artykułem
-      document
-        .getElementById("pobierz-btn")
-        .addEventListener("click", function () {
-          // Pobieramy kod HTML bezpośrednio z pola edytora
-          const trescHtml = editor.innerHTML;
+      function toggleBoldSpan() {
+        const selection = window.getSelection();
+        if (!selection.rangeCount) return;
 
-          // Tworzenie pliku tekstowego w locie
-          const blob = new Blob([trescHtml], { type: "text/html" });
+        const range = selection.getRangeAt(0);
+        const currentSpan =
+          range.startContainer.parentElement.closest(".article-span.bold");
+
+        if (currentSpan) {
+          exitSpan(currentSpan, selection, range);
+        } else {
+          enterSpan(selection, range);
+        }
+
+        editor.focus();
+        triggerAutoSave();
+      }
+
+      function enterSpan(selection, range) {
+        const boldSpan = document.createElement("span");
+        boldSpan.className = "article-span bold";
+        boldSpan.innerHTML = "&#8203;";
+
+        range.deleteContents();
+        range.insertNode(boldSpan);
+
+        range.setStart(boldSpan, 1);
+        range.collapse(true);
+        selection.removeAllRanges();
+        selection.addRange(range);
+
+        const textNodeBehind = document.createTextNode(" \u200B");
+        boldSpan.parentNode.insertBefore(textNodeBehind, boldSpan.nextSibling);
+      }
+
+      function exitSpan(span, selection, range) {
+        let nextNode = span.nextSibling;
+
+        if (!nextNode || nextNode.nodeType !== Node.TEXT_NODE) {
+          nextNode = document.createTextNode(" \u200B");
+          span.parentNode.insertBefore(nextNode, span.nextSibling);
+        }
+
+        range.setStart(nextNode, 2);
+        range.collapse(true);
+
+        selection.removeAllRanges();
+        selection.addRange(range);
+      }
+
+      // download
+      document
+        .getElementById("download-btn")
+        .addEventListener("click", function () {
+          const tempDiv = document.createElement("div");
+          tempDiv.innerHTML = editor.innerHTML;
+
+          const elements = tempDiv.querySelectorAll("*");
+          elements.forEach((el) => {
+            el.removeAttribute("data-placeholder");
+            el.removeAttribute("contenteditable");
+          });
+
+          const cleanHTMLContent = tempDiv.innerHTML
+            .replace(/\u200B/g, "")
+            .trim();
+
+          const blob = new Blob([cleanHTMLContent], { type: "text/html" });
           const url = URL.createObjectURL(blob);
           const a = document.createElement("a");
 
           a.href = url;
-          a.download = "artykul.html";
+          a.download = "article.html";
           a.click();
 
           URL.revokeObjectURL(url);
         });
+
+      editor.addEventListener("keydown", function (e) {
+        const selection = window.getSelection();
+        if (!selection.rangeCount) return;
+        const range = selection.getRangeAt(0);
+
+        const currentSpan =
+          range.startContainer.parentElement.closest(".article-span.bold");
+        if (!currentSpan) return;
+
+        if (e.key === "ArrowRight") {
+          if (range.startOffset >= range.startContainer.length) {
+            e.preventDefault();
+            exitSpan(currentSpan, selection, range);
+            triggerAutoSave();
+          }
+        }
+
+        if (e.key === "Backspace") {
+          const cleanText = currentSpan.textContent.replace(/\u200B/g, "");
+          if (cleanText.length <= 1) {
+            e.preventDefault();
+            const emptyText = document.createTextNode("\u200B");
+            currentSpan.parentNode.replaceChild(emptyText, currentSpan);
+            range.setStart(emptyText, 1);
+            range.collapse(true);
+            selection.removeAllRanges();
+            selection.addRange(range);
+            triggerAutoSave();
+          }
+        }
+      });
+
+      function executeSaveToStorage() {
+        localStorage.setItem("my_editor_content", editor.innerHTML);
+
+        const now = new Date();
+        const timeString = now.toLocaleTimeString([], {
+          hour: "2-digit",
+          minute: "2-digit",
+          second: "2-digit",
+        });
+        saveStatus.textContent = `Saved at ${timeString}`;
+      }
+
+      function triggerAutoSave() {
+        saveStatus.textContent = "Saving...";
+        clearTimeout(saveTimeout);
+        saveTimeout = setTimeout(executeSaveToStorage, 1000);
+      }
+
+      function forceSave() {
+        clearTimeout(saveTimeout);
+
+        executeSaveToStorage();
+      }
     </script>
   </body>
 </html>
