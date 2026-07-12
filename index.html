@@ -54,6 +54,100 @@
     </header>
 
     <div class="page-wrapper">
+      <aside>
+        <stripe-button href="./index.html"
+          ><i class="bi bi-house-fill"></i> Home</stripe-button
+        >
+        <details class="dropdown">
+          <summary id="heroes-summary">
+            <stripe-button id="heroes-text"
+              >Heroes tips and tricks</stripe-button
+            >
+          </summary>
+          <nav class="dropdown-content" id="heroes-pages"></nav>
+        </details>
+        <details class="dropdown">
+          <summary id="calculators-summary">
+            <stripe-button id="calculators-text">Calculators</stripe-button>
+          </summary>
+          <nav class="dropdown-content" id="calculators-pages">
+            <stripe-button
+              href="./calculators/calculator.html?type=density"
+              color="#0066BB"
+              >Density</stripe-button
+            ><stripe-button
+              href="./calculators/calculator.html?type=armor_resistance"
+              color="#0066BB"
+              >Armor resistance</stripe-button
+            ><stripe-button
+              href="./calculators/calculator.html?type=damage_to_enemy"
+              color="#0066BB"
+              >Damage to enemy</stripe-button
+            >
+            <stripe-button
+              href="./calculators/calculator.html?type=hero_power"
+              color="#0066BB"
+              >Hero power</stripe-button
+            >
+            <stripe-button
+              href="./calculators/calculator.html?type=hero_upgrade"
+              color="#0066BB"
+              >Hero upgrade cost</stripe-button
+            >
+            <stripe-button
+              href="./calculators/calculator.html?type=drone_upgrade"
+              color="#0066BB"
+              >Drone upgrade cost</stripe-button
+            ><stripe-button
+              href="./calculators/calculator.html?type=gear_upgrade"
+              color="#0066BB"
+              >Gear upgrade cost</stripe-button
+            >
+            <stripe-button
+              href="./calculators/calculator.html?type=mod_upgrade"
+              color="#0066BB"
+              >Mod upgrade cost</stripe-button
+            >
+          </nav>
+        </details>
+        <details class="dropdown" id="minigames-details">
+          <summary id="minigames-summary">
+            <stripe-button id="minigames-text">Minigames</stripe-button>
+          </summary>
+          <nav class="dropdown-content" id="minigames-pages">
+            <stripe-button href="./minigames/guess_the_map.html" color="#0066BB"
+              ><i class="bi bi-map"></i> Guess the map</stripe-button
+            >
+            <stripe-button
+              href="./minigames/guess_the_hero.html"
+              color="#0066BB"
+              ><i class="bi bi-person"></i> Guess the hero</stripe-button
+            >
+            <stripe-button
+              href="./minigames/depixelisation.html"
+              color="#0066BB"
+              ><i class="bi bi-grid-3x3"></i> Depixelisation</stripe-button
+            >
+            <stripe-button href="./minigames/crossword.html" color="#0066BB"
+              ><i class="bi bi-spellcheck"></i> Crossword</stripe-button
+            >
+          </nav>
+        </details>
+
+        <stripe-button href="./changelog.html">Changelog</stripe-button>
+        <stripe-button>(soon) Articles</stripe-button>
+        <stripe-button
+          data-tally-open="D4yxlR"
+          data-tally-overlay="1"
+          data-tally-emoji-text="🐛"
+          data-tally-emoji-animation="heart-beat"
+          data-tally-form-events-forwarding="1"
+        >
+          <i class="bi bi-bug"></i> Reports<i class="bi bi-lightbulb"></i>
+          Feedback</stripe-button
+        >
+      </aside>
+
       <main>
         <div class="container">
           <section class="news">
@@ -183,100 +277,6 @@
           </section>
         </div>
       </main>
-
-      <aside>
-        <stripe-button href="./index.html"
-          ><i class="bi bi-house-fill"></i> Home</stripe-button
-        >
-        <details class="dropdown">
-          <summary id="heroes-summary">
-            <stripe-button id="heroes-text"
-              >Heroes tips and tricks</stripe-button
-            >
-          </summary>
-          <nav class="dropdown-content" id="heroes-pages"></nav>
-        </details>
-        <details class="dropdown">
-          <summary id="calculators-summary">
-            <stripe-button id="calculators-text">Calculators</stripe-button>
-          </summary>
-          <nav class="dropdown-content" id="calculators-pages">
-            <stripe-button
-              href="./calculators/calculator.html?type=density"
-              color="#0066BB"
-              >Density</stripe-button
-            ><stripe-button
-              href="./calculators/calculator.html?type=armor_resistance"
-              color="#0066BB"
-              >Armor resistance</stripe-button
-            ><stripe-button
-              href="./calculators/calculator.html?type=damage_to_enemy"
-              color="#0066BB"
-              >Damage to enemy</stripe-button
-            >
-            <stripe-button
-              href="./calculators/calculator.html?type=hero_power"
-              color="#0066BB"
-              >Hero power</stripe-button
-            >
-            <stripe-button
-              href="./calculators/calculator.html?type=hero_upgrade"
-              color="#0066BB"
-              >Hero upgrade cost</stripe-button
-            >
-            <stripe-button
-              href="./calculators/calculator.html?type=drone_upgrade"
-              color="#0066BB"
-              >Drone upgrade cost</stripe-button
-            ><stripe-button
-              href="./calculators/calculator.html?type=gear_upgrade"
-              color="#0066BB"
-              >Gear upgrade cost</stripe-button
-            >
-            <stripe-button
-              href="./calculators/calculator.html?type=mod_upgrade"
-              color="#0066BB"
-              >Mod upgrade cost</stripe-button
-            >
-          </nav>
-        </details>
-        <details class="dropdown" id="minigames-details">
-          <summary id="minigames-summary">
-            <stripe-button id="minigames-text">Minigames</stripe-button>
-          </summary>
-          <nav class="dropdown-content" id="minigames-pages">
-            <stripe-button href="./minigames/guess_the_map.html" color="#0066BB"
-              ><i class="bi bi-map"></i> Guess the map</stripe-button
-            >
-            <stripe-button
-              href="./minigames/guess_the_hero.html"
-              color="#0066BB"
-              ><i class="bi bi-person"></i> Guess the hero</stripe-button
-            >
-            <stripe-button
-              href="./minigames/depixelisation.html"
-              color="#0066BB"
-              ><i class="bi bi-grid-3x3"></i> Depixelisation</stripe-button
-            >
-            <stripe-button href="./minigames/crossword.html" color="#0066BB"
-              ><i class="bi bi-spellcheck"></i> Crossword</stripe-button
-            >
-          </nav>
-        </details>
-
-        <stripe-button href="./changelog.html">Changelog</stripe-button>
-        <stripe-button>(soon) Articles</stripe-button>
-        <stripe-button
-          data-tally-open="D4yxlR"
-          data-tally-overlay="1"
-          data-tally-emoji-text="🐛"
-          data-tally-emoji-animation="heart-beat"
-          data-tally-form-events-forwarding="1"
-        >
-          <i class="bi bi-bug"></i> Reports<i class="bi bi-lightbulb"></i>
-          Feedback</stripe-button
-        >
-      </aside>
     </div>
 
     <footer>

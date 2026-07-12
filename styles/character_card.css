@@ -28,7 +28,6 @@
 
 .panel-wrapper {
   box-sizing: border-box;
-  font-family: "Segoe UI", Roboto, sans-serif;
   background-color: #050510;
   background-image: radial-gradient(
     circle at 80% 50%,
@@ -147,11 +146,6 @@
 
 .bullet-echo-container {
   box-sizing: border-box;
-  font-family:
-    "Segoe UI",
-    Roboto,
-    -apple-system,
-    sans-serif;
   background-color: #020205;
 
   background-image:

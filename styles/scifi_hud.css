@@ -17,7 +17,6 @@
   color: #fff;
   padding: 20px;
   box-sizing: border-box;
-  font-family: sans-serif;
 
   clip-path: polygon(0 0, calc(100% - 29px) 0, 100% 29px, 100% 100%, 0 100%);
 }
