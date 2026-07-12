@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="pl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Moje Pisadło</title>
+    <style>
+      body {
+        font-family: sans-serif;
+        max-width: 800px;
+        margin: 40px auto;
+        padding: 0 20px;
+        color: #333;
+      }
+      h1 {
+        text-align: center;
+      }
+
+      /* Pasek narzędzi */
+      .toolbar {
+        display: flex;
+        gap: 5px;
+        background: #f0f0f0;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-bottom: none;
+        border-radius: 5px 5px 0 0;
+      }
+      .toolbar button,
+      .toolbar select {
+        padding: 5px 10px;
+        font-size: 14px;
+        cursor: pointer;
+        background: white;
+        border: 1px solid #aaa;
+        border-radius: 3px;
+      }
+      .toolbar button:hover {
+        background: #e0e0e0;
+      }
+
+      /* Pole edycji */
+      .editor-container {
+         #eee;
+      }
+      #editor {
+        height: 400px;
+        border: 1px solid #ccc;
+        padding: 15px;
+        overflow-y: auto;
+        border-radius: 0 0 5px 5px;
+        outline: none;
+        background: #fff;
+      }
+      #editor:focus {
+        border-color: #007bff;
+      }
+
+      /* Sekcja przycisków na dole */
+      .actions {
+        margin-top: 20px;
+        display: flex;
+        gap: 10px;
+      }
+      .btn {
+        padding: 10px 20px;
+        font-size: 16px;
+        cursor: pointer;
+        border: none;
+        border-radius: 5px;
+        color: white;
+      }
+      #pobierz-btn {
+        background: #007bff;
+      }
+      #pobierz-btn:hover {
+        background: #0056b3;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Edytor artykułów</h1>
+
+    <!-- Pasek narzędzi (Zrobiony ręcznie) -->
+    <div class="toolbar">
+      <select id="formatBlock">
+        <option value="p">Tekst zwykły</option>
+        <option value="h2">Nagłówek H2</option>
+        <option value="h3">Nagłówek H3</option>
+      </select>
+      <button id="boldBtn"><b>B</b></button>
+      <button id="italicBtn"><i>I</i></button>
+      <button id="underlineBtn"><u>U</u></button>
+      <button id="ulBtn">• Lista</button>
+    </div>
+
+    <!-- Wbudowane pole edycji w przeglądarkę -->
+    <div class="editor-container">
+      <div id="editor" contenteditable="true">
+        <h2>Mój nowy artykuł</h2>
+        <p>Zacznij pisać tutaj...</p>
+      </div>
+    </div>
+
+    <div class="actions">
+      <button id="pobierz-btn" class="btn">
+        Pobierz artykuł dla dewelopera
+      </button>
+    </div>
+
+    <script>
+      const editor = document.getElementById("editor");
+
+      // Funkcja wykonująca formatowanie tekstu wbudowana w przeglądarkę
+      function formatuj(komenda, wartosc = null) {
+        document.execCommand(komenda, false, wartosc);
+        editor.focus();
+      }
+
+      // Obsługa przycisków formatowania
+      document
+        .getElementById("boldBtn")
+        .addEventListener("click", () => formatuj("bold"));
+      document
+        .getElementById("italicBtn")
+        .addEventListener("click", () => formatuj("italic"));
+      document
+        .getElementById("underlineBtn")
+        .addEventListener("click", () => formatuj("underline"));
+      document
+        .getElementById("ulBtn")
+        .addEventListener("click", () => formatuj("insertUnorderedList"));
+
+      document.getElementById("formatBlock").addEventListener("change", (e) => {
+        formatuj("formatBlock", e.target.value);
+        e.target.value = "p"; // Reset wyboru w liście rozwijanej
+      });
+
+      // Pobieranie pliku HTML z gotowym artykułem
+      document
+        .getElementById("pobierz-btn")
+        .addEventListener("click", function () {
+          // Pobieramy kod HTML bezpośrednio z pola edytora
+          const trescHtml = editor.innerHTML;
+
+          // Tworzenie pliku tekstowego w locie
+          const blob = new Blob([trescHtml], { type: "text/html" });
+          const url = URL.createObjectURL(blob);
+          const a = document.createElement("a");
+
+          a.href = url;
+          a.download = "artykul.html";
+          a.click();
+
+          URL.revokeObjectURL(url);
+        });
+    </script>
+  </body>
+</html>
