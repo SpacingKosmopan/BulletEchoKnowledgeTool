@@ -33,6 +33,18 @@ const heroes = [
     hasUniqueSkin: true,
     uniqueSkinName: "Deathglow Lynx",
   },
+  {
+    name: "Twinkle",
+    faction: "PYRO",
+    class: "Scout",
+    abilityName: "Force Bomb",
+    abilityDescription: "-",
+    medkitType: medkitTypes.Stim,
+    hasUniqueSkin: true,
+    uniqueSkinName: "Dynasty Twinkle",
+    uniqueSkinGifSrc: "../skins/unique_twinkle_gif.gif",
+    uniqueSkinAbilityImage: "../skins/unique_twinkle_ability.png",
+  },
 ];
 const newestHeroName = "Bonnie";
 
@@ -201,9 +213,9 @@ const getHeroPanelHTML = (hero) => `
           <div class="cyber-card-indicator"></div>
           <div class="cyber-card-header">
             <span class="cyber-dot-active"></span>
-            <h2>ABILITY: ${hero.abilityName}</h2>
+            <h2>ABILITY</h2>
           </div>
-          <p class="cyber-card-desc">${hero.abilityDescription}</p>
+          <img src="${hero.uniqueSkinAbilityImage}" alt="unique_ability_image" />
           <div class="cyber-sub-bar"></div>
         </div>
 
@@ -211,9 +223,9 @@ const getHeroPanelHTML = (hero) => `
           <div class="cyber-card-indicator"></div>
           <div class="cyber-card-header">
             <span class="cyber-dot-active pink-glow"></span>
-            <h2>MEDKIT: ${hero.medkitType.name}</h2>
+            <h2>PREVIEW</h2>
           </div>
-          <p class="cyber-card-desc">${hero.medkitType.description}</p>
+          <img src="${hero.uniqueSkinGifSrc}" alt="unique_skin_presentation">
           <div class="cyber-sub-bar"></div>
         </div>
 

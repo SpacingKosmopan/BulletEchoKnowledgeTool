@@ -130,11 +130,13 @@ function getRandomFragment() {
   answerText.classList.remove("hidden");
 
   startBtn.innerHTML = `<p>Next</p>`;
+  startBtn.classList.add("hidden");
 }
 
 answerBtn.addEventListener("click", () => {
   answerText.innerHTML = `This map is called <u>${currentFragment.mapname}</u>`;
   fragmentImage.src = currentFragment.mapsrc;
+  startBtn.classList.remove("hidden");
 });
 
 // * MAPS LIST ASIDE * //
