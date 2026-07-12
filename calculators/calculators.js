@@ -19,9 +19,11 @@ else if (calculatorType === "gear_upgrade") showPanel(DOM.gearUpgradeCostPanel);
 else if (calculatorType === "mod_upgrade") {
   showPanel(DOM.modUpgradeCostPanel);
   DOM.resultPanel.innerHTML = `<p>Click mod to check how many coils and which previous tiers you need to get this level</p>`;
-} else if (calculatorType === "hero_upgrade")
+} else if (calculatorType === "hero_upgrade") {
+  DOM.resultPanel.innerHTML = "<p>Select level and tier to calculate</p>";
   showPanel(DOM.heroUpgradeCostPanel);
-else DOM.resultPanel.innerHTML = `This page is being prepared`;
+} else
+  DOM.resultPanel.innerHTML = `<p style="font-size:25px;font-family:'Consolas'">This page is being prepared</p>`;
 
 function showPanel(panel) {
   panel.classList.remove("hidden");
@@ -142,6 +144,7 @@ const tierColors = [
   "#cd24eb",
   "#7b140d",
   "#262641",
+  "#fec901", // divine gold id=11
 ];
 
 // * HERO UPGRADE COST * //
@@ -418,7 +421,7 @@ const heroUpgradeCost = [
   {
     finalLevel: 71,
     cards: 43,
-    coins: 38000,
+    coins: 9000,
     newTier: tierNames.CELESTIAL,
   },
   {
@@ -688,19 +691,27 @@ function getHeroUpgradeCost(
  * Function calculates the cost of upgrading hero
  * @param {number} currentLevel (1-90)
  * @param {number} finalLevel (2-90)
- * @param {boolean} isFinalTierBoost (true | false) default: false
- * @param {boolean} isStartingTierBoost (true | false) default: false
+ * @param {boolean} isStartingTierBoost (true | false) default: false - is 10th level common or rare (false-common)
+ * @param {boolean} isFinalTierBoost (true | false) default: false - is 10th level common or rare (false-common)
  * @returns \{ cards: number, coins: number \} | null - Object with amount of cards and coins
  */
 function getHeroUpgradeCostv2(
   currentLevel,
   finalLevel,
-  isFinalTierBoost = false,
   isStartingTierBoost = false,
+  isFinalTierBoost = false,
 ) {
-  if (finalLevel <= currentLevel && !isStartingTierBoost) return null;
-  if (currentLevel <= 0 || currentLevel > 90) return null;
-  if (currentLevel == 90 && !isFinalTierBoost) return { cards: 0, coins: 0 };
+  if (finalLevel < currentLevel)
+    return {
+      error: `Wrong levels selection: ${currentLevel}/${finalLevel}`,
+    };
+  if (currentLevel === finalLevel && isStartingTierBoost && !isFinalTierBoost) {
+    return {
+      error: `Cannot upgrade backwards on the same level (starting with boost, ending without).`,
+    };
+  }
+  if (currentLevel <= 0 || currentLevel > 90 || finalLevel > 90)
+    return { error: `Invalid level number: ${currentLevel}/${finalLevel}` };
 
   let cost = { cards: 0, coins: 0 };
 
@@ -717,9 +728,13 @@ function getHeroUpgradeCostv2(
 
     // possible tier boost at the beggining
     if (levelUpgradeCost.finalLevel === currentLevel) {
-      // we are not doing tier boost at the current level
-      if (levelUpgradeCost.tierBoost && !isStartingTierBoost) return;
-      if (!levelUpgradeCost.tierBoost) return;
+      if (levelUpgradeCost.tierBoost) {
+        // current level is already boosted tier
+        if (isStartingTierBoost) return;
+      } else {
+        // regular boost at the beginning
+        return;
+      }
     }
 
     // higher levels
@@ -846,13 +861,33 @@ const divineUpgradeCost = [
 
 const baseHeroSVG = {
   background: document.querySelector("#base-hero-background"),
-  bottomGradient: document.querySelector("#base-hero-bottom-gradient"),
   topStripe: document.querySelector("#base-hero-top-stripe"),
-  bottomStripe: document.querySelector("#base-hero-bottom-stripe"),
+  bottomStripe: document.querySelector("#base-hero-bottom-stripe"), // don't edit fill
+  // defs
+  bottomGradient: document.querySelector("#base-hero-bottom-gradient"),
+
+  rightBorder: document.querySelector("#base-hero-right-border"),
+  leftBorder: document.querySelector("#base-hero-left-border"),
+  topBorder: document.querySelector("#base-hero-top-border"),
+  bottomBorder: document.querySelector("#base-hero-bottom-border"),
 };
 setElementColorClass(baseHeroSVG.background, "common-color");
 setElementColorClass(baseHeroSVG.topStripe, "common-color");
-setElementColorClass(baseHeroSVG.bottomGradient, "common-gradient");
+setElementGradientClass(baseHeroSVG.bottomGradient, "common-gradient");
+
+setBorderColorClass(baseHeroSVG.rightBorder, "border-color-stroke");
+setBorderColorClass(baseHeroSVG.leftBorder, "border-color-stroke");
+setBorderColorClass(baseHeroSVG.bottomBorder, "border-color-fill");
+setBorderColorClass(baseHeroSVG.topBorder, "border-color-fill");
+
+function setBorderColorClass(element, newClassName) {
+  element.classList.remove("divine-gold-color-fill");
+  element.classList.remove("divine-gold-color-stroke");
+  element.classList.remove("border-color-stroke");
+  element.classList.remove("border-color-fill");
+
+  element.classList.add(newClassName);
+}
 
 function setElementColorClass(element, newClassName) {
   element.classList.remove("common-color");
@@ -867,6 +902,10 @@ function setElementColorClass(element, newClassName) {
   element.classList.remove("immortal-color");
   element.classList.remove("divine-color");
 
+  element.classList.add(newClassName);
+}
+
+function setElementGradientClass(element, newClassName) {
   element.classList.remove("common-gradient");
   element.classList.remove("rare-gradient");
   element.classList.remove("epic-gradient");
@@ -882,41 +921,158 @@ function setElementColorClass(element, newClassName) {
   element.classList.add(newClassName);
 }
 
-// selects fill
+let selectedHeroTier = {
+  base: 1,
+  final: 2,
+  baseBoost: false,
+  finalBoost: true,
+};
+
 const baseHeroTierSelect = document.querySelector("#upgrade-hero-base-level");
 baseHeroTierSelect.innerHTML = ``;
 
-//TODO
 baseHeroTierSelect.addEventListener("change", () => {
   const tierValue = baseHeroTierSelect.value;
-  console.log(tierValue);
-  const isPureNumber = !isNaN(Number(tierValue));
+  // isBoost means is the same level number but tier higher
+  const isBoost = tierValue.endsWith("-b");
   const pureNumber = parseInt(tierValue, 10);
   let tierNumber = 0;
   if (pureNumber < 85) {
     tierNumber = Math.floor(pureNumber / 10);
     if (pureNumber % 10 == 0) {
-      if (!isPureNumber) tierNumber--;
+      if (!isBoost) tierNumber--;
     }
   } else if (pureNumber == 85) {
-    if (isPureNumber) tierNumber = 9;
-    else tierNumber = 8;
-  } else if (pureNumber < 90 || (pureNumber == 90 && !isPureNumber))
-    tierNumber = 9;
+    if (!isBoost) tierNumber = 8;
+    else tierNumber = 9;
+  } else if (pureNumber < 90 || (pureNumber == 90 && !isBoost)) tierNumber = 9;
   else tierNumber = 10;
   const tierName = tierValues[tierNumber].toLowerCase();
+  selectedHeroTier.base = pureNumber;
+  if (pureNumber % 10 == 0 || pureNumber == 85) {
+    selectedHeroTier.baseBoost = isBoost;
+  } else selectedHeroTier.baseBoost = false;
 
-  setElementColorClass(baseHeroSVG.background, `${tierName}-color`);
+  handleHeroLevelSelection();
+
+  if (tierName !== "divine") {
+    setElementColorClass(baseHeroSVG.background, `${tierName}-color`);
+    setElementColorClass(baseHeroSVG.topStripe, `${tierName}-color`);
+
+    setBorderColorClass(baseHeroSVG.topBorder, "border-color-fill");
+    setBorderColorClass(baseHeroSVG.bottomBorder, "border-color-fill");
+    setBorderColorClass(baseHeroSVG.rightBorder, "border-color-stroke");
+    setBorderColorClass(baseHeroSVG.leftBorder, "border-color-stroke");
+
+    setElementGradientClass(baseHeroSVG.bottomGradient, `${tierName}-gradient`);
+  } else {
+    setElementColorClass(baseHeroSVG.background, `divine-color`);
+    setElementColorClass(baseHeroSVG.topStripe, `divine-color`);
+
+    setBorderColorClass(baseHeroSVG.topBorder, "divine-gold-color-fill");
+    setBorderColorClass(baseHeroSVG.bottomBorder, "divine-gold-color-fill");
+    setBorderColorClass(baseHeroSVG.rightBorder, "divine-gold-color-stroke");
+    setBorderColorClass(baseHeroSVG.leftBorder, "divine-gold-color-stroke");
+
+    setElementGradientClass(baseHeroSVG.bottomGradient, `divine-gradient`);
+  }
 });
+
+const finalHeroSVG = {
+  background: document.querySelector("#final-hero-background"),
+  topStripe: document.querySelector("#final-hero-top-stripe"),
+  bottomStripe: document.querySelector("#final-hero-bottom-stripe"), // don't edit fill
+  // defs
+  bottomGradient: document.querySelector("#final-hero-bottom-gradient"),
+
+  rightBorder: document.querySelector("#final-hero-right-border"),
+  leftBorder: document.querySelector("#final-hero-left-border"),
+  topBorder: document.querySelector("#final-hero-top-border"),
+  bottomBorder: document.querySelector("#final-hero-bottom-border"),
+};
+setElementColorClass(finalHeroSVG.background, "common-color");
+setElementColorClass(finalHeroSVG.topStripe, "common-color");
+setElementGradientClass(finalHeroSVG.bottomGradient, "common-gradient");
+
+setBorderColorClass(finalHeroSVG.rightBorder, "border-color-stroke");
+setBorderColorClass(finalHeroSVG.leftBorder, "border-color-stroke");
+setBorderColorClass(finalHeroSVG.bottomBorder, "border-color-fill");
+setBorderColorClass(finalHeroSVG.topBorder, "border-color-fill");
 
 const finalHeroTierSelect = document.querySelector("#upgrade-hero-final-level");
 finalHeroTierSelect.innerHTML = ``;
 
-//TODO
 finalHeroTierSelect.addEventListener("change", () => {
-  console.log(finalHeroTierSelect.value);
+  const tierValue = finalHeroTierSelect.value;
+  // is already boosted to higher level
+  const isBoost = tierValue.endsWith("-b");
+  const pureNumber = parseInt(tierValue, 10);
+  let tierNumber = 0;
+  if (pureNumber < 85) {
+    tierNumber = Math.floor(pureNumber / 10);
+    if (pureNumber % 10 == 0) {
+      if (!isBoost) tierNumber--;
+    }
+  } else if (pureNumber == 85) {
+    if (!isBoost) tierNumber = 8;
+    else tierNumber = 9;
+  } else if (pureNumber < 90 || (pureNumber == 90 && !isBoost)) tierNumber = 9;
+  else tierNumber = 10;
+  const tierName = tierValues[tierNumber].toLowerCase();
+  selectedHeroTier.final = pureNumber;
+
+  if (pureNumber % 10 == 0 || pureNumber == 85) {
+    selectedHeroTier.finalBoost = isBoost;
+  } else selectedHeroTier.finalBoost = false;
+
+  handleHeroLevelSelection();
+
+  if (tierName !== "divine") {
+    document.querySelector("#divine-golden-svg-border").classList.add("hidden");
+
+    setElementColorClass(finalHeroSVG.background, `${tierName}-color`);
+    setElementColorClass(finalHeroSVG.topStripe, `${tierName}-color`);
+
+    setBorderColorClass(finalHeroSVG.topBorder, "border-color-fill");
+    setBorderColorClass(finalHeroSVG.bottomBorder, "border-color-fill");
+    setBorderColorClass(finalHeroSVG.rightBorder, "border-color-stroke");
+    setBorderColorClass(finalHeroSVG.leftBorder, "border-color-stroke");
+
+    setElementGradientClass(
+      finalHeroSVG.bottomGradient,
+      `${tierName}-gradient`,
+    );
+  } else {
+    document
+      .querySelector("#divine-golden-svg-border")
+      .classList.remove("hidden");
+
+    setElementColorClass(finalHeroSVG.background, `divine-color`);
+    setElementColorClass(finalHeroSVG.topStripe, `divine-color`);
+
+    setBorderColorClass(finalHeroSVG.topBorder, "divine-gold-color-fill");
+    setBorderColorClass(finalHeroSVG.bottomBorder, "divine-gold-color-fill");
+    setBorderColorClass(finalHeroSVG.rightBorder, "divine-gold-color-stroke");
+    setBorderColorClass(finalHeroSVG.leftBorder, "divine-gold-color-stroke");
+
+    setElementGradientClass(finalHeroSVG.bottomGradient, `divine-gradient`);
+  }
 });
 
+function handleHeroLevelSelection() {
+  const cost = getHeroUpgradeCostv2(
+    selectedHeroTier.base,
+    selectedHeroTier.final,
+    selectedHeroTier.baseBoost,
+    selectedHeroTier.finalBoost,
+  );
+
+  DOM.resultPanel.innerHTML =
+    cost.error ||
+    `Cost: ${cost.coins} <img src="./images/resources/coins.png" alt="coins" class="resource-result-image" /> ${cost.cards} <img src="./images/resources/hero_cards.png" alt="hero_cards" class="resource-result-image" />`;
+}
+
+/* * SELECTS GENERATING * */
 let lastHadTierBoost = false;
 heroUpgradeCost.forEach((cost) => {
   const optionTierValue = cost.tierBoost ? cost.newTier - 1 : cost.newTier;
@@ -926,7 +1082,7 @@ heroUpgradeCost.forEach((cost) => {
     : cost.finalLevel - 1;
 
   const option = `
-  <option value="${optionLevelNumber + (cost.tierBoost ? "-b" : "")}"
+  <option value="${optionLevelNumber + (!cost.tierBoost ? "-b" : "")}"
     style="background-color:${optionColor}; color:${optionLevelNumber >= 80 ? "#d6d6d6" : "black"}">${optionLevelNumber} - ${lastHadTierBoost ? "after tier boost" : tierValues[optionTierValue]}
   </option>
   `;
@@ -937,7 +1093,7 @@ heroUpgradeCost.forEach((cost) => {
   if (cost.tierBoost) lastHadTierBoost = true;
 });
 const option = `
-  <option value="90"
+  <option value="90-b"
     style="background-color:${tierColors[10]}; color:white">DIVINE
   </option>
   `;
@@ -977,7 +1133,7 @@ let activeTracks = { 0: null, 1: null, 2: null, 3: null, 4: null };
 
 function handleSkillSelection(tier, position) {
   const cost = calculateModUpgradeCost(tier + 1);
-  DOM.resultPanel.innerHTML = `<p>Cost: ${cost} <img src="./images/resources/coils.png" class="resource-result-image"></p>`;
+  DOM.resultPanel.innerHTML = `Cost: ${cost} <img src="./images/resources/coils.png" class="resource-result-image">`;
 
   activeTracks = { 0: null, 1: null, 2: null, 3: null, 4: null };
   document
@@ -1110,14 +1266,14 @@ DOMforms.gearUpgradeCost.form.addEventListener("submit", (e) => {
     cost.nuts += gearUpgradeCost[gearType][i].nuts;
     cost.copies += gearUpgradeCost[gearType][i].copies;
   }
-  DOM.resultPanel.innerHTML = `<p>Cost: <u>${cost.nuts}</u> <img src="./images/resources/nuts.png" class="resource-result-image"> and <u>${cost.copies}</u> 
+  DOM.resultPanel.innerHTML = `Cost: <u>${cost.nuts}</u> <img src="./images/resources/nuts.png" class="resource-result-image"> and <u>${cost.copies}</u> 
   ${
     gearType === "personal"
       ? '<img src="./images/resources/gear_personal.png" class="resource-result-image">'
       : gearType === "common"
         ? '<img src="./images/resources/gear_common.png" class="resource-result-image">'
         : '<img src="./images/resources/gear_weapon.png" class="resource-result-image">'
-  }</p>`;
+  }`;
 });
 
 DOMforms.enemyArmorResistance.form.addEventListener("submit", (e) => {

@@ -151,9 +151,14 @@
             class="bekt-panel hidden trans-1-eio"
           >
             <h1 class="bekt-title">Hero upgrade cost calculator</h1>
-            <form id="hero-upgrade-cost-form" class="bekt-form">
-              <!-- viewBox is the original size of shape. width/height is size scalled -->
-              <svg width="200" height="300" viewBox="0 0 200 300">
+            <form id="hero-upgrade-cost-form" class="bekt-form-grid">
+              <!--* base hero *-->
+              <svg
+                width="200"
+                height="300"
+                viewBox="0 0 200 300"
+                class="hero-svg-base"
+              >
                 <defs>
                   <linearGradient
                     id="base-hero-bottom-gradient"
@@ -166,7 +171,6 @@
                     <stop offset="100%" />
                   </linearGradient>
                 </defs>
-                <!-- background -->
                 <rect
                   x="0"
                   y="0"
@@ -175,19 +179,11 @@
                   fill-opacity="0.5"
                   id="base-hero-background"
                 />
-                <!-- top stripe -->
                 <path
-                  d="
-                    M 0 0 
-                    l 0 30
-                    L 200 30
-                    l 0 -30
-                    Z"
+                  d="M 0 0 l 0 30 L 200 30 l 0 -30 Z"
                   fill-opacity="0.5"
-                  class="border-color-fill"
                   id="base-hero-top-stripe"
                 />
-                <!-- bottom stripe -->
                 <rect
                   x="0"
                   y="200"
@@ -196,19 +192,10 @@
                   fill="url(#base-hero-bottom-gradient)"
                   id="base-hero-bottom-stripe"
                 />
-                <!-- top border -->
                 <path
-                  d="
-                    M 0 0 
-                    l 0 12 
-                    l 7 -7
-                    L 200 5
-                    L 200 0
-                    Z"
-                  class="border-color-fill"
+                  d="M 0 0 l 0 12 l 7 -7 L 200 5 L 200 0 Z"
                   id="base-hero-top-border"
                 />
-                <!-- left border -->
                 <line
                   x1="0"
                   y1="0"
@@ -216,9 +203,7 @@
                   y2="300"
                   stroke-width="5"
                   id="base-hero-left-border"
-                  class="border-color-stroke"
                 />
-                <!-- right border -->
                 <line
                   x1="200"
                   y1="0"
@@ -226,24 +211,125 @@
                   y2="300"
                   stroke-width="5"
                   id="base-hero-right-border"
-                  class="border-color-stroke"
                 />
-                <!-- bottom border -->
                 <path
-                  d="
-                    M 0 300
-                    l 0 -20
-                    l 30 0
-                    l 5 10
-                    L 165 290
-                    l 5 -10
-                    l 30 0
-                    L 200 300 
-                    Z"
-                  class="border-color-fill"
+                  d="M 0 300 l 0 -20 l 30 0 l 5 10 L 165 290 l 5 -10 l 30 0 L 200 300 Z"
                   id="base-hero-bottom-border"
                 />
               </svg>
+
+              <!--* final hero *-->
+              <div id="final-hero-level-svg-container">
+                <!-- Main SVG (200x300) -->
+                <svg
+                  width="200"
+                  height="300"
+                  viewBox="0 0 200 300"
+                  class="hero-main-svg"
+                >
+                  <defs>
+                    <linearGradient
+                      id="final-hero-bottom-gradient"
+                      x1="50%"
+                      y1="0%"
+                      x2="50%"
+                      y2="100%"
+                    >
+                      <stop offset="0%" />
+                      <stop offset="100%" />
+                    </linearGradient>
+                  </defs>
+                  <rect
+                    x="0"
+                    y="0"
+                    width="100%"
+                    height="100%"
+                    fill-opacity="0.5"
+                    id="final-hero-background"
+                  />
+                  <path
+                    d="M 0 0 l 0 30 L 200 30 l 0 -30 Z"
+                    fill-opacity="0.5"
+                    id="final-hero-top-stripe"
+                  />
+                  <rect
+                    x="0"
+                    y="200"
+                    width="200"
+                    height="100"
+                    fill="url(#final-hero-bottom-gradient)"
+                    id="final-hero-bottom-stripe"
+                  />
+                  <path
+                    d="M 0 0 l 0 12 l 7 -7 L 200 5 L 200 0 Z"
+                    id="final-hero-top-border"
+                  />
+                  <line
+                    x1="0"
+                    y1="0"
+                    x2="0"
+                    y2="300"
+                    stroke-width="5"
+                    id="final-hero-left-border"
+                  />
+                  <line
+                    x1="200"
+                    y1="0"
+                    x2="200"
+                    y2="300"
+                    stroke-width="5"
+                    id="final-hero-right-border"
+                  />
+                  <path
+                    d="M 0 300 l 0 -20 l 30 0 l 5 10 L 165 290 l 5 -10 l 30 0 L 200 300 Z"
+                    id="final-hero-bottom-border"
+                  />
+                </svg>
+
+                <!--* divine border (220x320) *-->
+                <svg
+                  width="220"
+                  height="320"
+                  viewBox="0 0 220 320"
+                  class="divine-border hidden"
+                  xmlns="http://www.w3.org/2000/svg"
+                  id="divine-golden-svg-border"
+                >
+                  <!-- square border -->
+                  <path
+                    d="M 4 4 L 216 4 L 216 316 L 4 316 Z"
+                    fill="none"
+                    class="divine-gold-color-stroke"
+                    stroke-width="1.5"
+                  />
+
+                  <!-- top left corner -->
+                  <path
+                    d="M 0 0 L 34 0 L 38 4 L 4 4 L 4 38 L 0 34 Z"
+                    class="divine-gold-color-fill divine-gold-color-stroke"
+                    stroke-width="1.5"
+                  />
+                  <!-- top right corner -->
+                  <path
+                    d="M 220 0 L 186 0 L 182 4 L 216 4 L 216 38 L 220 34 Z"
+                    class="divine-gold-color-fill divine-gold-color-stroke"
+                    stroke-width="1.5"
+                  />
+                  <!-- bottom left corner -->
+                  <path
+                    d="M 0 320 L 34 320 L 38 316 L 4 316 L 4 282 L 0 286 Z"
+                    class="divine-gold-color-fill divine-gold-color-stroke"
+                    stroke-width="1.5"
+                  />
+                  <!-- bottom right corner -->
+                  <path
+                    d="M 220 320 L 186 320 L 182 316 L 216 316 L 216 282 L 220 286 Z"
+                    class="divine-gold-color-fill divine-gold-color-stroke"
+                    stroke-width="1.5"
+                  />
+                </svg>
+              </div>
+
               <select
                 name="upgrade-hero-base-level"
                 id="upgrade-hero-base-level"
@@ -253,21 +339,6 @@
                 id="upgrade-hero-final-level"
               ></select>
             </form>
-            <img
-              src="./images/hero_card_look.png"
-              alt="hero-card-look"
-              style="max-height: 200px"
-            />
-            <img
-              src="./images/divine_hero_card_look.png"
-              alt="hero-card-look"
-              style="max-height: 200px"
-            />
-            <img
-              src="./images/old_hero_stats_look"
-              alt="hero-card-look"
-              style="max-height: 200px"
-            />
           </div>
 
           <div
