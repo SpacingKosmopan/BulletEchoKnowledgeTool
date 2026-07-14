@@ -49,7 +49,6 @@ class StripeButton extends HTMLElement {
           --angle: 63.4deg;
           --base-width: 20px;
           
-          /* Subtelny, nieagresywny glow o promieniu 3px */
           --neon-glow: drop-shadow(0 0 3px var(--neon-color));
           --neon-glow-hover: drop-shadow(0 0 5px var(--neon-color));
           
@@ -69,7 +68,7 @@ class StripeButton extends HTMLElement {
           cursor: pointer;
           text-decoration: none; 
           position: relative;
-          overflow: hidden; /* Wymagane dla efektu blasku */
+          overflow: hidden; 
         }
 
         .stripe-button-element:hover {
@@ -97,13 +96,11 @@ class StripeButton extends HTMLElement {
           background-color: var(--neon-color);
         }
 
-        /* Nadpisanie kolorów dla stanu is-new (Złoty gradient) */
         .stripe-button-element.is-new-active .trimmed-rectangle::before,
         .stripe-button-element.is-new-active .after-stripe::before {
           background: linear-gradient(90deg, #d4af37 0%, #ffd700 50%, #aa7c11 100%);
         }
 
-        /* Animowany efekt blasku (shimmer) */
         .stripe-button-element.is-new-active::after {
           content: "";
           position: absolute;
@@ -158,14 +155,14 @@ class StripeButton extends HTMLElement {
           top: 50%;
           transform: translateY(-50%);
           left: 20px;
-          z-index: 3; /* Podniesione, by tekst był nad blaskiem */
+          z-index: 3;
           color: #ffffff;
           font-weight: lighter;
           font-size: 18px;
           white-space: nowrap;
           letter-spacing: 2px;
           pointer-events: none;
-          text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); /* Poprawa czytelności na złotym tle */
+          text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
         }
       </style>
 
