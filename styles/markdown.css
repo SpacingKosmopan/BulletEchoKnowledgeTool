@@ -16,19 +16,22 @@
 
 .markdown-body h1 {
   font-size: 2em;
-  border-bottom: 2px solid #eaecef;
+  border-top: 2px solid #eaecef;
   padding-bottom: 0.3em;
+  padding-top: 0.3em;
 }
 .markdown-body h2 {
-  font-size: 1.6em;
-  border-bottom: 1px solid #eaecef;
-  padding-bottom: 0.3em;
+  font-size: 1.8em;
+  padding-top: 0.3em;
+  padding-left: 0.5em;
 }
 .markdown-body h3 {
-  font-size: 1.3em;
+  padding-left: 0.5em;
+  font-size: 1.6em;
 }
 .markdown-body h4 {
-  font-size: 1.1em;
+  padding-left: 0.5em;
+  font-size: 1.4em;
 }
 
 /* PARAGRAPHS */
