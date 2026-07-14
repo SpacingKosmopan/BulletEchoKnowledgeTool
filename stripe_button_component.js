@@ -5,12 +5,12 @@ class StripeButton extends HTMLElement {
   }
 
   static get observedAttributes() {
-    return ["color", "href"];
+    return ["color", "href", "is-new"];
   }
 
   attributeChangedCallback(name, oldValue, newValue) {
     if (oldValue !== newValue) {
-      if (name === "color") {
+      if (name === "color" || name === "is-new") {
         this.updateColor();
       } else if (name === "href" && this.shadowRoot) {
         const link = this.shadowRoot.querySelector("a");
@@ -24,14 +24,24 @@ class StripeButton extends HTMLElement {
   }
 
   updateColor() {
-    const color = this.getColor();
-    this.style.setProperty("--neon-color", color);
+    const isNew =
+      this.hasAttribute("is-new") && this.getAttribute("is-new") !== "false";
+
+    if (isNew) {
+      this.style.setProperty("--neon-color", "#ffd700");
+      this.shadowRoot
+        ?.querySelector(".stripe-button-element")
+        ?.classList.add("is-new-active");
+    } else {
+      this.style.setProperty("--neon-color", this.getColor());
+      this.shadowRoot
+        ?.querySelector(".stripe-button-element")
+        ?.classList.remove("is-new-active");
+    }
   }
 
   connectedCallback() {
     const href = this.getAttribute("href") || "#";
-
-    this.updateColor();
 
     this.shadowRoot.innerHTML = `
       <style>
@@ -58,6 +68,8 @@ class StripeButton extends HTMLElement {
           transition: transform 0.2s ease-in-out;
           cursor: pointer;
           text-decoration: none; 
+          position: relative;
+          overflow: hidden; /* Wymagane dla efektu blasku */
         }
 
         .stripe-button-element:hover {
@@ -83,6 +95,38 @@ class StripeButton extends HTMLElement {
           position: absolute;
           top: 0; left: 0; right: 0; bottom: 0;
           background-color: var(--neon-color);
+        }
+
+        /* Nadpisanie kolorów dla stanu is-new (Złoty gradient) */
+        .stripe-button-element.is-new-active .trimmed-rectangle::before,
+        .stripe-button-element.is-new-active .after-stripe::before {
+          background: linear-gradient(90deg, #d4af37 0%, #ffd700 50%, #aa7c11 100%);
+        }
+
+        /* Animowany efekt blasku (shimmer) */
+        .stripe-button-element.is-new-active::after {
+          content: "";
+          position: absolute;
+          top: 0;
+          left: -150%;
+          width: 50%;
+          height: 100%;
+          background: linear-gradient(
+            90deg,
+            rgba(255, 255, 255, 0) 0%,
+            rgba(255, 255, 255, 0.6) 50%,
+            rgba(255, 255, 255, 0) 100%
+          );
+          transform: skewX(-25deg);
+          animation: shine 3s infinite ease-in-out;
+          z-index: 2;
+          pointer-events: none;
+        }
+
+        @keyframes shine {
+          0% { left: -150%; }
+          30% { left: 150%; }
+          100% { left: 150%; }
         }
 
         .trimmed-rectangle {
@@ -114,13 +158,14 @@ class StripeButton extends HTMLElement {
           top: 50%;
           transform: translateY(-50%);
           left: 20px;
-          z-index: 1;
+          z-index: 3; /* Podniesione, by tekst był nad blaskiem */
           color: #ffffff;
           font-weight: lighter;
           font-size: 18px;
           white-space: nowrap;
           letter-spacing: 2px;
           pointer-events: none;
+          text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); /* Poprawa czytelności na złotym tle */
         }
       </style>
 
@@ -134,6 +179,8 @@ class StripeButton extends HTMLElement {
         <div class="after-stripe op-4"></div>
       </a>
     `;
+
+    this.updateColor();
   }
 }
 

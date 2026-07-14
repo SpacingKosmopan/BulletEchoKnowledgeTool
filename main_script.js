@@ -1,16 +1,20 @@
-const heroes = [
-  { name: "Alice", faction: "Renegades", class: "Scout" },
-  { name: "Angel", faction: "Skytech Megacorp", class: "Scout" },
-  { name: "Arnie", faction: "Renegades", class: "Enforcer" },
-  { name: "Bastion", faction: "Skytech Megacorp", class: "Gunner" },
-];
-heroes.sort((a, b) => a.name.localeCompare(b.name));
+import { heroes, newestHeroName } from "./heroes/heroes.js";
+heroes.sort((a, b) => {
+  const nameA = a.name.toLowerCase();
+  const nameB = b.name.toLowerCase();
+  const target = newestHeroName.toLowerCase();
+
+  if (nameA === target) return -1;
+  if (nameB === target) return 1;
+
+  return nameA.localeCompare(nameB);
+});
 
 function generateAsideHeroesPagesLinks() {
   const heroesPages = document.querySelector("#heroes-pages");
   heroesPages.innerHTML = "";
   heroes.forEach((hero) => {
-    heroesPages.innerHTML += `<stripe-button href="heroes/index.html?hero=${hero.name}" color="#0066BB">${hero.name}</stripe-button>`;
+    heroesPages.innerHTML += `<stripe-button href="heroes/index.html?hero=${hero.name}" ${newestHeroName.toLowerCase() === hero.name.toLowerCase() ? "is-new" : "color='#0066BB'"}>${hero.name}</stripe-button>`;
   });
 }
 generateAsideHeroesPagesLinks();

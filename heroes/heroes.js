@@ -2,11 +2,31 @@ const medkitTypes = {
   None: { name: "None", description: "None" },
   Stim: {
     name: "Stim",
-    description: "Increases health by second and movement speed",
+    description:
+      "Increases health every second and increases movement speed for some time",
+  },
+  Bandage: {
+    name: "Bandage",
+    description:
+      "Increases health and decreases movement loudness for some time",
+  },
+  TeamRecovery: {
+    name: "Bandage",
+    description:
+      "Increases health every second, decreases incoming damage, allows hero to shoot while healing",
+  },
+  BattleKit: {
+    name: "Battle Kit",
+    description:
+      "Increases health and armor, increases maximum health and maximum armor for some time",
+  },
+  TeamHealing: {
+    name: "Team Healing",
+    description: "Increases health and armor every second",
   },
 };
 
-const heroes = [
+export const heroes = [
   {
     name: "Alice",
     faction: "Renegades",
@@ -29,7 +49,7 @@ const heroes = [
     class: "Sniper",
     abilityName: "Rain of Arrows",
     abilityDescription: "-",
-    medkitType: medkitTypes.None,
+    medkitType: medkitTypes.Bandage,
     hasUniqueSkin: true,
     uniqueSkinName: "Deathglow Lynx",
     uniqueSkinGifSrc: "../skins/unique_lynx_gif.gif",
@@ -47,8 +67,20 @@ const heroes = [
     uniqueSkinGifSrc: "../skins/unique_twinkle_gif.gif",
     uniqueSkinAbilityImage: "../skins/unique_twinkle_ability.png",
   },
+  {
+    name: "Ramsay",
+    faction: "PYRO",
+    class: "Gunner",
+    abilityName: "Rampage",
+    abilityDescription: "-",
+    medkitType: medkitTypes.BattleKit,
+    hasUniqueSkin: true,
+    uniqueSkinName: "Padre Ramsay",
+    uniqueSkinGifSrc: "../skins/unique_ramsay_gif.gif",
+    uniqueSkinAbilityImage: "../skins/unique_ramsay_ability.png",
+  },
 ];
-const newestHeroName = "Bonnie";
+export const newestHeroName = "Bonnie";
 
 heroes.sort((a, b) => {
   const aNew = a.name === newestHeroName;

@@ -53,4 +53,5 @@ Let's build the best knowledge base together!
 
 # Credits
 
-[#FF343E]RogueNinja[/#] - Deathglow Lynx Skin presentation - https://www.youtube.com/shorts/pcmg15ZL6hM
+[#FF343E]RogueNinja[/#] - Deathglow Lynx Skin presentation - https://www.youtube.com/shorts/pcmg15ZL6hM<br>
+[#FF343E]ꪶ𒁍ᦔ-ＳＨＡＤＯＷ࿋[/#] - Padre Ramsay Skin presentation<br>
