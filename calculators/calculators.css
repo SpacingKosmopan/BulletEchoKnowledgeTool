@@ -13,7 +13,6 @@
 }
 
 /** FORM **/
-
 #main-container {
   display: flex;
   flex-direction: row;
@@ -22,7 +21,6 @@
   align-items: flex-start;
   gap: 0;
   width: 100%;
-  overflow: hidden;
 }
 
 .bekt-panel {

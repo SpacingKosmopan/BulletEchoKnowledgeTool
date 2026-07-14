@@ -3,6 +3,7 @@ const calculatorType = urlParams.get("type");
 
 const DOM = {
   resultPanel: document.querySelector("#results-panel"),
+  infoTipPanel: document.querySelector("#info-tip-panel"),
   damageToEnemyPanel: document.querySelector("#damage-to-enemy-panel"),
   enemyArmorResistancePanel: document.querySelector(
     "#enemy-armor-resistance-panel",
@@ -12,16 +13,87 @@ const DOM = {
   heroUpgradeCostPanel: document.querySelector("#hero-upgrade-cost-panel"),
 };
 
-if (calculatorType === "damage_to_enemy") showPanel(DOM.damageToEnemyPanel);
-else if (calculatorType === "armor_resistance")
+if (calculatorType === "damage_to_enemy") {
+  showPanel(DOM.damageToEnemyPanel);
+  DOM.resultPanel.innerHTML = `<p style="font-size:25px;font-family:'Consolas'">This page is being prepared</p>`;
+} else if (calculatorType === "armor_resistance") {
   showPanel(DOM.enemyArmorResistancePanel);
-else if (calculatorType === "gear_upgrade") showPanel(DOM.gearUpgradeCostPanel);
-else if (calculatorType === "mod_upgrade") {
+  DOM.resultPanel.innerHTML = `<p style="font-size:25px;font-family:'Consolas'">This page is being prepared</p>`;
+} else if (calculatorType === "gear_upgrade") {
+  showPanel(DOM.gearUpgradeCostPanel);
+  DOM.resultPanel.innerHTML = `<p>Select <u>base and final levels</u> and <u>gear type</u> to calculate the amount of <u>nuts</u> and <u>gear copies</u> you need to upgrade</p>`;
+  DOM.infoTipPanel.innerHTML = `<p>
+    Remember to wait until "Gear Rush" discount begins, so you can
+    save up to <u>10% on resources</u>! The discount appears every 6
+    weeks, and along with it - leaderboard and special road with
+    rewards!
+  </p>
+  <img
+    src="./images/gear_rush.png"
+    alt="content-card"
+    style="max-width: 100%; padding: 5px"
+  />
+  <img
+    src="./images/drone_rush_leaderboard.jpg"
+    alt="content-card"
+    style="max-width: 100%; padding: 5px"
+  />
+  <img
+    src="./images/drone_rush_road.jpg"
+    alt="content-card"
+    style="max-width: 100%; padding: 5px"
+  /> `;
+} else if (calculatorType === "mod_upgrade") {
   showPanel(DOM.modUpgradeCostPanel);
-  DOM.resultPanel.innerHTML = `<p>Click mod to check how many coils and which previous tiers you need to get this level</p>`;
+  DOM.resultPanel.innerHTML = `<p>Click desired mod to check how many <u>coils</u> and which <u>previous tiers</u> you need to get this upgrade</p>`;
 } else if (calculatorType === "hero_upgrade") {
-  DOM.resultPanel.innerHTML = "<p>Select level and tier to calculate</p>";
+  DOM.resultPanel.innerHTML =
+    "<p>Select <u>level</u> and <u>tier</u> to calculate required <u>hero cards</u> and <u>coins</u></p>";
+  DOM.infoTipPanel.innerHTML = `<p>
+    Remember to wait until "Hero Rush" discount begins, so you can
+    save up to <u>20% on resources</u>! The discount appears every 6
+    weeks, and along with it - leaderboard and special road with
+    rewards!
+  </p>
+  <img
+    src="./images/hero_rush.png"
+    alt="content-card"
+    style="max-width: 100%; padding: 5px"
+  />
+  <img
+    src="./images/drone_rush_leaderboard.jpg"
+    alt="content-card"
+    style="max-width: 100%; padding: 5px"
+  />
+  <img
+    src="./images/drone_rush_road.jpg"
+    alt="content-card"
+    style="max-width: 100%; padding: 5px"
+  /> `;
   showPanel(DOM.heroUpgradeCostPanel);
+} else if (calculatorType === "drone_upgrade") {
+  DOM.resultPanel.innerHTML = `<p style="font-size:25px;font-family:'Consolas'">This page is being prepared</p>`;
+  DOM.infoTipPanel.innerHTML = `<p>
+    Remember to wait until "Drone Rush" discount begins, so you can
+    save up to <u>20% on resources</u>! The discount appears every 6
+    weeks, and along with it - leaderboard and special road with
+    rewards!
+  </p>
+  <img
+    src="./images/drone_update.png"
+    alt="content-card"
+    style="max-width: 100%; padding: 5px"
+  />
+  <img
+    src="./images/drone_rush_leaderboard.jpg"
+    alt="content-card"
+    style="max-width: 100%; padding: 5px"
+  />
+  <img
+    src="./images/drone_rush_road.jpg"
+    alt="content-card"
+    style="max-width: 100%; padding: 5px"
+  />`;
 } else
   DOM.resultPanel.innerHTML = `<p style="font-size:25px;font-family:'Consolas'">This page is being prepared</p>`;
 
@@ -1255,7 +1327,7 @@ DOMforms.gearUpgradeCost.form.addEventListener("submit", (e) => {
   );
 
   if (wantedLevel <= currentLevel) {
-    DOM.resultPanel.innerHTML = `<p><span style="color: #FF0000">!!!</span> - Wanted level cannot be higher that what you have now</p>`;
+    DOM.resultPanel.innerHTML = `<p>Wanted level cannot be higher than what you have now</p>`;
     return;
   }
 

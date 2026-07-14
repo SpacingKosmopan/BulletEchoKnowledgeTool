@@ -27,7 +27,7 @@
 }
 
 .shape-container {
-  --current-height: 80px;
+  --current-height: 50px;
   --stripe-offset: calc(var(--current-height) / tan(var(--angle)));
 
   display: flex;
