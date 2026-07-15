@@ -148,7 +148,7 @@ const wordsData = [
     {
       word: "Bertha",
       query:
-        "The only hero, who can shoot without anything triggering the red cone",
+        "The only hero, who can shoot without anything triggering it in the red cone",
       direction: "vertical",
       startPos: {
         x: 10,
@@ -201,7 +201,7 @@ const wordsData = [
     // 4
     {
       word: "Divine",
-      query: "Name of the highest tier hero can be",
+      query: "Name of the highest tier heroes and gears can be",
       direction: "horizontal",
       startPos: {
         x: 2,
@@ -211,7 +211,7 @@ const wordsData = [
     // 5
     {
       word: "Arnie",
-      query: "",
+      query: "The best hunter of wolves in the game",
       direction: "vertical",
       startPos: {
         x: 6,
@@ -251,7 +251,7 @@ const wordsData = [
     // 9
     {
       word: "Firefly",
-      query: "Name of hero with the highest fire rate",
+      query: "Name of hero with the highest fire rate among snipers",
       direction: "horizontal",
       startPos: {
         x: 5,
@@ -336,7 +336,7 @@ const wordsData = [
     // 7
     {
       word: "Sparkle",
-      query: "Name of gunner with the best healing",
+      query: "Name of enforcer with the best healing",
       direction: "horizontal",
       startPos: {
         x: 6,
@@ -347,7 +347,7 @@ const wordsData = [
     {
       word: "Leviathan",
       query:
-        "Name of hero with the highest amount of bullets in primary weapon",
+        "Name of hero with the highest amount of bullets in primary weapon's magazine",
       direction: "horizontal",
       startPos: {
         x: 3,

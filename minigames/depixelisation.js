@@ -71,7 +71,7 @@ const images = [
   { src: "../skins/arnie.png", answer: "Arnie", tip: "Hero name" },
   { src: "../skins/bastion.png", answer: "Bastion", tip: "Hero name" },
   { src: "../skins/angel.png", answer: "Angel", tip: "Hero name" },
-  { src: "./images/12.png", answer: "Satoshi (skin)", tip: "Hero name" },
+  { src: "./images/12.png", answer: "Satoshi", tip: "Hero name" },
   {
     src: "./images/railway_station.png",
     answer: "Railway Station",

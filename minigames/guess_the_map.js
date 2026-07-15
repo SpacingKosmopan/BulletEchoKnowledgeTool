@@ -61,9 +61,9 @@ const mapFragments = [
     fragmentsrc: "./images/39.png",
   },
   {
-    mapname: "Hotel222222",
-    mapsrc: "./images/hotel.png",
-    fragmentsrc: "./images/39.png",
+    mapname: "Secret Floor",
+    mapsrc: "./images/secret_floor.png",
+    fragmentsrc: "./images/40.png",
   },
 ];
 
@@ -137,6 +137,7 @@ answerBtn.addEventListener("click", () => {
   answerText.innerHTML = `This map is called <u>${currentFragment.mapname}</u>`;
   fragmentImage.src = currentFragment.mapsrc;
   startBtn.classList.remove("hidden");
+  answerBtn.classList.add("hidden");
 });
 
 // * MAPS LIST ASIDE * //

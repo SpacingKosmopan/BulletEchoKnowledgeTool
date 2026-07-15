@@ -77,9 +77,13 @@ startGameBtn.addEventListener("click", function () {
   nextQuestionBtn.classList.remove("hidden");
   showAnswerBtn.classList.remove("hidden");
   answerContent.classList.remove("hidden");
+  nextQuestionBtn.classList.add("hidden");
 });
 nextQuestionBtn.addEventListener("click", nextRound);
 showAnswerBtn.addEventListener("click", () => {
+  nextQuestionBtn.classList.remove("hidden");
+  showAnswerBtn.classList.add("hidden");
+
   if (gamestate.currentQuestion.type === QUESTIONS_TYPES.SHADOW) {
     answerContent.innerHTML = `<p id="answer-text">This hero is called <u style="color: #7070ff;">${gamestate.currentQuestion.answer}</u></p>
     <img src="${gamestate.currentQuestion.src}" style="height:300px; display:inline;" />`;
@@ -97,6 +101,8 @@ function nextRound(newRoundNumber = -1, selectedQuestionNumber = -1) {
   }
   answerContent.innerHTML = `<p id="answer-text">This hero is called ???</p>`;
   questionRegular.innerHTML = ``;
+  nextQuestionBtn.classList.add("hidden");
+  showAnswerBtn.classList.remove("hidden");
 
   if (gamestate.alreadyShownQuestions.length === questions.length) {
     alert("Could not find any more questions");
