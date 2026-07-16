@@ -79,8 +79,259 @@ export const heroes = [
     uniqueSkinGifSrc: "../skins/unique_ramsay_gif.gif",
     uniqueSkinAbilityImage: "../skins/unique_ramsay_ability.png",
   },
+  {
+    name: "Flynt",
+    faction: "PYRO",
+    class: "Trooper",
+    abilityName: "Blazing Wings",
+    abilityDescription:
+      "The hero takes off for a few seconds and travels a set distance. He can fly over walls and objects. While in flight, the hero takes no damage from shots or abilities, though certain abilities can interrupt the flight." +
+      "When the ability ends, the hero lands and gains a barrier for a few seconds." +
+      "If the hero flies over a visible enemy, he drops a fire bomb. It explodes on contact with the ground and creates a fire zone that expands over several seconds. The fire zone slows the movement speed of all units inside it and deals damage every second.",
+    medkitType: medkitTypes.TeamHealing,
+  },
+  {
+    name: "Alter",
+    faction: "Renegades",
+    class: "Sniper",
+    abilityName: "Decoy",
+    abilityDescription: "-",
+    medkitType: medkitTypes.Bandage,
+  },
+  {
+    name: "Vi",
+    faction: "Renegades",
+    class: "Trooper",
+    abilityName: "Shadow Step",
+    abilityDescription: "-",
+    medkitType: medkitTypes.TeamHealing,
+  },
+  {
+    name: "Tess",
+    faction: "Skytech Megacorp",
+    class: "Trooper",
+    abilityName: "Ball Lightning",
+    abilityDescription: "-",
+    medkitType: medkitTypes.TeamHealing,
+  },
+  {
+    name: "Slayer",
+    faction: "Force and Arms",
+    class: "Sniper",
+    abilityName: "Thermal Vision",
+    abilityDescription: "-",
+    medkitType: medkitTypes.Bandage,
+  },
+  {
+    name: "Stalker",
+    faction: "Renegades",
+    class: "Sniper",
+    abilityName: "Invisibility",
+    abilityDescription: "-",
+    medkitType: medkitTypes.TeamHealing,
+  },
+  {
+    name: "Sparkle",
+    faction: "PYRO",
+    class: "Enforcer",
+    abilityName: "Grenade",
+    abilityDescription: "-",
+    medkitType: medkitTypes.TeamRecovery,
+  },
+  {
+    name: "Smog",
+    faction: "PYRO",
+    class: "Gunner",
+    abilityName: "Rocket",
+    abilityDescription: "-",
+    medkitType: medkitTypes.BattleKit,
+  },
+  {
+    name: "Shenji",
+    faction: "PYRO",
+    class: "Enforcer",
+    abilityName: "Fire Hunter",
+    abilityDescription: "-",
+    medkitType: medkitTypes.TeamRecovery,
+  },
+  {
+    name: "Shenji",
+    faction: "Skytech Megacorp",
+    class: "Enforcer",
+    abilityName: "Throwing Shield",
+    abilityDescription: "-",
+    medkitType: medkitTypes.TeamRecovery,
+  },
+  {
+    name: "Satoshi",
+    faction: "Skytech Megacorp",
+    class: "Trooper",
+    abilityName: "Force Field",
+    abilityDescription: "-",
+    medkitType: medkitTypes.TeamHealing,
+  },
+  {
+    name: "Raven",
+    faction: "Force and Arms",
+    class: "Scout",
+    abilityName: "Scan",
+    abilityDescription: "-",
+    medkitType: medkitTypes.Stim,
+  },
+  {
+    name: "Molly",
+    faction: "Force and Arms",
+    class: "Enforcer",
+    abilityName: "Burrow",
+    abilityDescription: "-",
+    medkitType: medkitTypes.TeamRecovery,
+  },
+  {
+    name: "Mirage",
+    faction: "Renegades",
+    class: "Sniper",
+    abilityName: "Breakaway",
+    abilityDescription: "-",
+    medkitType: medkitTypes.Bandage,
+  },
+  {
+    name: "Leviathan",
+    faction: "Skytech Megacorp",
+    class: "Gunner",
+    abilityName: "Turret",
+    abilityDescription: "-",
+    medkitType: medkitTypes.BattleKit,
+  },
+  {
+    name: "Levi",
+    faction: "Force and Arms",
+    class: "Trooper",
+    abilityName: "Thermal Vision",
+    abilityDescription: "-",
+    medkitType: medkitTypes.TeamHealing,
+  },
+  {
+    name: "Kwon",
+    faction: "Renegades",
+    class: "Gunner",
+    abilityName: "Hook",
+    abilityDescription: "-",
+    medkitType: medkitTypes.BattleKit,
+  },
+  {
+    name: "Hurricane",
+    faction: "Skytech Megacorp",
+    class: "Enforcer",
+    abilityName: "Shield",
+    abilityDescription: "-",
+    medkitType: medkitTypes.TeamRecovery,
+  },
+  {
+    name: "Graviel",
+    faction: "Force and Arms",
+    class: "Trooper",
+    abilityName: "Gravity Grenade",
+    abilityDescription: "-",
+    medkitType: medkitTypes.TeamHealing,
+  },
+  {
+    name: "Ghost",
+    faction: "Renegades",
+    class: "Scout",
+    abilityName: "Invisibility",
+    abilityDescription: "-",
+    medkitType: medkitTypes.Stim,
+  },
+  {
+    name: "Freddie",
+    faction: "PYRO",
+    class: "Scout",
+    abilityName: "Grenade",
+    abilityDescription: "-",
+    medkitType: medkitTypes.Stim,
+  },
+  {
+    name: "Firefly",
+    faction: "PYRO",
+    class: "Sniper",
+    abilityName: "Grenade",
+    abilityDescription: "-",
+    medkitType: medkitTypes.Bandage,
+  },
+  {
+    name: "Dragoon",
+    faction: "Renegades",
+    class: "Gunner",
+    abilityName: "Blink",
+    abilityDescription: "-",
+    medkitType: medkitTypes.BattleKit,
+  },
+  {
+    name: "Doc",
+    faction: "PYRO",
+    class: "Trooper",
+    abilityName: "Rocket",
+    abilityDescription: "-",
+    medkitType: medkitTypes.TeamHealing,
+  },
+  {
+    name: "Cyclops",
+    faction: "Force and Arms",
+    class: "Enforcer",
+    abilityName: "Scan",
+    abilityDescription: "-",
+    medkitType: medkitTypes.TeamRecovery,
+  },
+  {
+    name: "Blot",
+    faction: "Skytech Megacorp",
+    class: "Sniper",
+    abilityName: "Force Field",
+    abilityDescription: "-",
+    medkitType: medkitTypes.Bandage,
+  },
+  {
+    name: "Blizzard",
+    faction: "Skytech Megacorp",
+    class: "Sniper",
+    abilityName: "Freezing Mine",
+    abilityDescription: "-",
+    medkitType: medkitTypes.Bandage,
+  },
+  {
+    name: "Bertha",
+    faction: "Force and Arms",
+    class: "Gunner",
+    abilityName: "Supression",
+    abilityDescription: "-",
+    medkitType: medkitTypes.BattleKit,
+  },
+  {
+    name: "Bastion",
+    faction: "Skytech Megacorp",
+    class: "Gunner",
+    abilityName: "Shield",
+    abilityDescription: "-",
+    medkitType: medkitTypes.BattleKit,
+  },
+  {
+    name: "Angel",
+    faction: "Skytech Megacorp",
+    class: "Scout",
+    abilityName: "Shield",
+    abilityDescription: "-",
+    medkitType: medkitTypes.Stim,
+  },
+  {
+    name: "Arnie",
+    faction: "Renegades",
+    class: "Enforcer",
+    abilityName: "Blink",
+    abilityDescription: "-",
+    medkitType: medkitTypes.TeamRecovery,
+  },
 ];
-export const newestHeroName = "Bonnie";
+export const newestHeroName = "Flynt";
 
 heroes.sort((a, b) => {
   const aNew = a.name === newestHeroName;
@@ -131,53 +382,33 @@ const getHeroPanelHTML = (hero) => `
     <div class="character-panel">
       <div class="panel-layout">
         
-        <!-- LEWA STRONA: ODZNAKI I OPISY -->
+
         <div class="left-column">
-          
-          <!-- Odznaki ułożone obok siebie w rzędzie -->
-          <div class="badges-row">
-            <div class="hexagon-glow-wrap left">
-              <div class="hexagon"></div>
-              <div class="hexagon-text">
-                <img
-                  src="../classes/${hero.class.toLowerCase()}.png"
-                  alt="${hero.class}-icon"
-                  class="rotated-hexagon-icon smaller"
-                />
-              </div>
-            </div>
-            
-            <div class="hexagon-glow-wrap right">
-              <div class="hexagon"></div>
-              <div class="hexagon-text">
-                <img
-                  src="../factions/${hero.faction.toLowerCase()}.png"
-                  alt="${hero.faction}-icon"
-                  class="bigger"
-                />
-              </div>
-            </div>
-          </div>
-
           <div class="sci-fi-frame">
-            <div class="inner-content">Ability: ${hero.abilityName}
-              <p class="small-paragraph">${hero.abilityDescription}</p>
-            </div>
+            <div class="inner-content">
+              
+              <div class="skill-section">
+                <span class="skill-title">Ability: ${hero.abilityName}</span>
+                <p class="small-paragraph">${hero.abilityDescription}</p>
+              </div>
 
-            <div class="inner-content">Medkit: ${hero.medkitType.name}
-              <p class="small-paragraph">${hero.medkitType.description}</p>
+              <div class="skill-section">
+                <span class="skill-title">Medkit: ${hero.medkitType.name}</span>
+                <p class="small-paragraph">${hero.medkitType.description}</p>
+              </div>
+
             </div>
           </div>
-
         </div>
 
+  
         <div class="right-column">
-              <div class="top-banner">
-        <div class="banner-content">
-          <span class="char-name">${hero.name}</span>
-          <span class="char-lvl">${hero.faction} ${hero.class}</span>
-        </div>
-      </div>
+          <div class="top-banner">
+            <div class="banner-content">
+              <span class="char-name">${hero.name}</span>
+              <span class="char-lvl">${hero.faction} ${hero.class}</span>
+            </div>
+          </div>
           <div class="character-display">
             <img
               src="../skins/${hero.name.toLowerCase()}.png"
@@ -187,11 +418,11 @@ const getHeroPanelHTML = (hero) => `
             <div class="neon-pedestal"></div>
           </div>
         </div>
-
       </div>
     </div>
   </div>
 </div>
+
 `;
 
 (async () => {
