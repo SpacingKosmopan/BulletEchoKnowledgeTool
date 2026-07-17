@@ -687,6 +687,8 @@ html {
   transition:
     transform 0.2s ease,
     box-shadow 0.2s ease;
+
+  z-index: 5;
 }
 
 .news-box:hover .news-tag {

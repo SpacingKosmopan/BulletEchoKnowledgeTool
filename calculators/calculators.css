@@ -440,3 +440,51 @@ select[name^="upgrade-hero"] option {
 .hero-svg-base {
   display: block;
 }
+
+/* responsivness */
+
+@media (max-width: 1024px) {
+  #main-container {
+    flex-direction: column;
+    align-items: center;
+    padding: 0 10px;
+    box-sizing: border-box;
+  }
+
+  .bekt-panel {
+    max-width: 100%;
+    margin: 10px 0;
+  }
+
+  #second-column-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .bekt-panel {
+    padding: 15px;
+  }
+
+  .bekt-title {
+    font-size: 1.2rem;
+    letter-spacing: 1px;
+  }
+
+  #results-panel {
+    font-size: 20px;
+  }
+
+  .bekt-form-actions {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .bekt-btn {
+    width: 100%;
+    text-align: center;
+  }
+}
