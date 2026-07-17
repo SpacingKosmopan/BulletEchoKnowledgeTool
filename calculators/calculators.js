@@ -11,13 +11,15 @@ const DOM = {
   gearUpgradeCostPanel: document.querySelector("#gear-upgrade-cost-panel"),
   modUpgradeCostPanel: document.querySelector("#mod-upgrade-cost-panel"),
   heroUpgradeCostPanel: document.querySelector("#hero-upgrade-cost-panel"),
+  densityPanel: document.querySelector("#density-panel"),
 };
 
 if (calculatorType === "damage_to_enemy") {
   showPanel(DOM.damageToEnemyPanel);
   DOM.resultPanel.innerHTML = `<p style="font-size:25px;font-family:'Consolas'">This page is being prepared</p>`;
+  DOM.infoTipPanel.innerHTML = `<p><span class="info-icon"><img src="../images/info_icon.png" /></span>This calculator may not be accurate, because <span class="red-span">armor resistance decreases damage</span>. It will only work 100% when enemy has no armor at all.</p>`;
 } else if (calculatorType === "armor_resistance") {
-  showPanel(DOM.enemyArmorResistancePanel);
+  //showPanel(DOM.enemyArmorResistancePanel);
   DOM.resultPanel.innerHTML = `<p style="font-size:25px;font-family:'Consolas'">This page is being prepared</p>`;
 } else if (calculatorType === "gear_upgrade") {
   showPanel(DOM.gearUpgradeCostPanel);
@@ -32,17 +34,7 @@ if (calculatorType === "damage_to_enemy") {
     src="./images/gear_rush.png"
     alt="content-card"
     style="max-width: 100%; padding: 5px"
-  />
-  <img
-    src="./images/drone_rush_leaderboard.jpg"
-    alt="content-card"
-    style="max-width: 100%; padding: 5px"
-  />
-  <img
-    src="./images/drone_rush_road.jpg"
-    alt="content-card"
-    style="max-width: 100%; padding: 5px"
-  /> `;
+  />`;
 } else if (calculatorType === "mod_upgrade") {
   showPanel(DOM.modUpgradeCostPanel);
   DOM.resultPanel.innerHTML = `<p>Click desired mod to check how many <u>coils</u> and which <u>previous tiers</u> you need to get this upgrade</p>`;
@@ -59,21 +51,13 @@ if (calculatorType === "damage_to_enemy") {
     src="./images/hero_rush.png"
     alt="content-card"
     style="max-width: 100%; padding: 5px"
-  />
-  <img
-    src="./images/drone_rush_leaderboard.jpg"
-    alt="content-card"
-    style="max-width: 100%; padding: 5px"
-  />
-  <img
-    src="./images/drone_rush_road.jpg"
-    alt="content-card"
-    style="max-width: 100%; padding: 5px"
-  /> `;
+  />`;
   showPanel(DOM.heroUpgradeCostPanel);
 } else if (calculatorType === "drone_upgrade") {
   DOM.resultPanel.innerHTML = `<p style="font-size:25px;font-family:'Consolas'">This page is being prepared</p>`;
-  DOM.infoTipPanel.innerHTML = `<p>
+  DOM.infoTipPanel.innerHTML = `
+   <p><span class="info-icon"><img src="../images/info_icon.png" /></span>The only thing I don't have, which blocks me from updating this calculator is <span class="blue-span">drone upgrade cost table</span>. If you have it, you can share it with me, and this calculator will be launched sooner :)</p><br />
+  <p>
     Remember to wait until "Drone Rush" discount begins, so you can
     save up to <u>20% on resources</u>! The discount appears every 6
     weeks, and along with it - leaderboard and special road with
@@ -94,6 +78,11 @@ if (calculatorType === "damage_to_enemy") {
     alt="content-card"
     style="max-width: 100%; padding: 5px"
   />`;
+} else if (calculatorType === "density") {
+  //showPanel(DOM.densityPanel);
+  DOM.infoTipPanel.innerHTML = `<p><span class="info-icon"><img src="../images/info_icon.png" /></span>Everything in Bullet Echo (players, walls, obstacles, some abilities) has something called <span class="blue-span">density</span> (or <span class="blue-span">piercing resistance</span>). It defines how difficult it is for bullets to go through. The higher the density - the higher <span class="blue-span">piercing power</span> bullets need to pierce through it. BUT if a bullet successfully pierces the object - it <span class="red-span">loses damage</span>.<br />
+  In this calculator you will be able to calculate the density of an object you pierced.</p><br />
+  <p><span class="info-icon"><img src="../images/info_icon.png" /></span>This calculator may not be accurate, because <span class="red-span">armor resistance decreases damage</span>. It will only work 100% when enemy has no armor at all.</p>`;
 } else
   DOM.resultPanel.innerHTML = `<p style="font-size:25px;font-family:'Consolas'">This page is being prepared</p>`;
 
@@ -114,6 +103,9 @@ const DOMforms = {
   },
   heroUpgradeCost: {
     form: document.querySelector("#hero-upgrade-cost-form"),
+  },
+  density: {
+    form: document.querySelector("#density-input-form"),
   },
 };
 
@@ -1383,7 +1375,6 @@ DOMforms.dmgToEnemy.form.addEventListener("submit", (e) => {
       DOMforms.dmgToEnemy.form["armor-penetration"].value,
     ),
   };
-  console.log(inputValues);
 
   const realDamage = Math.floor(
     inputValues.dmgPerShot * (1 + inputValues.explosiveUpgrade / 100),
@@ -1411,4 +1402,27 @@ DOMforms.dmgToEnemy.form.addEventListener("submit", (e) => {
     <p>Damage against health: ${damageAgainstHealthPlain} without full armor</p>
     <p>Damage against armor: ${damageAgainstArmor} with full armor</p>
   `;
+});
+
+// * DENSITY * //
+//TODO
+DOMforms.density.form.addEventListener("submit", (e) => {
+  e.preventDefault();
+
+  const inputValues = {
+    dmgPerShot: Number(DOMforms.density.form["piercing-dmg-per-shot"].value),
+    healthDmgMod: Number(
+      DOMforms.density.form["piercing-health-dmg-mod"].value,
+    ),
+    armorPenetration: Number(DOMforms.density.form["piercing-ap"].value),
+    piercingPower: Number(DOMforms.density.form["piercing-piercing"].value),
+    armorDmgMod: Number(DOMforms.density.form["piercing-armor-dmg-mod"].value),
+    dmgToEnemy: Number(DOMforms.density.form["piercing-dmg-to-enemy"].value),
+  };
+
+  console.log({ inputValues });
+
+  const plainDmgToHealth =
+    inputValues.dmgPerShot * inputValues.armorPenetration * 100;
+  const modifiedDmgToHealth = plainDmgToHealth * inputValues.healthDmgMod;
 });

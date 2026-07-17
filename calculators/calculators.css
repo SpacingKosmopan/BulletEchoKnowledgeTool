@@ -487,3 +487,11 @@ select[name^="upgrade-hero"] option {
     text-align: center;
   }
 }
+
+/* * COLORFUL SPANS * */
+span.blue-span {
+  color: #09f;
+}
+span.red-span {
+  color: #f33;
+}

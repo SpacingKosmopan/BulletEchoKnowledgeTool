@@ -1,6 +1,6 @@
 # v1.0 Official Release!
 
-> XX.07.2026
+> 18.07.2026
 
 Hello dear [#0099ff]Bullet Echo Players[/#]!<br>
 Me ([#B2FB8C]Spacing[/#]) and [#FFC106]people[/#], who helped in creating this website, are [#B2FB8C]overjoyed[/#] to announce, that completely fresh [#FF7034]Bullet Echo Knowledge Tool[/#] has been officialy released!
@@ -28,7 +28,7 @@ Let's build the best knowledge base together!
 
 ---
 
-`Official Colors` <br>
+`Colors` <br>
 
 [#ffffff]\[#ffffff\][/#]
 [#a0aab5]\[#a0aab5\][/#]
