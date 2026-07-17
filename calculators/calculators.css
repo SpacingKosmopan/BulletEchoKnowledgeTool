@@ -442,7 +442,6 @@ select[name^="upgrade-hero"] option {
 }
 
 /* responsivness */
-
 @media (max-width: 1024px) {
   #main-container {
     flex-direction: column;
@@ -487,4 +486,12 @@ select[name^="upgrade-hero"] option {
     width: 100%;
     text-align: center;
   }
+}
+
+/* * COLORFUL SPANS * */
+span.blue-span {
+  color: #09f;
+}
+span.red-span {
+  color: #f33;
 }

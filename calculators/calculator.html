@@ -34,6 +34,20 @@
     <script src="../stripe_button_component.js" defer></script>
   </head>
   <body>
+    <svg style="display: none">
+      <g id="icon-info">
+        <path
+          fill-rule="evenodd"
+          clip-rule="evenodd"
+          d="
+      M 2 2 H 22 V 22 H 2 Z 
+      M 11 6 H 13 V 8 H 11 Z 
+      M 11 10 H 13 V 18 H 11 Z"
+          fill="currentColor"
+        />
+      </g>
+    </svg>
+
     <header class="welcome-header">
       <img
         src="../images/be_UI_single_stripe.png"
@@ -55,13 +69,126 @@
     <div class="page-wrapper">
       <main>
         <div class="container" id="main-container">
+          <div id="density-panel" class="bekt-panel hidden trans-1-eio">
+            <h1 class="bekt-title">Density calculator</h1>
+            <form id="density-input-form" class="bekt-form">
+              <p>
+                <span class="info-icon"
+                  ><img src="../images/info_icon.png" /></span
+                >In order to calculate the density, we need some of your weapon
+                stats, so we can know how much damage is dealt against armor and
+                health.
+              </p>
+              <div class="standalone-ul-item bekt-section-header">
+                Weapon stats
+              </div>
+              <img src="./images/slayer_stats_firepower.jpg" alt="firepower" />
+
+              <div class="bekt-form-group">
+                <label for="piercing-dmg-per-shot">Damage per shot</label>
+                <input
+                  type="number"
+                  name="piercing-dmg-per-shot"
+                  id="piercing-dmg-per-shot"
+                  min="0"
+                  step="1"
+                  value="0"
+                />
+              </div>
+
+              <div class="bekt-form-group">
+                <label for="piercing-health-dmg-mod"
+                  >Health damage modifier</label
+                >
+                <input
+                  type="number"
+                  name="piercing-health-dmg-mod"
+                  id="piercing-health-dmg-mod"
+                  min="0"
+                  step="0.01"
+                  value="1"
+                />
+              </div>
+
+              <div class="bekt-form-group">
+                <label for="piercing-ap">Armor penetration</label>
+                <input
+                  type="number"
+                  name="piercing-ap"
+                  id="piercing-ap"
+                  min="0"
+                  step="1"
+                  value="0"
+                />
+              </div>
+
+              <img
+                src="./images/slayer_stats_armor_break.jpg"
+                alt="armor break"
+              />
+              <div class="bekt-form-group">
+                <label for="piercing-piercing"
+                  >Piercing power (with all the boosts summed, like thermal
+                  vision piercing boost)</label
+                >
+                <input
+                  type="number"
+                  name="piercing-piercing"
+                  id="piercing-piercing"
+                  min="0"
+                  step="1"
+                  value="0"
+                />
+              </div>
+
+              <div class="bekt-form-group">
+                <label for="piercing-armor-dmg-mod"
+                  >Armor damage modifier</label
+                >
+                <input
+                  type="number"
+                  name="piercing-armor-dmg-mod"
+                  id="piercing-armor-dmg-mod"
+                  min="0"
+                  step="0.01"
+                  value="1"
+                />
+              </div>
+
+              <div class="standalone-ul-item bekt-section-header">
+                Damage stats
+              </div>
+              <img
+                src="./images/piercing-zoomed.png"
+                alt="damage after piercing"
+              />
+              <div class="bekt-form-group">
+                <label for="piercing-dmg-to-enemy"
+                  >Damage dealt to enemy (yellow indicator)</label
+                >
+                <input
+                  type="number"
+                  name="piercing-dmg-to-enemy"
+                  id="piercing-dmg-to-enemy"
+                  min="0"
+                  step="1"
+                  value="0"
+                />
+              </div>
+
+              <div class="bekt-form-actions">
+                <button type="submit" class="bekt-btn bekt-btn-primary">
+                  Submit
+                </button>
+                <button type="reset" class="bekt-btn bekt-btn-link">
+                  Reset
+                </button>
+              </div>
+            </form>
+          </div>
+
           <div id="damage-to-enemy-panel" class="bekt-panel hidden trans-1-eio">
             <h1 class="bekt-title">Damage to enemy calculator</h1>
-            <p>
-              NOTE: Enemies have different Armor Resistance value. It affects
-              how much damage you will deal. If you want to know enemy's armor
-              resistance based on your shot, go to other calculator
-            </p>
 
             <form id="dmg-en-input-form" class="bekt-form">
               <div class="standalone-ul-item bekt-section-header">
@@ -599,33 +726,72 @@
               <div class="bekt-form-group">
                 <label for="gear-base-level">Gear at current level</label>
                 <select name="gear-base-level" id="gear-base-level">
-                  <option value="0">Common</option>
-                  <option value="1">Rare</option>
-                  <option value="2">Epic</option>
-                  <option value="3">Legendary</option>
-                  <option value="4">Mythic</option>
-                  <option value="5">Supreme</option>
-                  <option value="6">Ultimate</option>
-                  <option value="7">Celestial</option>
-                  <option value="8">Stellar</option>
-                  <option value="9">Immortal</option>
-                  <option value="10">Divine</option>
+                  <option value="0" style="background-color: #7baba8">
+                    Common
+                  </option>
+                  <option value="1" style="background-color: #6cde38">
+                    Rare
+                  </option>
+                  <option value="2" style="background-color: #1998fd">
+                    Epic
+                  </option>
+                  <option value="3" style="background-color: #ffc006">
+                    Legendary
+                  </option>
+                  <option value="4" style="background-color: #e97012">
+                    Mythic
+                  </option>
+                  <option value="5" style="background-color: #f6412c">
+                    Supreme
+                  </option>
+                  <option value="6" style="background-color: #731fff">
+                    Ultimate
+                  </option>
+                  <option value="7" style="background-color: #0132d1">
+                    Celestial
+                  </option>
+                  <option value="8" style="background-color: #cd24eb">
+                    Stellar
+                  </option>
+                  <option value="9" style="background-color: #7b140d">
+                    Immortal
+                  </option>
                 </select>
               </div>
 
               <div class="bekt-form-group">
                 <label for="gear-wanted-level">Level you want to achieve</label>
                 <select name="gear-wanted-level" id="gear-wanted-level">
-                  <option value="1">Rare</option>
-                  <option value="2">Epic</option>
-                  <option value="3">Legendary</option>
-                  <option value="4">Mythic</option>
-                  <option value="5">Supreme</option>
-                  <option value="6">Ultimate</option>
-                  <option value="7">Celestial</option>
-                  <option value="8">Stellar</option>
-                  <option value="9">Immortal</option>
-                  <option value="10">Divine</option>
+                  <option value="1" style="background-color: #6cde38">
+                    Rare
+                  </option>
+                  <option value="2" style="background-color: #1998fd">
+                    Epic
+                  </option>
+                  <option value="3" style="background-color: #ffc006">
+                    Legendary
+                  </option>
+                  <option value="4" style="background-color: #e97012">
+                    Mythic
+                  </option>
+                  <option value="5" style="background-color: #f6412c">
+                    Supreme
+                  </option>
+                  <option value="6" style="background-color: #731fff">
+                    Ultimate
+                  </option>
+                  <option value="7" style="background-color: #0132d1">
+                    Celestial
+                  </option>
+                  <option value="8" style="background-color: #cd24eb">
+                    Stellar
+                  </option>
+                  <option value="9" style="background-color: #7b140d">
+                    Immortal
+                  </option>
+                  <option value="10" style="background-color: #262641">
+                    Divine
+                  </option>
                 </select>
               </div>
 
