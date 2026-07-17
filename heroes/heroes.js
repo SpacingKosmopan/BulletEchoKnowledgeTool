@@ -154,14 +154,7 @@ export const heroes = [
     abilityDescription: "-",
     medkitType: medkitTypes.TeamRecovery,
   },
-  {
-    name: "Shenji",
-    faction: "Skytech Megacorp",
-    class: "Enforcer",
-    abilityName: "Throwing Shield",
-    abilityDescription: "-",
-    medkitType: medkitTypes.TeamRecovery,
-  },
+
   {
     name: "Satoshi",
     faction: "Skytech Megacorp",
@@ -366,7 +359,7 @@ function generateHeroesCards() {
           <img src="../classes/${hero.class.toLowerCase()}.png" alt="${hero.class}-icon">
         </div>
         <div class="unique-skin-star ${hero.hasUniqueSkin ? "" : "hidden"}" title="Unique Skin"></div>
-        <img src="../skins/${hero.name.toLowerCase()}.png" alt="${hero.name}-card">
+        <img src="../skins/${hero.name.toLowerCase()}.png" alt="${hero.name}-card" class="content-image hero-content-image">
         <div class="content-card-name">${hero.name}</div>
     `;
     heroesCardsContainer.appendChild(heroCard);
