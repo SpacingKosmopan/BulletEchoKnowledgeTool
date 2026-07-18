@@ -67,10 +67,10 @@ img.onload = function () {
 
 // * DATA * //
 const images = [
-  { src: "../skins/alice.webp", answer: "Alice", tip: "Hero name" },
-  { src: "../skins/arnie.webp", answer: "Arnie", tip: "Hero name" },
-  { src: "../skins/bastion.webp", answer: "Bastion", tip: "Hero name" },
-  { src: "../skins/angel.webp", answer: "Angel", tip: "Hero name" },
+  { src: "../skins/alice.png", answer: "Alice", tip: "Hero name" },
+  { src: "../skins/arnie.png", answer: "Arnie", tip: "Hero name" },
+  { src: "../skins/bastion.png", answer: "Bastion", tip: "Hero name" },
+  { src: "../skins/angel.png", answer: "Angel", tip: "Hero name" },
   { src: "./images/12.webp", answer: "Satoshi", tip: "Hero name" },
   {
     src: "./images/railway_station.webp",
@@ -93,7 +93,7 @@ const images = [
   },
   {
     src: "./images/28.webp",
-    answer: "Portal",
+    answer: "Portal Gun",
     tip: "Ability name",
   },
   {

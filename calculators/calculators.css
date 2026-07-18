@@ -331,12 +331,12 @@
   fill: #262641;
 }
 .divine-gradient stop:nth-child(1) {
-  stop-color: #262641;
+  stop-color: #fec901;
   stop-opacity: 0;
 }
 .divine-gradient stop:nth-child(2) {
-  stop-color: #262641;
-  stop-opacity: 0.5;
+  stop-color: #fec901;
+  stop-opacity: 0.3;
 }
 
 /* * hero upgrade selects * */
