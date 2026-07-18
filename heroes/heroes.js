@@ -356,7 +356,7 @@ function generateHeroesCards() {
     heroCard.innerHTML = `
     <div class="new-hero-tag">NEW</div> 
         <div class="content-card-badge">
-          <img src="../classes/${hero.class.toLowerCase()}.png" alt="${hero.class}-icon">
+          <img src="../classes/${hero.class.toLowerCase()}.webp" alt="${hero.class}-icon">
         </div>
         <div class="unique-skin-star ${hero.hasUniqueSkin ? "" : "hidden"}" title="Unique Skin"></div>
         <img src="../skins/${hero.name.toLowerCase()}.png" alt="${hero.name}-card" class="content-image hero-content-image">
@@ -377,6 +377,30 @@ const getHeroPanelHTML = (hero) => `
         
 
         <div class="left-column">
+          <div class="badges-row">
+            <div class="hexagon-glow-wrap left">
+              <div class="hexagon"></div>
+              <div class="hexagon-text">
+                <img
+                  src="../classes/${hero.class.toLowerCase()}.webp"
+                  alt="${hero.class}-icon"
+                  class="smaller"
+                />
+              </div>
+            </div>
+            
+            <div class="hexagon-glow-wrap right">
+              <div class="hexagon"></div>
+              <div class="hexagon-text">
+                <img
+                  src="../factions/${hero.faction.toLowerCase()}.webp"
+                  alt="${hero.faction}-icon"
+                  class="bigger"
+                />
+              </div>
+            </div>
+          </div>
+         
           <div class="sci-fi-frame">
             <div class="inner-content">
               
@@ -490,11 +514,11 @@ const getHeroPanelHTML = (hero) => `
 
         <div class="cyber-badge-row">
           <div class="cyber-icon-frame frame-cyan">
-            <img src="../classes/${hero.class.toLowerCase()}.png" alt="${hero.class}" />
+            <img src="../classes/${hero.class.toLowerCase()}.webp" alt="${hero.class}" />
             <div class="frame-corner"></div>
           </div>
           <div class="cyber-icon-frame frame-magenta">
-            <img src="../factions/${hero.faction.toLowerCase()}.png" alt="${hero.faction}" />
+            <img src="../factions/${hero.faction.toLowerCase()}.webp" alt="${hero.faction}" />
             <div class="frame-corner"></div>
           </div>
         </div>

@@ -25,30 +25,32 @@ if (calculatorType === "damage_to_enemy") {
   showPanel(DOM.gearUpgradeCostPanel);
   DOM.resultPanel.innerHTML = `<p>Select <u>base and final levels</u> and <u>gear type</u> to calculate the amount of <u>nuts</u> and <u>gear copies</u> you need to upgrade</p>`;
   DOM.infoTipPanel.innerHTML = `<p>
-    Remember to wait until "Gear Rush" discount begins, so you can
-    save up to <u>10% on resources</u>! The discount appears every 6
+    Remember to wait until "<span class="blue-span">Gear Rush</span>" discount begins, so you can
+    <span class="green-span">save up to 10%</span> on resources! The discount appears every 6
     weeks, and along with it - leaderboard and special road with
     rewards!
   </p>
   <img
-    src="./images/gear_rush.png"
+    src="./images/gear_rush.webp"
     alt="content-card"
     style="max-width: 100%; padding: 5px"
   />`;
 } else if (calculatorType === "mod_upgrade") {
   showPanel(DOM.modUpgradeCostPanel);
   DOM.resultPanel.innerHTML = `<p>Click desired mod to check how many <u>coils</u> and which <u>previous tiers</u> you need to get this upgrade</p>`;
+  DOM.infoTipPanel.innerHTML = `
+   <p><span class="info-icon"><img src="../images/info_icon.png" /></span>Remember, that every mod (except for common ones) give both <span class="green-span">buffs</span> and <span class="red-span">debuffs</span> to your weapon. Remember to make your modbuild compatible with your gearbuild!</p>`;
 } else if (calculatorType === "hero_upgrade") {
   DOM.resultPanel.innerHTML =
     "<p>Select <u>level</u> and <u>tier</u> to calculate required <u>hero cards</u> and <u>coins</u></p>";
   DOM.infoTipPanel.innerHTML = `<p>
-    Remember to wait until "Hero Rush" discount begins, so you can
-    save up to <u>20% on resources</u>! The discount appears every 6
+    Remember to wait until "<span class="blue-span">Hero Rush</span>" discount begins, so you can
+    <span class="green-span">save up to 20%</span> on resources! The discount appears every 6
     weeks, and along with it - leaderboard and special road with
     rewards!
   </p>
   <img
-    src="./images/hero_rush.png"
+    src="./images/hero_rush.webp"
     alt="content-card"
     style="max-width: 100%; padding: 5px"
   />`;
@@ -58,28 +60,29 @@ if (calculatorType === "damage_to_enemy") {
   DOM.infoTipPanel.innerHTML = `
    <p><span class="info-icon"><img src="../images/info_icon.png" /></span>The only thing I don't have, which blocks me from updating this calculator is <span class="blue-span">drone upgrade cost table</span>. If you have it, you can share it with me, and this calculator will be launched sooner :)</p><br />
   <p>
-    Remember to wait until "Drone Rush" discount begins, so you can
-    save up to <u>20% on resources</u>! The discount appears every 6
+    Remember to wait until "<span class="blue-span">Drone Rush</span>" discount begins, so you can
+    <span class="green-span">save up to 20%</span> on resources! The discount appears every 6
     weeks, and along with it - leaderboard and special road with
     rewards!
   </p>
   <img
-    src="./images/drone_update.png"
+    src="./images/drone_update.webp"
     alt="content-card"
     style="max-width: 100%; padding: 5px"
   />
   <img
-    src="./images/drone_rush_leaderboard.jpg"
+    src="./images/drone_rush_leaderboard.webp"
     alt="content-card"
     style="max-width: 100%; padding: 5px"
   />
   <img
-    src="./images/drone_rush_road.jpg"
+    src="./images/drone_rush_road.webp"
     alt="content-card"
     style="max-width: 100%; padding: 5px"
   />`;
 } else if (calculatorType === "density") {
   //showPanel(DOM.densityPanel);
+  DOM.resultPanel.innerHTML = `<p style="font-size:25px;font-family:'Consolas'">This page is being prepared</p>`;
   DOM.infoTipPanel.innerHTML = `<p><span class="info-icon"><img src="../images/info_icon.png" /></span>Everything in Bullet Echo (players, walls, obstacles, some abilities) has something called <span class="blue-span">density</span> (or <span class="blue-span">piercing resistance</span>). It defines how difficult it is for bullets to go through. The higher the density - the higher <span class="blue-span">piercing power</span> bullets need to pierce through it. BUT if a bullet successfully pierces the object - it <span class="red-span">loses damage</span>.<br />
   In this calculator you will be able to calculate the density of an object you pierced.</p><br />
   <p><span class="info-icon"><img src="../images/info_icon.png" /></span>This calculator may not be accurate, because <span class="red-span">armor resistance decreases damage</span>. It will only work 100% when enemy has no armor at all.</p>`;
@@ -1133,7 +1136,7 @@ function handleHeroLevelSelection() {
 
   DOM.resultPanel.innerHTML =
     cost.error ||
-    `Cost: ${cost.coins} <img src="./images/resources/coins.png" alt="coins" class="resource-result-image" /> ${cost.cards} <img src="./images/resources/hero_cards.png" alt="hero_cards" class="resource-result-image" />`;
+    `Cost: ${cost.coins} <img src="./images/resources/coins.webp" alt="coins" class="resource-result-image" /> ${cost.cards} <img src="./images/resources/hero_cards.webp" alt="hero_cards" class="resource-result-image" />`;
 }
 
 /* * SELECTS GENERATING * */
@@ -1197,7 +1200,7 @@ let activeTracks = { 0: null, 1: null, 2: null, 3: null, 4: null };
 
 function handleSkillSelection(tier, position) {
   const cost = calculateModUpgradeCost(tier + 1);
-  DOM.resultPanel.innerHTML = `Cost: ${cost} <img src="./images/resources/coils.png" class="resource-result-image">`;
+  DOM.resultPanel.innerHTML = `Cost: ${cost} <img src="./images/resources/coils.webp" class="resource-result-image">`;
 
   activeTracks = { 0: null, 1: null, 2: null, 3: null, 4: null };
   document
@@ -1330,13 +1333,13 @@ DOMforms.gearUpgradeCost.form.addEventListener("submit", (e) => {
     cost.nuts += gearUpgradeCost[gearType][i].nuts;
     cost.copies += gearUpgradeCost[gearType][i].copies;
   }
-  DOM.resultPanel.innerHTML = `Cost: <u>${cost.nuts}</u> <img src="./images/resources/nuts.png" class="resource-result-image"> and <u>${cost.copies}</u> 
+  DOM.resultPanel.innerHTML = `Cost: <u>${cost.nuts}</u> <img src="./images/resources/nuts.webp" class="resource-result-image"> and <u>${cost.copies}</u> 
   ${
     gearType === "personal"
-      ? '<img src="./images/resources/gear_personal.png" class="resource-result-image">'
+      ? '<img src="./images/resources/gear_personal.webp" class="resource-result-image">'
       : gearType === "common"
-        ? '<img src="./images/resources/gear_common.png" class="resource-result-image">'
-        : '<img src="./images/resources/gear_weapon.png" class="resource-result-image">'
+        ? '<img src="./images/resources/gear_common.webp" class="resource-result-image">'
+        : '<img src="./images/resources/gear_weapon.webp" class="resource-result-image">'
   }`;
 });
 
