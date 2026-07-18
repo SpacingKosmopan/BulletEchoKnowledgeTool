@@ -31,7 +31,7 @@ if (calculatorType === "damage_to_enemy") {
     rewards!
   </p>
   <img
-    src="./images/gear_rush.png"
+    src="./images/gear_rush.webp"
     alt="content-card"
     style="max-width: 100%; padding: 5px"
   />`;
@@ -50,7 +50,7 @@ if (calculatorType === "damage_to_enemy") {
     rewards!
   </p>
   <img
-    src="./images/hero_rush.png"
+    src="./images/hero_rush.webp"
     alt="content-card"
     style="max-width: 100%; padding: 5px"
   />`;
@@ -66,17 +66,17 @@ if (calculatorType === "damage_to_enemy") {
     rewards!
   </p>
   <img
-    src="./images/drone_update.png"
+    src="./images/drone_update.webp"
     alt="content-card"
     style="max-width: 100%; padding: 5px"
   />
   <img
-    src="./images/drone_rush_leaderboard.jpg"
+    src="./images/drone_rush_leaderboard.webp"
     alt="content-card"
     style="max-width: 100%; padding: 5px"
   />
   <img
-    src="./images/drone_rush_road.jpg"
+    src="./images/drone_rush_road.webp"
     alt="content-card"
     style="max-width: 100%; padding: 5px"
   />`;
