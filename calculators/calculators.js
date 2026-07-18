@@ -82,6 +82,7 @@ if (calculatorType === "damage_to_enemy") {
   />`;
 } else if (calculatorType === "density") {
   //showPanel(DOM.densityPanel);
+  DOM.resultPanel.innerHTML = `<p style="font-size:25px;font-family:'Consolas'">This page is being prepared</p>`;
   DOM.infoTipPanel.innerHTML = `<p><span class="info-icon"><img src="../images/info_icon.png" /></span>Everything in Bullet Echo (players, walls, obstacles, some abilities) has something called <span class="blue-span">density</span> (or <span class="blue-span">piercing resistance</span>). It defines how difficult it is for bullets to go through. The higher the density - the higher <span class="blue-span">piercing power</span> bullets need to pierce through it. BUT if a bullet successfully pierces the object - it <span class="red-span">loses damage</span>.<br />
   In this calculator you will be able to calculate the density of an object you pierced.</p><br />
   <p><span class="info-icon"><img src="../images/info_icon.png" /></span>This calculator may not be accurate, because <span class="red-span">armor resistance decreases damage</span>. It will only work 100% when enemy has no armor at all.</p>`;

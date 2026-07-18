@@ -293,114 +293,114 @@ const questions = [
   //* GEARS
   {
     type: QUESTIONS_TYPES.GEAR,
-    src: "./images/1.png",
+    src: "./images/1.webp",
     answer: "Arnie",
   },
   {
     type: QUESTIONS_TYPES.GEAR,
-    src: "./images/15.png",
+    src: "./images/15.webp",
     answer: "Hurricane",
   },
   {
     type: QUESTIONS_TYPES.GEAR,
-    src: "./images/16.png",
+    src: "./images/16.webp",
     answer: "Ghost",
   },
   {
     type: QUESTIONS_TYPES.GEAR,
-    src: "./images/17.png",
+    src: "./images/17.webp",
     answer: "Stalker",
   },
   {
     type: QUESTIONS_TYPES.GEAR,
-    src: "./images/18.png",
+    src: "./images/18.webp",
     answer: "Leviathan",
   },
   {
     type: QUESTIONS_TYPES.GEAR,
-    src: "./images/19.png",
+    src: "./images/19.webp",
     answer: "Sparkle",
   },
   {
     type: QUESTIONS_TYPES.GEAR,
-    src: "./images/20.png",
+    src: "./images/20.webp",
     answer: "Firefly",
   },
   {
     type: QUESTIONS_TYPES.GEAR,
-    src: "./images/21.png",
+    src: "./images/21.webp",
     answer: "Angel",
   },
   {
     type: QUESTIONS_TYPES.GEAR,
-    src: "./images/22.png",
+    src: "./images/22.webp",
     answer: "Bertha",
   },
   {
     type: QUESTIONS_TYPES.GEAR,
-    src: "./images/23.png",
+    src: "./images/23.webp",
     answer: "Smog",
   },
   //* ICONS
   {
     type: QUESTIONS_TYPES.ICON,
-    src: "./images/3.png",
+    src: "./images/3.webp",
     answer: "Slayer",
   },
   {
     type: QUESTIONS_TYPES.ICON,
-    src: "./images/4.png",
+    src: "./images/4.webp",
     answer: "Cyclops",
   },
   {
     type: QUESTIONS_TYPES.ICON,
-    src: "./images/5.png",
+    src: "./images/5.webp",
     answer: "Twinkle",
   },
   {
     type: QUESTIONS_TYPES.ICON,
-    src: "./images/9.png",
+    src: "./images/9.webp",
     answer: "Dragoon",
   },
   {
     type: QUESTIONS_TYPES.ICON,
-    src: "./images/10.png",
+    src: "./images/10.webp",
     answer: "Mirage",
   },
   {
     type: QUESTIONS_TYPES.ICON,
-    src: "./images/11.png",
+    src: "./images/11.webp",
     answer: "Hurricane",
   },
   //* SHADOWS
   {
     type: QUESTIONS_TYPES.SHADOW,
-    src: "./images/6.png",
+    src: "./images/6.webp",
     answer: "Slayer",
   },
   {
     type: QUESTIONS_TYPES.SHADOW,
-    src: "./images/7.png",
+    src: "./images/7.webp",
     answer: "Stalker",
   },
   {
     type: QUESTIONS_TYPES.SHADOW,
-    src: "./images/8.png",
+    src: "./images/8.webp",
     answer: "Scratch",
   },
   {
     type: QUESTIONS_TYPES.SHADOW,
-    src: "./images/12.png",
+    src: "./images/12.webp",
     answer: "Satoshi",
   },
   {
     type: QUESTIONS_TYPES.SHADOW,
-    src: "./images/13.png",
+    src: "./images/13.webp",
     answer: "Raven",
   },
   {
     type: QUESTIONS_TYPES.SHADOW,
-    src: "./images/14.png",
+    src: "./images/14.webp",
     answer: "Lynx",
   },
 ];

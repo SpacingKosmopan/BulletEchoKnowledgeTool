@@ -10,60 +10,60 @@ const mapFragments = [
   // 1
   {
     mapname: "Railway Station",
-    mapsrc: "./images/railway_station.png",
-    fragmentsrc: "./images/30.png",
+    mapsrc: "./images/railway_station.webp",
+    fragmentsrc: "./images/30.webp",
   },
   {
     mapname: "Sawmill",
-    mapsrc: "./images/sawmill.png",
-    fragmentsrc: "./images/31.png",
+    mapsrc: "./images/sawmill.webp",
+    fragmentsrc: "./images/31.webp",
   },
   {
     mapname: "Asument Park",
-    mapsrc: "./images/asument_park.png",
-    fragmentsrc: "./images/32.png",
+    mapsrc: "./images/asument_park.webp",
+    fragmentsrc: "./images/32.webp",
   },
   // 4
   {
     mapname: "Sewerage",
-    mapsrc: "./images/sewerage.png",
-    fragmentsrc: "./images/33.png",
+    mapsrc: "./images/sewerage.webp",
+    fragmentsrc: "./images/33.webp",
   },
   {
     mapname: "Villa",
-    mapsrc: "./images/villa.png",
-    fragmentsrc: "./images/34.png",
+    mapsrc: "./images/villa.webp",
+    fragmentsrc: "./images/34.webp",
   },
   {
     mapname: "Forgotten Bazar",
-    mapsrc: "./images/forgotten_bazar.png",
-    fragmentsrc: "./images/35.png",
+    mapsrc: "./images/forgotten_bazar.webp",
+    fragmentsrc: "./images/35.webp",
   },
   // 7
   {
     mapname: "Asylum",
-    mapsrc: "./images/asylum.png",
-    fragmentsrc: "./images/36.png",
+    mapsrc: "./images/asylum.webp",
+    fragmentsrc: "./images/36.webp",
   },
   {
     mapname: "City",
-    mapsrc: "./images/city.png",
-    fragmentsrc: "./images/37.png",
+    mapsrc: "./images/city.webp",
+    fragmentsrc: "./images/37.webp",
   },
   {
     mapname: "Road Motel",
-    mapsrc: "./images/road_motel.png",
-    fragmentsrc: "./images/38.png",
+    mapsrc: "./images/road_motel.webp",
+    fragmentsrc: "./images/38.webp",
   },
   {
     mapname: "Hotel",
-    mapsrc: "./images/hotel.png",
-    fragmentsrc: "./images/39.png",
+    mapsrc: "./images/hotel.webp",
+    fragmentsrc: "./images/39.webp",
   },
   {
     mapname: "Secret Floor",
-    mapsrc: "./images/secret_floor.png",
-    fragmentsrc: "./images/40.png",
+    mapsrc: "./images/secret_floor.webp",
+    fragmentsrc: "./images/40.webp",
   },
 ];
 

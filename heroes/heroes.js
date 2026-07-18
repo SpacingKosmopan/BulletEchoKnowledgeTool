@@ -384,7 +384,7 @@ const getHeroPanelHTML = (hero) => `
                 <img
                   src="../classes/${hero.class.toLowerCase()}.webp"
                   alt="${hero.class}-icon"
-                  class="rotated-hexagon-icon smaller"
+                  class="smaller"
                 />
               </div>
             </div>
