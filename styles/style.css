@@ -553,7 +553,14 @@ html {
   padding: 12px;
   border: 1px solid #3b4e68;
   letter-spacing: 1px;
-  clip-path: polygon(0 0, 90% 0, 100% 10px, 100% 100%, 10px 100%, 0 90%);
+  clip-path: polygon(
+    0 0,
+    calc(100% - 10px) 0,
+    100% 10px,
+    100% 100%,
+    10px 100%,
+    0 calc(100% - 10px)
+  );
   transition: background 0.2s;
 }
 
