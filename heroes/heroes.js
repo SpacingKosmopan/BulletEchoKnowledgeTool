@@ -449,10 +449,25 @@ const getHeroPanelHTML = (hero) => `
   const cardsContainer = document.querySelector("#content-cards");
   const heroContentContainer = document.querySelector("#hero-content");
 
+  const backToHeroesButton = document.querySelector("#back-to-heroes-button");
+  const goToArticleButton = document.querySelector(
+    "#go-to-hero-article-button",
+  );
+
+  const heroArticleHeader = document.querySelector("#hero-article-header");
+
   if (!heroParam) {
+    backToHeroesButton.classList.add("hidden");
+    goToArticleButton.classList.add("hidden");
+    heroArticleHeader.innerHTML = ``;
+
     if (cardsContainer) cardsContainer.classList.remove("hidden");
     if (heroContentContainer) heroContentContainer.innerHTML = ``;
     return;
+  } else {
+    backToHeroesButton.classList.remove("hidden");
+    goToArticleButton.classList.remove("hidden");
+    heroArticleHeader.innerHTML = `${heroParam.toUpperCase()} tips and tricks`;
   }
 
   if (cardsContainer) cardsContainer.classList.add("hidden");
