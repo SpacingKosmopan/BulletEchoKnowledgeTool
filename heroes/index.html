@@ -68,6 +68,108 @@
           <a href="../index.html">Return to main page</a>
         </p>
         <div class="container">
+          <div id="hero-filter-wrapper">
+            <p>Filter</p>
+            <details class="dropdown" id="hero-filter-class-dropdown">
+              <summary id="class-filter-summary">
+                <stripe-button id="class-text">Class: ---</stripe-button>
+              </summary>
+              <nav
+                class="dropdown-content"
+                id="hero-class-filter"
+                style="position: absolute; z-index: 5"
+              >
+                <stripe-button color="#0066BB"> ---</stripe-button>
+
+                <stripe-button color="#0066BB"
+                  ><span class="dropdown-image-icon"
+                    ><img src="../classes/enforcer.webp" alt="enforcer"
+                  /></span>
+                  Enforcer</stripe-button
+                >
+
+                <stripe-button color="#0066BB"
+                  ><span class="dropdown-image-icon"
+                    ><img src="../classes/scout.webp" alt="scout"
+                  /></span>
+                  Scout</stripe-button
+                >
+
+                <stripe-button color="#0066BB"
+                  ><span class="dropdown-image-icon"
+                    ><img src="../classes/gunner.webp" alt="gunner"
+                  /></span>
+                  Gunner</stripe-button
+                >
+
+                <stripe-button color="#0066BB"
+                  ><span class="dropdown-image-icon"
+                    ><img src="../classes/sniper.webp" alt="sniper"
+                  /></span>
+                  Sniper</stripe-button
+                >
+
+                <stripe-button color="#0066BB"
+                  ><span class="dropdown-image-icon"
+                    ><img src="../classes/trooper.webp" alt="trooper"
+                  /></span>
+                  Trooper</stripe-button
+                >
+              </nav>
+            </details>
+
+            <details class="dropdown" id="hero-filter-faction-dropdown">
+              <summary id="faction-filter-summary">
+                <stripe-button id="faction-text">Faction: ---</stripe-button>
+              </summary>
+              <nav
+                class="dropdown-content"
+                id="hero-faction-filter"
+                style="position: absolute; z-index: 5"
+              >
+                <stripe-button color="#0066BB"> ---</stripe-button>
+
+                <stripe-button color="#0066BB"
+                  ><span class="dropdown-image-icon"
+                    ><img
+                      src="../factions/force and arms.webp"
+                      alt="force and arms"
+                  /></span>
+                  Force and Arms</stripe-button
+                >
+
+                <stripe-button color="#0066BB"
+                  ><span class="dropdown-image-icon"
+                    ><img src="../factions/pyro.webp" alt="pyro"
+                  /></span>
+                  PYRO</stripe-button
+                >
+
+                <stripe-button color="#0066BB"
+                  ><span class="dropdown-image-icon"
+                    ><img src="../factions/renegades.webp" alt="renegades"
+                  /></span>
+                  Renegades</stripe-button
+                >
+
+                <stripe-button color="#0066BB"
+                  ><span class="dropdown-image-icon"
+                    ><img
+                      src="../factions/skytech megacorp.webp"
+                      alt="skytech megacorp"
+                  /></span>
+                  Skytech Megacorp</stripe-button
+                >
+              </nav>
+            </details>
+
+            <p>Search</p>
+            <input
+              type="text"
+              name="search-hero-input"
+              id="search-hero-input"
+            />
+          </div>
           <div id="content-cards"></div>
           <div id="hero-content"></div>
         </div>

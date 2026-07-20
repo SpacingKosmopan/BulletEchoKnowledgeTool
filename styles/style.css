@@ -249,6 +249,24 @@ details[open] summary::after {
   transform: translateY(-8px);
 }
 
+.dropdown-image-icon {
+  margin: auto 0;
+  padding: 0;
+}
+
+.dropdown-image-icon img {
+  margin: auto 0;
+  width: 35px;
+}
+
+#hero-filter-wrapper {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  gap: 30px;
+  align-items: center;
+}
+
 details[open] .dropdown-content > * {
   animation: dropdownItemIn 0.25s ease-out forwards;
 
