@@ -1,0 +1,11 @@
+.article-author {
+  border: 1px solid rgb(4, 66, 107);
+  border-radius: 5px;
+  margin: 5px;
+  background-color: #09f;
+  display: block;
+  width: 150px;
+  height: 30px;
+  text-align: center;
+  align-content: center;
+}
