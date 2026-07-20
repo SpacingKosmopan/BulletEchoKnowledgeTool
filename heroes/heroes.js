@@ -587,6 +587,7 @@ async function getAllArticles(currentHero) {
 
     if (!data || !data.posts || data.posts.length === 0) {
       console.log("No articles found.");
+      articlesContainer.innerHTML = /*html*/ `<p>This hero doesn't have an article <u>YET</u></p>`;
       return;
     }
 
