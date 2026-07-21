@@ -105,6 +105,12 @@ export const heroes = [
     abilityName: "Shadow Step",
     abilityDescription: "-",
     medkitType: medkitTypes.TeamHealing,
+    hasUniqueSkin: true,
+    uniqueSkinName: "Motoko Kusanagi",
+    uniqueSkinGifSrc: "../skins/unique_vi_gif.gif",
+    uniqueSkinAbilityImage: "../skins/unique_vi_ability.png",
+    uniqueSkinExtraInfo:
+      "This skin was obtainable only during limited-time collaboration with Ghost in the Shell: SAC_2045 (June 2026)",
   },
   {
     name: "Tess",
@@ -569,6 +575,18 @@ const getHeroPanelHTML = (hero) => `
           <img src="${hero.uniqueSkinGifSrc}" alt="unique_skin_presentation">
           <div class="cyber-sub-bar"></div>
         </div>
+
+
+          ${
+            hero.uniqueSkinExtraInfo
+              ? `<div class="cyber-card card-cyan">
+              <div class="cyber-card-indicator"></div>
+              <p><span class="info-icon"><img src="../images/info_icon.png" /></span>
+                ${hero.uniqueSkinExtraInfo}
+              </p>
+            </div>`
+              : ""
+          }
 
         <div class="cyber-badge-row">
           <div class="cyber-icon-frame frame-cyan">
