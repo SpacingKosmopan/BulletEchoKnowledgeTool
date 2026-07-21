@@ -35,6 +35,8 @@
     <script async src="https://tally.so/widgets/embed.js"></script>
   </head>
   <body>
+    <button id="backToTop" class="back-to-top" title="Back">↑</button>
+
     <header class="welcome-header">
       <img
         src="images/be_UI_single_stripe.webp"
@@ -202,7 +204,7 @@
           ><i class="bi bi-house-fill"></i> Home</stripe-button
         >
         <details class="dropdown">
-          <summary id="heroes-summary">
+          <summary id="heroes-summary" class="show-arrow">
             <stripe-button id="heroes-text"
               >Heroes tips and tricks</stripe-button
             >
@@ -210,7 +212,7 @@
           <nav class="dropdown-content" id="heroes-pages"></nav>
         </details>
         <details class="dropdown">
-          <summary id="calculators-summary">
+          <summary id="calculators-summary" class="show-arrow">
             <stripe-button id="calculators-text">Calculators</stripe-button>
           </summary>
           <nav class="dropdown-content" id="calculators-pages">
@@ -254,7 +256,7 @@
           </nav>
         </details>
         <details class="dropdown" id="minigames-details">
-          <summary id="minigames-summary">
+          <summary id="minigames-summary" class="show-arrow">
             <stripe-button id="minigames-text">Minigames</stripe-button>
           </summary>
           <nav class="dropdown-content" id="minigames-pages">
@@ -277,7 +279,15 @@
           </nav>
         </details>
 
-        <stripe-button href="./changelog.html">Changelog</stripe-button>
+        <div id="changelog-wrapper">
+          <stripe-button href="./changelog.html">Changelog</stripe-button
+          ><span
+            class="update-tag hidden"
+            id="changelog-update-tag"
+            onclick="window.location.href = './changelog.html'"
+            >🔥 New update</span
+          >
+        </div>
         <stripe-button>(soon) Articles</stripe-button>
         <stripe-button
           data-tally-open="D4yxlR"
@@ -328,6 +338,32 @@
           });
         });
       });
+
+      // update check
+      const isNewerVersion = (v1, v2) => {
+        if (!v1) return true;
+        const parts1 = v1.split(".").map(Number);
+        const parts2 = v2.split(".").map(Number);
+
+        for (let i = 0; i < Math.max(parts1.length, parts2.length); i++) {
+          const p1 = parts1[i] || 0;
+          const p2 = parts2[i] || 0;
+          if (p2 > p1) return true;
+          if (p2 < p1) return false;
+        }
+        return false;
+      };
+
+      const lastUpdate = localStorage.getItem("current-version");
+      const NEWEST_VERSION = "1.1";
+
+      if (isNewerVersion(lastUpdate, NEWEST_VERSION)) {
+        document
+          .querySelector("#changelog-update-tag")
+          .classList.remove("hidden");
+      } else
+        document.querySelector("#changelog-update-tag").classList.add("hidden");
     </script>
+    <script src="./back_to_top_btn.js"></script>
   </body>
 </html>

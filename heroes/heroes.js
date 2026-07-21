@@ -105,6 +105,12 @@ export const heroes = [
     abilityName: "Shadow Step",
     abilityDescription: "-",
     medkitType: medkitTypes.TeamHealing,
+    hasUniqueSkin: true,
+    uniqueSkinName: "Motoko Kusanagi",
+    uniqueSkinGifSrc: "../skins/unique_vi_gif.gif",
+    uniqueSkinAbilityImage: "../skins/unique_vi_ability.png",
+    uniqueSkinExtraInfo:
+      "This skin was obtainable only during limited-time collaboration with Ghost in the Shell: SAC_2045 (June 2026)",
   },
   {
     name: "Tess",
@@ -125,7 +131,7 @@ export const heroes = [
   {
     name: "Stalker",
     faction: "Renegades",
-    class: "Sniper",
+    class: "Trooper",
     abilityName: "Invisibility",
     abilityDescription: "-",
     medkitType: medkitTypes.TeamHealing,
@@ -323,6 +329,14 @@ export const heroes = [
     abilityDescription: "-",
     medkitType: medkitTypes.TeamRecovery,
   },
+  {
+    name: "Scratch",
+    faction: "Skytech Megacorp",
+    class: "Enforcer",
+    abilityName: "Throwing Shield",
+    abilityDescription: "-",
+    medkitType: medkitTypes.TeamRecovery,
+  },
 ];
 export const newestHeroName = "Flynt";
 
@@ -337,13 +351,62 @@ heroes.sort((a, b) => {
   return a.name.localeCompare(b.name);
 });
 
+const heroFilterWrapper = document.querySelector("#hero-filter-wrapper");
+
+let classFilter = "";
+let factionFilter = "";
+let heroNameFilter = "";
+
+const factionFilterText = document.querySelector("#faction-text");
+const classFilterText = document.querySelector("#class-text");
+
+function setClassFilter(filter) {
+  classFilter = filter;
+  generateHeroesCards();
+  classFilterText.innerHTML = `Class: ${classFilter}`;
+}
+function setFactionFilter(filter) {
+  factionFilter = filter;
+  generateHeroesCards();
+  factionFilterText.innerHTML = `Faction: ${factionFilter}`;
+}
+
+const classFilterDetails = document.querySelector(
+  "#hero-filter-class-dropdown",
+);
+const factionFilterDetails = document.querySelector(
+  "#hero-filter-faction-dropdown",
+);
+
+const searchHeroInput = document.querySelector("#search-hero-input");
+if (searchHeroInput)
+  searchHeroInput.addEventListener("input", (e) => {
+    heroNameFilter = searchHeroInput.value.trim();
+    generateHeroesCards();
+  });
+
 function generateHeroesCards() {
   const heroesCardsContainer = document.querySelector("#content-cards");
   if (!heroesCardsContainer) return;
 
   heroesCardsContainer.innerHTML = "";
 
-  heroes.forEach((hero) => {
+  let filteredHeroes = heroes;
+  if (classFilter !== "")
+    filteredHeroes = filteredHeroes.filter(
+      (h) => h.class.toLocaleLowerCase() === classFilter.toLowerCase(),
+    );
+  if (factionFilter !== "")
+    filteredHeroes = filteredHeroes.filter(
+      (h) =>
+        h.faction.toLocaleLowerCase() === factionFilter.toLocaleLowerCase(),
+    );
+  if (heroNameFilter !== "")
+    filteredHeroes = filteredHeroes.filter((h) =>
+      h.name.toLocaleLowerCase().includes(heroNameFilter.toLocaleLowerCase()),
+    );
+
+  filteredHeroes.forEach((hero) => {
     const heroCard = document.createElement("div");
     heroCard.className = "content-card";
     if (newestHeroName === hero.name) heroCard.classList.add("new-hero");
@@ -352,7 +415,6 @@ function generateHeroesCards() {
       window.location.href = `index.html?hero=${hero.name.toLowerCase()}`;
     });
 
-    // Dodano pojemnik .content-card-badge ze zdjęciem klasy bohatera
     heroCard.innerHTML = `
     <div class="new-hero-tag">NEW</div> 
         <div class="content-card-badge">
@@ -452,10 +514,12 @@ const getHeroPanelHTML = (hero) => `
   if (!heroParam) {
     if (cardsContainer) cardsContainer.classList.remove("hidden");
     if (heroContentContainer) heroContentContainer.innerHTML = ``;
+    if (heroFilterWrapper) heroFilterWrapper.classList.remove("hidden");
     return;
   }
 
-  if (cardsContainer) cardsContainer.classList.add("hidden");
+  cardsContainer.classList.add("hidden");
+  heroFilterWrapper.classList.add("hidden");
 
   const currentHero = heroes.find(
     (h) => h.name.toLowerCase() === heroParam.toLowerCase(),
@@ -512,6 +576,18 @@ const getHeroPanelHTML = (hero) => `
           <div class="cyber-sub-bar"></div>
         </div>
 
+
+          ${
+            hero.uniqueSkinExtraInfo
+              ? `<div class="cyber-card card-cyan">
+              <div class="cyber-card-indicator"></div>
+              <p><span class="info-icon"><img src="../images/info_icon.png" /></span>
+                ${hero.uniqueSkinExtraInfo}
+              </p>
+            </div>`
+              : ""
+          }
+
         <div class="cyber-badge-row">
           <div class="cyber-icon-frame frame-cyan">
             <img src="../classes/${hero.class.toLowerCase()}.webp" alt="${hero.class}" />
@@ -549,3 +625,6 @@ const getHeroPanelHTML = (hero) => `
     heroContentContainer.innerHTML = `<div class="error">Hero not found</div>`;
   }
 })();
+
+window.setClassFilter = setClassFilter;
+window.setFactionFilter = setFactionFilter;
