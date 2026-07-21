@@ -35,6 +35,23 @@
     />
     <link rel="manifest" href="../site.webmanifest" />
 
+    <style>
+      #search-hero-input {
+        height: 40px;
+        font-family: inherit;
+        min-width: 150px;
+        background-color: #09f;
+        border: none;
+        clip-path: polygon(0% 0%, 100% 0%, calc(100%-15px) 100%, 0% 100%);
+        color: white;
+        font-size: inherit;
+        padding: 10px;
+        letter-spacing: 2px;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        filter: drop-shadow(0 0 3px var(--neon-color));
+      }
+    </style>
+
     <!--! Stripe Button Component -->
     <script src="../stripe_button_component.js" defer></script>
   </head>
@@ -69,106 +86,136 @@
         </p>
         <div class="container">
           <div id="hero-filter-wrapper">
-            <p>Filter</p>
-            <details class="dropdown" id="hero-filter-class-dropdown">
-              <summary id="class-filter-summary">
-                <stripe-button id="class-text">Class: ---</stripe-button>
-              </summary>
-              <nav
-                class="dropdown-content"
-                id="hero-class-filter"
-                style="position: absolute; z-index: 5"
-              >
-                <stripe-button color="#0066BB"> ---</stripe-button>
-
-                <stripe-button color="#0066BB"
-                  ><span class="dropdown-image-icon"
-                    ><img src="../classes/enforcer.webp" alt="enforcer"
-                  /></span>
-                  Enforcer</stripe-button
+            <div class="filter-type-element">
+              <p>
+                <i class="bi bi-funnel" style="font-size: 1.4rem"></i> Filter
+              </p>
+              <details class="dropdown" id="hero-filter-class-dropdown">
+                <summary id="class-filter-summary">
+                  <stripe-button id="class-text">Class: ---</stripe-button>
+                </summary>
+                <nav
+                  class="dropdown-content"
+                  id="hero-class-filter"
+                  style="position: absolute; z-index: 5"
                 >
+                  <stripe-button color="#0066BB" onclick="setClassFilter('')">
+                    ---</stripe-button
+                  >
 
-                <stripe-button color="#0066BB"
-                  ><span class="dropdown-image-icon"
-                    ><img src="../classes/scout.webp" alt="scout"
-                  /></span>
-                  Scout</stripe-button
+                  <stripe-button
+                    color="#0066BB"
+                    onclick="setClassFilter('enforcer')"
+                    ><span class="dropdown-image-icon"
+                      ><img src="../classes/enforcer.webp" alt="enforcer"
+                    /></span>
+                    Enforcer</stripe-button
+                  >
+
+                  <stripe-button
+                    color="#0066BB"
+                    onclick="setClassFilter('scout')"
+                    ><span class="dropdown-image-icon"
+                      ><img src="../classes/scout.webp" alt="scout"
+                    /></span>
+                    Scout</stripe-button
+                  >
+
+                  <stripe-button
+                    color="#0066BB"
+                    onclick="setClassFilter('gunner')"
+                    ><span class="dropdown-image-icon"
+                      ><img src="../classes/gunner.webp" alt="gunner"
+                    /></span>
+                    Gunner</stripe-button
+                  >
+
+                  <stripe-button
+                    color="#0066BB"
+                    onclick="setClassFilter('sniper')"
+                    ><span class="dropdown-image-icon"
+                      ><img src="../classes/sniper.webp" alt="sniper"
+                    /></span>
+                    Sniper</stripe-button
+                  >
+
+                  <stripe-button
+                    color="#0066BB"
+                    onclick="setClassFilter('trooper')"
+                    ><span class="dropdown-image-icon"
+                      ><img src="../classes/trooper.webp" alt="trooper"
+                    /></span>
+                    Trooper</stripe-button
+                  >
+                </nav>
+              </details>
+
+              <details class="dropdown" id="hero-filter-faction-dropdown">
+                <summary id="faction-filter-summary">
+                  <stripe-button id="faction-text">Faction: ---</stripe-button>
+                </summary>
+                <nav
+                  class="dropdown-content"
+                  id="hero-faction-filter"
+                  style="position: absolute; z-index: 5"
                 >
+                  <stripe-button color="#0066BB" onclick="setFactionFilter('')">
+                    ---</stripe-button
+                  >
 
-                <stripe-button color="#0066BB"
-                  ><span class="dropdown-image-icon"
-                    ><img src="../classes/gunner.webp" alt="gunner"
-                  /></span>
-                  Gunner</stripe-button
-                >
+                  <stripe-button
+                    color="#0066BB"
+                    onclick="setFactionFilter('force and arms')"
+                    ><span class="dropdown-image-icon"
+                      ><img
+                        src="../factions/force and arms.webp"
+                        alt="force and arms"
+                    /></span>
+                    Force and Arms</stripe-button
+                  >
 
-                <stripe-button color="#0066BB"
-                  ><span class="dropdown-image-icon"
-                    ><img src="../classes/sniper.webp" alt="sniper"
-                  /></span>
-                  Sniper</stripe-button
-                >
+                  <stripe-button
+                    color="#0066BB"
+                    onclick="setFactionFilter('pyro')"
+                    ><span class="dropdown-image-icon"
+                      ><img src="../factions/pyro.webp" alt="pyro"
+                    /></span>
+                    PYRO</stripe-button
+                  >
 
-                <stripe-button color="#0066BB"
-                  ><span class="dropdown-image-icon"
-                    ><img src="../classes/trooper.webp" alt="trooper"
-                  /></span>
-                  Trooper</stripe-button
-                >
-              </nav>
-            </details>
+                  <stripe-button
+                    color="#0066BB"
+                    onclick="setFactionFilter('renegades')"
+                    ><span class="dropdown-image-icon"
+                      ><img src="../factions/renegades.webp" alt="renegades"
+                    /></span>
+                    Renegades</stripe-button
+                  >
 
-            <details class="dropdown" id="hero-filter-faction-dropdown">
-              <summary id="faction-filter-summary">
-                <stripe-button id="faction-text">Faction: ---</stripe-button>
-              </summary>
-              <nav
-                class="dropdown-content"
-                id="hero-faction-filter"
-                style="position: absolute; z-index: 5"
-              >
-                <stripe-button color="#0066BB"> ---</stripe-button>
+                  <stripe-button
+                    color="#0066BB"
+                    onclick="setFactionFilter('skytech megacorp')"
+                    ><span class="dropdown-image-icon"
+                      ><img
+                        src="../factions/skytech megacorp.webp"
+                        alt="skytech megacorp"
+                    /></span>
+                    Skytech Megacorp</stripe-button
+                  >
+                </nav>
+              </details>
+            </div>
 
-                <stripe-button color="#0066BB"
-                  ><span class="dropdown-image-icon"
-                    ><img
-                      src="../factions/force and arms.webp"
-                      alt="force and arms"
-                  /></span>
-                  Force and Arms</stripe-button
-                >
-
-                <stripe-button color="#0066BB"
-                  ><span class="dropdown-image-icon"
-                    ><img src="../factions/pyro.webp" alt="pyro"
-                  /></span>
-                  PYRO</stripe-button
-                >
-
-                <stripe-button color="#0066BB"
-                  ><span class="dropdown-image-icon"
-                    ><img src="../factions/renegades.webp" alt="renegades"
-                  /></span>
-                  Renegades</stripe-button
-                >
-
-                <stripe-button color="#0066BB"
-                  ><span class="dropdown-image-icon"
-                    ><img
-                      src="../factions/skytech megacorp.webp"
-                      alt="skytech megacorp"
-                  /></span>
-                  Skytech Megacorp</stripe-button
-                >
-              </nav>
-            </details>
-
-            <p>Search</p>
-            <input
-              type="text"
-              name="search-hero-input"
-              id="search-hero-input"
-            />
+            <div class="filter-type-element">
+              <p>
+                <i class="bi bi-search" style="font-size: 1.4rem"></i> Search
+              </p>
+              <input
+                type="text"
+                name="search-hero-input"
+                id="search-hero-input"
+              />
+            </div>
           </div>
           <div id="content-cards"></div>
           <div id="hero-content"></div>
