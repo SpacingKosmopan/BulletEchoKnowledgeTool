@@ -357,13 +357,11 @@ const classFilterText = document.querySelector("#class-text");
 function setClassFilter(filter) {
   classFilter = filter;
   generateHeroesCards();
-  classFilterDetails.open = false;
   classFilterText.innerHTML = `Class: ${classFilter}`;
 }
 function setFactionFilter(filter) {
   factionFilter = filter;
   generateHeroesCards();
-  factionFilterDetails.open = false;
   factionFilterText.innerHTML = `Faction: ${factionFilter}`;
 }
 

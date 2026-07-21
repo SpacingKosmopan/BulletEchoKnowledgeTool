@@ -185,7 +185,7 @@ summary::-webkit-details-marker {
   display: none;
 }
 
-summary::after {
+summary.show-arrow::after {
   content: "▼";
   font-size: 0.8rem;
   transition: transform 0.2s ease;

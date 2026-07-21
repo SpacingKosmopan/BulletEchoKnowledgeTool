@@ -92,7 +92,11 @@
               <p>
                 <i class="bi bi-funnel" style="font-size: 1.4rem"></i> Filter
               </p>
-              <details class="dropdown" id="hero-filter-class-dropdown">
+              <details
+                class="dropdown"
+                id="hero-filter-class-dropdown"
+                onclick="this.open = !this.open"
+              >
                 <summary id="class-filter-summary">
                   <stripe-button id="class-text">Class: ---</stripe-button>
                 </summary>
@@ -152,7 +156,11 @@
                 </nav>
               </details>
 
-              <details class="dropdown" id="hero-filter-faction-dropdown">
+              <details
+                class="dropdown"
+                id="hero-filter-faction-dropdown"
+                onclick="this.open = !this.open"
+              >
                 <summary id="faction-filter-summary">
                   <stripe-button id="faction-text">Faction: ---</stripe-button>
                 </summary>
