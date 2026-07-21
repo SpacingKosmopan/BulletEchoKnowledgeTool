@@ -249,6 +249,40 @@ details[open] summary::after {
   transform: translateY(-8px);
 }
 
+.dropdown-image-icon {
+  margin: auto 0;
+  padding: 0;
+}
+
+.dropdown-image-icon img {
+  margin: auto 0;
+  width: 35px;
+}
+
+#hero-filter-wrapper {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+  gap: 20px;
+  align-items: center;
+}
+
+.filter-type-element {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.filter-type-element p {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
 details[open] .dropdown-content > * {
   animation: dropdownItemIn 0.25s ease-out forwards;
 
