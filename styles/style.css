@@ -825,7 +825,6 @@ html {
 .back-to-top {
   position: fixed;
   bottom: 20px;
-  left: 20px;
   z-index: 99;
   border: none;
   outline: none;
@@ -842,6 +841,18 @@ html {
     transform 0.3s;
   opacity: 0;
   pointer-events: none;
+}
+
+@media (max-width: 899px) {
+  .back-to-top {
+    left: 20px;
+  }
+}
+
+@media (min-width: 900px) {
+  .back-to-top {
+    right: 20px;
+  }
 }
 
 .back-to-top:hover {

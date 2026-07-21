@@ -375,10 +375,11 @@ const factionFilterDetails = document.querySelector(
 );
 
 const searchHeroInput = document.querySelector("#search-hero-input");
-searchHeroInput.addEventListener("input", (e) => {
-  heroNameFilter = searchHeroInput.value.trim();
-  generateHeroesCards();
-});
+if (searchHeroInput)
+  searchHeroInput.addEventListener("input", (e) => {
+    heroNameFilter = searchHeroInput.value.trim();
+    generateHeroesCards();
+  });
 
 function generateHeroesCards() {
   const heroesCardsContainer = document.querySelector("#content-cards");
@@ -507,9 +508,9 @@ const getHeroPanelHTML = (hero) => `
   const heroContentContainer = document.querySelector("#hero-content");
 
   if (!heroParam) {
-    cardsContainer.classList.remove("hidden");
-    heroContentContainer.innerHTML = ``;
-    heroFilterWrapper.classList.remove("hidden");
+    if (cardsContainer) cardsContainer.classList.remove("hidden");
+    if (heroContentContainer) heroContentContainer.innerHTML = ``;
+    if (heroFilterWrapper) heroFilterWrapper.classList.remove("hidden");
     return;
   }
 
