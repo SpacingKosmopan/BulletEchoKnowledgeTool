@@ -1,3 +1,13 @@
+# v1.1 QOL
+
+> 21.07.2026
+
+- Added [#88c158]Back-to-Top[/#] button for faster navigation
+- Added two options to [#88c158]filter heroes[/#] in heroes tips and tricks page (by Faction and Class), and a [#88c158]search hero field[/#]
+- Added missing hero [#0099ff]Scratch[/#] to heroes page
+- fixed Stalker class name
+- added [#bf3eff]Unique Vi Motoko Kusanagi[/#] skin preview
+
 # v1.0 Official Release!
 
 > 18.07.2026
