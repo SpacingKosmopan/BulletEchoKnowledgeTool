@@ -1,6 +1,6 @@
 .article-author {
   border: 1px solid rgb(4, 66, 107);
-  border-radius: 5px;
+  border-radius: 0px;
   margin: 5px;
   background-color: #09f;
   display: block;
@@ -8,4 +8,71 @@
   height: 30px;
   text-align: center;
   align-content: center;
+  clip-path: polygon(0% 0%, 100% 0%, calc(100% - 15px) 100%, 0% 100%);
+  position: relative; /* rquired for ::after */
+}
+
+.article-author::after {
+  content: "";
+  display: block; /* required for d-block */
+  height: 10px;
+  width: 40px;
+  background-color: rgb(72, 194, 255);
+  z-index: 10;
+  clip-path: polygon(0% 0%, 100% 0%, calc(100% - 5px) 100%, 0% 100%);
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+#hero-articles-container {
+  background-color: rgb(0, 31, 52);
+  padding: 25px;
+  line-height: 1.6;
+}
+
+#hero-articles-container p {
+  font-family: "Roboto", "Helvetica Neue", Arial, sans-serif;
+  font-weight: 300;
+  color: #e0e0e0;
+  font-size: 1.3rem;
+}
+
+#hero-articles-container strong {
+  color: #ffffff;
+  letter-spacing: 0.06rem;
+}
+
+#hero-articles-container li {
+  margin-left: 40px;
+}
+
+#hero-articles-container li::marker {
+  font-family: "Roboto", "Helvetica Neue", Arial, sans-serif;
+  font-size: 1.3rem;
+}
+
+#hero-articles-container h1,
+#hero-articles-container h2,
+#hero-articles-container h3,
+#hero-articles-container h4 {
+  letter-spacing: 0.1rem;
+  margin-left: 20px;
+  text-decoration: underline;
+}
+
+#hero-articles-container h1 {
+  font-size: 2rem;
+}
+
+#hero-articles-container h2 {
+  font-size: 1.6rem;
+}
+
+#hero-articles-container img {
+  display: inline-block;
+  max-height: 280px;
+  max-width: 100%;
+  box-shadow: 5px 5px 10px black;
+  margin: 10px;
 }
