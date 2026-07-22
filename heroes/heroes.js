@@ -11,7 +11,7 @@ const medkitTypes = {
       "Increases health and decreases movement loudness for some time",
   },
   TeamRecovery: {
-    name: "TeamRecovery",
+    name: "Team Recovery",
     description: "Increases health and armor every second",
   },
   BattleKit: {
@@ -168,7 +168,8 @@ export const heroes = [
     faction: "Force and Arms",
     class: "Scout",
     abilityName: "Scan",
-    abilityDescription: "-",
+    abilityDescription:
+      "Reveals the location of enemies withing range, increases weapon damage against revealed heroes",
     medkitType: medkitTypes.Stim,
   },
   {
@@ -272,7 +273,8 @@ export const heroes = [
     faction: "Force and Arms",
     class: "Enforcer",
     abilityName: "Scan",
-    abilityDescription: "-",
+    abilityDescription:
+      "Reveals the location of enemies withing range, increases weapon damage against revealed heroes",
     medkitType: medkitTypes.TeamRecovery,
   },
   {
