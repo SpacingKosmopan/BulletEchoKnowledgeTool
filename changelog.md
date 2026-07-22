@@ -1,3 +1,9 @@
+# v1.2 Hero Skins Update
+
+> 22.07.2026
+
+Updated look of skins in Heroes Page so they are more consistent
+
 # v1.1 QOL
 
 > 21.07.2026

@@ -30,6 +30,10 @@
   transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
+.content-card img.zoom {
+  height: 450px;
+}
+
 /* mesh (HUD Grid) */
 .content-card::before {
   content: "";
