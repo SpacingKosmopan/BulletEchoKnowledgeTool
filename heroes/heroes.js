@@ -421,7 +421,7 @@ function generateHeroesCards() {
           <img src="../classes/${hero.class.toLowerCase()}.webp" alt="${hero.class}-icon">
         </div>
         <div class="unique-skin-star ${hero.hasUniqueSkin ? "" : "hidden"}" title="Unique Skin"></div>
-        <img src="../skins/${hero.name.toLowerCase()}.png" alt="${hero.name}-card" class="content-image hero-content-image">
+          <img src="../skins/${hero.name.toLowerCase()}.png" alt="${hero.name}-card" class="content-image hero-content-image zoom">
         <div class="content-card-name">${hero.name}</div>
     `;
     heroesCardsContainer.appendChild(heroCard);
