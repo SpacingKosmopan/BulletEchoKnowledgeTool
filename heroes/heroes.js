@@ -11,9 +11,8 @@ const medkitTypes = {
       "Increases health and decreases movement loudness for some time",
   },
   TeamRecovery: {
-    name: "Bandage",
-    description:
-      "Increases health every second, decreases incoming damage, allows hero to shoot while healing",
+    name: "TeamRecovery",
+    description: "Increases health and armor every second",
   },
   BattleKit: {
     name: "Battle Kit",
@@ -22,7 +21,8 @@ const medkitTypes = {
   },
   TeamHealing: {
     name: "Team Healing",
-    description: "Increases health and armor every second",
+    description:
+      "Increases health every second, decreases incoming damage, allows hero to shoot while healing",
   },
 };
 
