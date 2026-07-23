@@ -525,9 +525,9 @@ const getHeroPanelHTML = (hero) => `
   const heroArticleHeader = document.querySelector("#hero-article-header");
 
   if (!heroParam) {
-    backToHeroesButton.classList.add("hidden");
-    goToArticleButton.classList.add("hidden");
-    heroArticleHeader.innerHTML = ``;
+    if (backToHeroesButton) backToHeroesButton.classList.add("hidden");
+    if (goToArticleButton) goToArticleButton.classList.add("hidden");
+    if (heroArticleHeader) heroArticleHeader.innerHTML = ``;
 
     if (cardsContainer) cardsContainer.classList.remove("hidden");
     if (heroContentContainer) heroContentContainer.innerHTML = ``;
@@ -607,18 +607,6 @@ const getHeroPanelHTML = (hero) => `
             </div>`
               : ""
           }
-
-        <div class="cyber-badge-row">
-          <div class="cyber-icon-frame frame-cyan">
-            <img src="../classes/${hero.class.toLowerCase()}.webp" alt="${hero.class}" />
-            <div class="frame-corner"></div>
-          </div>
-          <div class="cyber-icon-frame frame-magenta">
-            <img src="../factions/${hero.faction.toLowerCase()}.webp" alt="${hero.faction}" />
-            <div class="frame-corner"></div>
-          </div>
-        </div>
-      </div>
 
               <div class="cyber-badge-row">
                 <div class="cyber-icon-frame frame-cyan">

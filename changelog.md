@@ -1,3 +1,21 @@
+# v1.3 Hero Tips and Tricks - Cyclops
+
+> 23.07.2026
+
+All the functions and variables are finally ready to start writing [#ffaa00]Heroes Tips and Tricks Articles[/#]! And one is already ready...
+
+## Cyclops Guide
+
+In this update [#0E873B]Cyclops Guide[/#] was added, which was written by [#ffaa00]Kokumi[/#]! Thank you really much for your help (from all the players) and I hope, that many more hero guides will apear on this webpage soon 😊
+
+Read it here: https://spacingkosmopan.github.io/BulletEchoKnowledgeTool/heroes/?hero=cyclops
+
+## Other changes
+
+- Added "Go to article button". This one and "Go back to heroes" button will disappear if no hero is selected
+- Added Scan ability description
+- Fixed Team Recovery and Team Healing descriptions
+
 # v1.2 Hero Skins Update
 
 > 22.07.2026
