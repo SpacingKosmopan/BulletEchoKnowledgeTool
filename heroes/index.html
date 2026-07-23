@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="../styles/stripped_rectangle.css" />
     <link rel="stylesheet" href="../styles/scifi_hud.css" />
     <link rel="stylesheet" href="../styles/content_card.css" />
+    <link rel="stylesheet" href="./article.css" />
 
     <link
       rel="stylesheet"
@@ -229,12 +230,18 @@
           </div>
           <div id="content-cards"></div>
           <div id="hero-content"></div>
-        </div>
 
-        <div class="shape-container">
-          <div class="trimmed-rectangle"></div>
-          <div class="after-stripe op-7"></div>
-          <div class="after-stripe op-4"></div>
+          <div class="shape-container">
+            <div class="trimmed-rectangle"></div>
+            <div class="after-stripe op-7"></div>
+            <div class="after-stripe op-4"></div>
+          </div>
+
+          <div id="hero-article">
+            <h1 id="hero-article-header" style="margin: 20px auto"></h1>
+            <hr />
+            <div id="hero-articles-container"></div>
+          </div>
         </div>
       </main>
 
@@ -243,8 +250,20 @@
           ><i class="bi bi-house-fill"></i> Home</stripe-button
         >
 
-        <stripe-button href="index.html">
+        <stripe-button
+          href="index.html"
+          class="hidden"
+          id="back-to-heroes-button"
+        >
           <i class="bi bi-arrow-return-left"></i> Back to heroes
+        </stripe-button>
+
+        <stripe-button
+          href="#hero-article"
+          class="hidden"
+          id="go-to-hero-article-button"
+        >
+          <i class="bi bi-arrow-down"></i> Go to article
         </stripe-button>
       </aside>
     </div>
@@ -262,6 +281,7 @@
       </p>
     </footer>
 
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <script src="../back_to_top_btn.js"></script>
     <script type="module" src="heroes.js"></script>
   </body>

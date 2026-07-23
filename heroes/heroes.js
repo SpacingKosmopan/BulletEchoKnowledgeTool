@@ -11,9 +11,8 @@ const medkitTypes = {
       "Increases health and decreases movement loudness for some time",
   },
   TeamRecovery: {
-    name: "Bandage",
-    description:
-      "Increases health every second, decreases incoming damage, allows hero to shoot while healing",
+    name: "Team Recovery",
+    description: "Increases health and armor every second",
   },
   BattleKit: {
     name: "Battle Kit",
@@ -22,7 +21,8 @@ const medkitTypes = {
   },
   TeamHealing: {
     name: "Team Healing",
-    description: "Increases health and armor every second",
+    description:
+      "Increases health every second, decreases incoming damage, allows hero to shoot while healing",
   },
 };
 
@@ -174,7 +174,8 @@ export const heroes = [
     faction: "Force and Arms",
     class: "Scout",
     abilityName: "Scan",
-    abilityDescription: "-",
+    abilityDescription:
+      "Reveals the location of enemies withing range, increases weapon damage against revealed heroes",
     medkitType: medkitTypes.Stim,
   },
   {
@@ -278,7 +279,8 @@ export const heroes = [
     faction: "Force and Arms",
     class: "Enforcer",
     abilityName: "Scan",
-    abilityDescription: "-",
+    abilityDescription:
+      "Reveals the location of enemies withing range, increases weapon damage against revealed heroes",
     medkitType: medkitTypes.TeamRecovery,
   },
   {
@@ -351,6 +353,11 @@ heroes.sort((a, b) => {
   return a.name.localeCompare(b.name);
 });
 
+const articlesContainer = document.querySelector("#hero-articles-container");
+const CMS_URL =
+  "https://eu-west-2.cdn.hygraph.com/content/cmrkl6g0n00c707wg6463avuw/master";
+
+const heroesCardsContainer = document.querySelector("#content-cards");
 const heroFilterWrapper = document.querySelector("#hero-filter-wrapper");
 
 let classFilter = "";
@@ -386,7 +393,6 @@ if (searchHeroInput)
   });
 
 function generateHeroesCards() {
-  const heroesCardsContainer = document.querySelector("#content-cards");
   if (!heroesCardsContainer) return;
 
   heroesCardsContainer.innerHTML = "";
@@ -511,11 +517,26 @@ const getHeroPanelHTML = (hero) => `
   const cardsContainer = document.querySelector("#content-cards");
   const heroContentContainer = document.querySelector("#hero-content");
 
+  const backToHeroesButton = document.querySelector("#back-to-heroes-button");
+  const goToArticleButton = document.querySelector(
+    "#go-to-hero-article-button",
+  );
+
+  const heroArticleHeader = document.querySelector("#hero-article-header");
+
   if (!heroParam) {
+    backToHeroesButton.classList.add("hidden");
+    goToArticleButton.classList.add("hidden");
+    heroArticleHeader.innerHTML = ``;
+
     if (cardsContainer) cardsContainer.classList.remove("hidden");
     if (heroContentContainer) heroContentContainer.innerHTML = ``;
     if (heroFilterWrapper) heroFilterWrapper.classList.remove("hidden");
     return;
+  } else {
+    backToHeroesButton.classList.remove("hidden");
+    goToArticleButton.classList.remove("hidden");
+    heroArticleHeader.innerHTML = `${heroParam.toUpperCase()} tips and tricks`;
   }
 
   cardsContainer.classList.add("hidden");
@@ -530,52 +551,51 @@ const getHeroPanelHTML = (hero) => `
     if (currentHero.hasUniqueSkin) {
       const hero = currentHero;
       heroContentContainer.innerHTML += `<div class="bullet-echo-container">
-  <div class="cyber-panel">
-    <div class="cyber-grid-bg"></div>
-    <div class="cyber-corner-accent top-left"></div>
-    <div class="cyber-corner-accent bottom-right"></div>
-    
-    <!-- stars -->
-    <div class="cyber-sparkle sparkle-1"></div>
-    <div class="cyber-sparkle sparkle-2"></div>
-    <div class="cyber-sparkle sparkle-3"></div>
-    <div class="cyber-sparkle sparkle-4"></div>
-    <div class="cyber-sparkle sparkle-5"></div>
-    <div class="cyber-sparkle sparkle-6"></div>
+        <div class="cyber-panel">
+          <div class="cyber-grid-bg"></div>
+          <div class="cyber-corner-accent top-left"></div>
+          <div class="cyber-corner-accent bottom-right"></div>
 
-    <div class="cyber-header">
-      <div class="cyber-title-area">
-        <h1 class="cyber-hero-name">Unique ${hero.uniqueSkinName} Skin</h1>
-        <div class="cyber-tag-wrapper">
-          <span class="cyber-tag tag-cyan">${hero.faction}</span>
-          <span class="cyber-tag tag-magenta">${hero.class}</span>
-        </div>
-      </div>
-      <div class="cyber-deco-bar"></div>
-    </div>
+          <!-- stars -->
+          <div class="cyber-sparkle sparkle-1"></div>
+          <div class="cyber-sparkle sparkle-2"></div>
+          <div class="cyber-sparkle sparkle-3"></div>
+          <div class="cyber-sparkle sparkle-4"></div>
+          <div class="cyber-sparkle sparkle-5"></div>
+          <div class="cyber-sparkle sparkle-6"></div>
 
-    <div class="cyber-body">
-      <div class="cyber-info-lane">
-        <div class="cyber-card card-cyan">
-          <div class="cyber-card-indicator"></div>
-          <div class="cyber-card-header">
-            <span class="cyber-dot-active"></span>
-            <h2>ABILITY</h2>
+          <div class="cyber-header">
+            <div class="cyber-title-area">
+              <h1 class="cyber-hero-name">Unique ${hero.uniqueSkinName} Skin</h1>
+              <div class="cyber-tag-wrapper">
+                <span class="cyber-tag tag-cyan">${hero.faction}</span>
+                <span class="cyber-tag tag-magenta">${hero.class}</span>
+              </div>
+            </div>
+            <div class="cyber-deco-bar"></div>
           </div>
-          <img src="${hero.uniqueSkinAbilityImage}" alt="unique_ability_image" />
-          <div class="cyber-sub-bar"></div>
-        </div>
 
-        <div class="cyber-card card-magenta">
-          <div class="cyber-card-indicator"></div>
-          <div class="cyber-card-header">
-            <span class="cyber-dot-active pink-glow"></span>
-            <h2>PREVIEW</h2>
-          </div>
-          <img src="${hero.uniqueSkinGifSrc}" alt="unique_skin_presentation">
-          <div class="cyber-sub-bar"></div>
-        </div>
+          <div class="cyber-body">
+            <div class="cyber-info-lane">
+              <div class="cyber-card card-cyan">
+                <div class="cyber-card-indicator"></div>
+                <div class="cyber-card-header">
+                  <span class="cyber-dot-active"></span>
+                  <h2>ABILITY</h2>
+                </div>
+                <img src="${hero.uniqueSkinAbilityImage}" alt="unique_ability_image" />
+                <div class="cyber-sub-bar"></div>
+              </div>
 
+              <div class="cyber-card card-magenta">
+                <div class="cyber-card-indicator"></div>
+                <div class="cyber-card-header">
+                  <span class="cyber-dot-active pink-glow"></span>
+                  <h2>PREVIEW</h2>
+                </div>
+                <img src="${hero.uniqueSkinGifSrc}" alt="unique_skin_presentation">
+                <div class="cyber-sub-bar"></div>
+              </div>
 
           ${
             hero.uniqueSkinExtraInfo
@@ -600,31 +620,116 @@ const getHeroPanelHTML = (hero) => `
         </div>
       </div>
 
-      <div class="cyber-display-lane">
-        <div class="cyber-viewshield">
-          
-          <div class="cyber-moon-aura"></div>
-          
-          <img 
-            src="../skins/unique_${hero.name.toLocaleLowerCase()}.png" 
-            alt="${hero.name}" 
-            class="cyber-render-img" 
-          />
-          
-          <div class="cyber-tech-pedestal">
-            <div class="pedestal-core"></div>
-            <div class="pedestal-ring"></div>
+              <div class="cyber-badge-row">
+                <div class="cyber-icon-frame frame-cyan">
+                  <img src="../classes/${hero.class.toLowerCase()}.webp" alt="${hero.class}" />
+                  <div class="frame-corner"></div>
+                </div>
+                <div class="cyber-icon-frame frame-magenta">
+                  <img src="../factions/${hero.faction.toLowerCase()}.webp" alt="${hero.faction}" />
+                  <div class="frame-corner"></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="cyber-display-lane">
+              <div class="cyber-viewshield">
+
+                <div class="cyber-moon-aura"></div>
+
+                <img 
+                  src="../skins/unique_${hero.name.toLocaleLowerCase()}.png" 
+                  alt="${hero.name}" 
+                  class="cyber-render-img" 
+                />
+
+                <div class="cyber-tech-pedestal">
+                  <div class="pedestal-core"></div>
+                  <div class="pedestal-ring"></div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
-  </div>
-</div>`;
+      </div>`;
     }
   } else if (heroContentContainer) {
     heroContentContainer.innerHTML = `<div class="error">Hero not found</div>`;
   }
+
+  articlesContainer.innerHTML = ``;
+  getAllArticles(currentHero);
 })();
 
+async function getAllArticles(currentHero) {
+  const query = `
+    query GetArticles {
+      posts {
+        slug
+      }
+    }
+  `;
+
+  try {
+    const data = await queryCMS(query);
+
+    if (!data || !data.posts || data.posts.length === 0) {
+      console.log("No articles found.");
+      articlesContainer.innerHTML += /*html*/ `<p>This hero doesn't have an article <u>YET</u></p>`;
+      return;
+    }
+
+    let count = 0;
+    data.posts.forEach((article) => {
+      if (article.slug.includes(currentHero.name.toLowerCase())) {
+        showArticle(article.slug);
+        count++;
+      }
+    });
+    if (count === 0)
+      articlesContainer.innerHTML += /*html*/ `<p>This hero doesn't have an article <u>YET</u></p>`;
+  } catch (error) {
+    console.error("Error downloading articles:", error);
+  }
+}
+
+async function queryCMS(query, variables = {}) {
+  const response = await fetch(CMS_URL, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ query, variables }),
+  });
+  const json = await response.json();
+  return json.data;
+}
+
+async function showArticle(searchedSlug) {
+  const query = `
+    query GetPost($slug: String!) {
+      post(where: {slug: $slug}) {
+        title
+        mdContent
+        author
+      }
+    }
+  `;
+
+  try {
+    const data = await queryCMS(query, { slug: searchedSlug });
+
+    if (!data || !data.post) {
+      console.log(`Article "${searchedSlug}" not found.`);
+      articlesContainer.innerHTML = "<h2>Error 404: Article not found.</h2>";
+      return;
+    }
+    articlesContainer.innerHTML += `
+      <span class="article-author">by ${data.post?.author}</span>
+      <article>${marked.parse(data.post.mdContent)}</article>
+    `;
+  } catch (error) {
+    console.error("Downloading error:", error);
+    articlesContainer.innerHTML = "Couldn't load content.";
+  }
+}
 window.setClassFilter = setClassFilter;
 window.setFactionFilter = setFactionFilter;
