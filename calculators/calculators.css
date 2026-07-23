@@ -1,17 +1,3 @@
-.calculations-box {
-  background-color: #1f2937;
-  border-left: 4px solid #3b82f6;
-  border-radius: 6px;
-  padding: 1rem;
-  margin: 1rem 0;
-  font-family: monospace;
-  font-size: 1.1rem;
-  line-height: 1.6;
-  color: #e5e7eb;
-  letter-spacing: 0.5px;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2);
-}
-
 /** FORM **/
 #main-container {
   display: flex;
@@ -19,8 +5,12 @@
   flex-wrap: nowrap;
   justify-content: center;
   align-items: flex-start;
-  gap: 0;
+  gap: 20px;
   width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  box-sizing: border-box;
+  padding: 20px;
 }
 
 .bekt-panel {
@@ -32,11 +22,12 @@
   color: #e2e8f0;
   box-shadow: 0 0 20px rgba(0, 255, 102, 0.1);
 
-  max-width: 500px;
+  max-width: 540px;
   width: 100%;
   margin: 20px 10px;
   opacity: 1;
   transform: scale(1);
+  box-sizing: border-box;
 
   transition:
     max-width 0.5s cubic-bezier(0.4, 0, 0.2, 1),
@@ -56,6 +47,20 @@
   margin-top: 0;
 }
 
+.calculations-box {
+  background-color: #1f2937;
+  border-left: 4px solid #3b82f6;
+  border-radius: 6px;
+  padding: 1rem;
+  margin: 1rem 0;
+  font-family: monospace;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #e5e7eb;
+  letter-spacing: 0.5px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2);
+}
+
 .bekt-section-header {
   background-color: #111827;
   color: #ffaa00;
@@ -68,17 +73,27 @@
   font-size: 0.9rem;
 }
 
-.bekt-form {
+/* * FORM * */
+
+.bekt-form-grid {
   display: flex;
-  flex-direction: column;
-  gap: 12px;
-  grid-template-areas: "stack";
+  flex-direction: column; /* Przeprojektowano z sztywnego grida na elastyczny pionowy flex */
+  gap: 20px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.bekt-selects-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+  width: 100%;
 }
 
 .bekt-form-group {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 6px;
 }
 
 .bekt-form-group label {
@@ -128,7 +143,7 @@
   justify-content: flex-end;
   margin-top: 25px;
   padding-top: 15px;
-  border-top: 1px solid #e2e8f0;
+  border-top: 1px solid #1a2233;
 }
 
 .bekt-btn {
@@ -348,29 +363,25 @@
 }
 
 select[name^="upgrade-hero"] {
-  appearance: none; /* no deafult arrow */
+  appearance: none; /* no default arrow */
   -webkit-appearance: none;
   -moz-appearance: none;
 
   width: 100%;
-  max-width: 250px;
   padding: 12px 40px 12px 16px;
-
   background-color: #121e25;
   border: 2px solid #00e5ff;
   border-radius: 4px;
-
   color: #ffffff;
   font-size: 14px;
   font-weight: 500;
   text-transform: uppercase;
   letter-spacing: 1px;
-
   box-shadow:
     0 0 10px rgba(0, 229, 255, 0.2),
     inset 0 0 5px rgba(0, 229, 255, 0.1);
+  box-sizing: border-box;
 
-  /* custom arrow */
   background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://w3.org' width='100' height='100' fill='%2300e5ff'><polygon points='0,30 100,30 50,80'/></svg>");
   background-repeat: no-repeat;
   background-position: right 15px center;
@@ -392,36 +403,53 @@ select[name^="upgrade-hero"]:focus {
 
 select[name^="upgrade-hero"] option {
   text-transform: uppercase;
-  font-weight: normal;
+  background-color: #121e25;
+  color: #ffffff;
   padding: 10px;
-  color: #000000;
+}
+
+.bekt-cards-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 25px; /* Odstęp między kartą bazową a kartą końcową */
+  width: 100%;
+  margin-top: 10px;
+}
+
+.hero-svg-base {
+  display: block;
+  width: 200px;
+  height: 300px;
+  flex-shrink: 0;
 }
 
 #final-hero-level-svg-container {
-  display: inline-block;
+  display: block;
   position: relative;
   width: 200px;
   height: 300px;
+  flex-shrink: 0;
 }
 
 .hero-main-svg {
   display: block;
+  width: 200px;
+  height: 300px;
   position: relative;
   z-index: 2;
 }
 
+/* * divine border * */
+
 .divine-border {
   position: absolute;
   z-index: 3;
-
   top: -10px;
   left: -10px;
-  right: -10px;
-  bottom: -10px;
-
   width: 220px;
   height: 320px;
-
   pointer-events: none;
 }
 
@@ -442,6 +470,7 @@ select[name^="upgrade-hero"] option {
 }
 
 /* responsivness */
+
 @media (max-width: 1024px) {
   #main-container {
     flex-direction: column;
@@ -460,6 +489,20 @@ select[name^="upgrade-hero"] option {
     display: flex;
     flex-direction: column;
     gap: 0;
+  }
+}
+
+@media (max-width: 520px) {
+  .bekt-selects-wrapper {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .bekt-cards-container {
+    gap: 10px;
+    transform: scale(0.8);
+    transform-origin: center center;
+    margin: -25px 0;
   }
 }
 

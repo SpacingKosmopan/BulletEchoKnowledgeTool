@@ -4,6 +4,8 @@
   gap: 16px;
   align-items: center;
   justify-content: center;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .be-neon-button {
@@ -13,7 +15,6 @@
   padding: 0 24px;
   cursor: pointer;
   outline: none;
-
   border-radius: 0;
 
   display: inline-flex;
@@ -38,11 +39,10 @@
   font-weight: bold;
   letter-spacing: 0.3rem;
   text-transform: uppercase;
-
   margin: 0;
-
   position: relative;
   z-index: 1;
+  white-space: nowrap;
 }
 
 .be-neon-button::before {
@@ -86,4 +86,17 @@
 
 .be-neon-button:active {
   transform: scale(0.97);
+}
+
+@media (max-width: 600px) {
+  .be-btn-container {
+    flex-direction: column;
+    width: 100%;
+    gap: 12px;
+  }
+
+  .be-neon-button {
+    width: 100%;
+    max-width: 340px;
+  }
 }
