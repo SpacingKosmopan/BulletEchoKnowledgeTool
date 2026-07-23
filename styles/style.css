@@ -32,7 +32,7 @@ body {
 /** TEXT **/
 
 .info-icon img {
-  height: 1.2rem;
+  height: 1.2rem !important;
   margin: auto 5px;
 }
 
@@ -185,7 +185,7 @@ summary::-webkit-details-marker {
   display: none;
 }
 
-summary::after {
+summary.show-arrow::after {
   content: "▼";
   font-size: 0.8rem;
   transition: transform 0.2s ease;
@@ -247,6 +247,40 @@ details[open] summary::after {
 .dropdown-content > * {
   opacity: 0;
   transform: translateY(-8px);
+}
+
+.dropdown-image-icon {
+  margin: auto 0;
+  padding: 0;
+}
+
+.dropdown-image-icon img {
+  margin: auto 0;
+  width: 35px;
+}
+
+#hero-filter-wrapper {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+  gap: 20px;
+  align-items: center;
+}
+
+.filter-type-element {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.filter-type-element p {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 5px;
 }
 
 details[open] .dropdown-content > * {
@@ -703,6 +737,36 @@ html {
   z-index: 5;
 }
 
+.changelog-wrapper {
+  margin: 0;
+  padding: 0;
+}
+
+.update-tag {
+  position: absolute;
+  margin-top: 4px;
+  right: 5%;
+  font-size: 0.85rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: #ffffff;
+
+  background: linear-gradient(135deg, #ff1100 0%, #ff6600 50%, #ffcc00 100%);
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
+  box-shadow: 0 4px 15px rgba(255, 34, 0, 0.4);
+
+  padding: 6px 16px;
+
+  clip-path: polygon(10px 0%, 100% 0%, calc(100% - 10px) 100%, 0% 100%);
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+
+  z-index: 5;
+}
+
 .news-box:hover .news-tag {
   transform: scale(1.05) translateY(-2px);
   box-shadow: 0 6px 20px rgba(255, 68, 0, 0.7);
@@ -785,4 +849,48 @@ html {
     width: 100%;
     height: 160px;
   }
+}
+
+/* * back-to-top button * */
+.back-to-top {
+  position: fixed;
+  bottom: 20px;
+  z-index: 99;
+  border: none;
+  outline: none;
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+  padding: 15px 20px;
+  border-radius: 50%;
+  font-size: 18px;
+  font-weight: bold;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition:
+    opacity 0.3s,
+    transform 0.3s;
+  opacity: 0;
+  pointer-events: none;
+}
+
+@media (max-width: 899px) {
+  .back-to-top {
+    left: 20px;
+  }
+}
+
+@media (min-width: 900px) {
+  .back-to-top {
+    right: 20px;
+  }
+}
+
+.back-to-top:hover {
+  background-color: #0056b3;
+  transform: translateY(-3px);
+}
+
+.back-to-top.show {
+  opacity: 1;
+  pointer-events: auto;
 }

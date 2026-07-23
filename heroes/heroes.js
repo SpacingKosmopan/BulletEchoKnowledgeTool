@@ -105,6 +105,12 @@ export const heroes = [
     abilityName: "Shadow Step",
     abilityDescription: "-",
     medkitType: medkitTypes.TeamHealing,
+    hasUniqueSkin: true,
+    uniqueSkinName: "Motoko Kusanagi",
+    uniqueSkinGifSrc: "../skins/unique_vi_gif.gif",
+    uniqueSkinAbilityImage: "../skins/unique_vi_ability.png",
+    uniqueSkinExtraInfo:
+      "This skin was obtainable only during limited-time collaboration with Ghost in the Shell: SAC_2045 (June 2026)",
   },
   {
     name: "Tess",
@@ -125,7 +131,7 @@ export const heroes = [
   {
     name: "Stalker",
     faction: "Renegades",
-    class: "Sniper",
+    class: "Trooper",
     abilityName: "Invisibility",
     abilityDescription: "-",
     medkitType: medkitTypes.TeamHealing,
@@ -325,6 +331,14 @@ export const heroes = [
     abilityDescription: "-",
     medkitType: medkitTypes.TeamRecovery,
   },
+  {
+    name: "Scratch",
+    faction: "Skytech Megacorp",
+    class: "Enforcer",
+    abilityName: "Throwing Shield",
+    abilityDescription: "-",
+    medkitType: medkitTypes.TeamRecovery,
+  },
 ];
 export const newestHeroName = "Flynt";
 
@@ -344,13 +358,61 @@ const CMS_URL =
   "https://eu-west-2.cdn.hygraph.com/content/cmrkl6g0n00c707wg6463avuw/master";
 
 const heroesCardsContainer = document.querySelector("#content-cards");
+const heroFilterWrapper = document.querySelector("#hero-filter-wrapper");
+
+let classFilter = "";
+let factionFilter = "";
+let heroNameFilter = "";
+
+const factionFilterText = document.querySelector("#faction-text");
+const classFilterText = document.querySelector("#class-text");
+
+function setClassFilter(filter) {
+  classFilter = filter;
+  generateHeroesCards();
+  classFilterText.innerHTML = `Class: ${classFilter}`;
+}
+function setFactionFilter(filter) {
+  factionFilter = filter;
+  generateHeroesCards();
+  factionFilterText.innerHTML = `Faction: ${factionFilter}`;
+}
+
+const classFilterDetails = document.querySelector(
+  "#hero-filter-class-dropdown",
+);
+const factionFilterDetails = document.querySelector(
+  "#hero-filter-faction-dropdown",
+);
+
+const searchHeroInput = document.querySelector("#search-hero-input");
+if (searchHeroInput)
+  searchHeroInput.addEventListener("input", (e) => {
+    heroNameFilter = searchHeroInput.value.trim();
+    generateHeroesCards();
+  });
 
 function generateHeroesCards() {
   if (!heroesCardsContainer) return;
 
   heroesCardsContainer.innerHTML = "";
 
-  heroes.forEach((hero) => {
+  let filteredHeroes = heroes;
+  if (classFilter !== "")
+    filteredHeroes = filteredHeroes.filter(
+      (h) => h.class.toLocaleLowerCase() === classFilter.toLowerCase(),
+    );
+  if (factionFilter !== "")
+    filteredHeroes = filteredHeroes.filter(
+      (h) =>
+        h.faction.toLocaleLowerCase() === factionFilter.toLocaleLowerCase(),
+    );
+  if (heroNameFilter !== "")
+    filteredHeroes = filteredHeroes.filter((h) =>
+      h.name.toLocaleLowerCase().includes(heroNameFilter.toLocaleLowerCase()),
+    );
+
+  filteredHeroes.forEach((hero) => {
     const heroCard = document.createElement("div");
     heroCard.className = "content-card";
     if (newestHeroName === hero.name) heroCard.classList.add("new-hero");
@@ -359,14 +421,13 @@ function generateHeroesCards() {
       window.location.href = `index.html?hero=${hero.name.toLowerCase()}`;
     });
 
-    // Dodano pojemnik .content-card-badge ze zdjęciem klasy bohatera
     heroCard.innerHTML = `
     <div class="new-hero-tag">NEW</div> 
         <div class="content-card-badge">
           <img src="../classes/${hero.class.toLowerCase()}.webp" alt="${hero.class}-icon">
         </div>
         <div class="unique-skin-star ${hero.hasUniqueSkin ? "" : "hidden"}" title="Unique Skin"></div>
-        <img src="../skins/${hero.name.toLowerCase()}.png" alt="${hero.name}-card" class="content-image hero-content-image">
+          <img src="../skins/${hero.name.toLowerCase()}.png" alt="${hero.name}-card" class="content-image hero-content-image zoom">
         <div class="content-card-name">${hero.name}</div>
     `;
     heroesCardsContainer.appendChild(heroCard);
@@ -470,6 +531,7 @@ const getHeroPanelHTML = (hero) => `
 
     if (cardsContainer) cardsContainer.classList.remove("hidden");
     if (heroContentContainer) heroContentContainer.innerHTML = ``;
+    if (heroFilterWrapper) heroFilterWrapper.classList.remove("hidden");
     return;
   } else {
     backToHeroesButton.classList.remove("hidden");
@@ -477,7 +539,8 @@ const getHeroPanelHTML = (hero) => `
     heroArticleHeader.innerHTML = `${heroParam.toUpperCase()} tips and tricks`;
   }
 
-  if (cardsContainer) cardsContainer.classList.add("hidden");
+  cardsContainer.classList.add("hidden");
+  heroFilterWrapper.classList.add("hidden");
 
   const currentHero = heroes.find(
     (h) => h.name.toLowerCase() === heroParam.toLowerCase(),
@@ -533,6 +596,29 @@ const getHeroPanelHTML = (hero) => `
                 <img src="${hero.uniqueSkinGifSrc}" alt="unique_skin_presentation">
                 <div class="cyber-sub-bar"></div>
               </div>
+
+          ${
+            hero.uniqueSkinExtraInfo
+              ? `<div class="cyber-card card-cyan">
+              <div class="cyber-card-indicator"></div>
+              <p><span class="info-icon"><img src="../images/info_icon.png" /></span>
+                ${hero.uniqueSkinExtraInfo}
+              </p>
+            </div>`
+              : ""
+          }
+
+        <div class="cyber-badge-row">
+          <div class="cyber-icon-frame frame-cyan">
+            <img src="../classes/${hero.class.toLowerCase()}.webp" alt="${hero.class}" />
+            <div class="frame-corner"></div>
+          </div>
+          <div class="cyber-icon-frame frame-magenta">
+            <img src="../factions/${hero.faction.toLowerCase()}.webp" alt="${hero.faction}" />
+            <div class="frame-corner"></div>
+          </div>
+        </div>
+      </div>
 
               <div class="cyber-badge-row">
                 <div class="cyber-icon-frame frame-cyan">
@@ -645,3 +731,5 @@ async function showArticle(searchedSlug) {
     articlesContainer.innerHTML = "Couldn't load content.";
   }
 }
+window.setClassFilter = setClassFilter;
+window.setFactionFilter = setFactionFilter;
