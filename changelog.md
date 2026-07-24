@@ -1,3 +1,14 @@
+# v1.4 Page Responsiveness
+
+> 24.07.2026
+
+- Improved [#FF0000]page responsiveness on mobile devices[/#]
+  - Moved menu from bottom to top
+  - Made many, <u>MANY</u> things fit into the screen (this should have been made earlier but I didn't have enough time before release on the birthday stream)
+- Updated look of [#95CBF5]audio player[/#] in "Guess the hero" minigame
+
+<span class="info-icon"><img src="../images/info_icon.png" /></span>Because I don't have access to all phone types and all browsers, I can't tell if page works fine everywhere the same. That's why I ask you to leave feeback and bug reports, if anything is working not as it should. Or just looks bad.
+
 # v1.3 Hero Tips and Tricks - Cyclops
 
 > 23.07.2026

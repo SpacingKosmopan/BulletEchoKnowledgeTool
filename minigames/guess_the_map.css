@@ -4,13 +4,6 @@
   justify-content: center;
 }
 
-canvas {
-  display: block;
-  max-height: 450px;
-  width: auto;
-  height: 100%;
-}
-
 input[type="range"] {
   width: 250px;
   cursor: pointer;
@@ -32,4 +25,5 @@ button:disabled {
 
 #fragment-image {
   max-height: 430px;
+  max-width: 100%;
 }

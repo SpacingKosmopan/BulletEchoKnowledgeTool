@@ -436,8 +436,8 @@ function generateHeroesCards() {
 
 generateHeroesCards();
 
-//! UPDATE
-const getHeroPanelHTML = (hero) => `
+//! REGULAR HERO PANEL
+const getHeroPanelHTML = (hero) => /*html*/ `
 <div class="hero-info-container">
   <div class="panel-wrapper">
     <div class="character-panel">
@@ -452,7 +452,6 @@ const getHeroPanelHTML = (hero) => `
                 <img
                   src="../classes/${hero.class.toLowerCase()}.webp"
                   alt="${hero.class}-icon"
-                  class="smaller"
                 />
               </div>
             </div>
@@ -463,7 +462,6 @@ const getHeroPanelHTML = (hero) => `
                 <img
                   src="../factions/${hero.faction.toLowerCase()}.webp"
                   alt="${hero.faction}-icon"
-                  class="bigger"
                 />
               </div>
             </div>
@@ -507,7 +505,6 @@ const getHeroPanelHTML = (hero) => `
     </div>
   </div>
 </div>
-
 `;
 
 (async () => {
@@ -550,7 +547,8 @@ const getHeroPanelHTML = (hero) => `
     heroContentContainer.innerHTML = getHeroPanelHTML(currentHero);
     if (currentHero.hasUniqueSkin) {
       const hero = currentHero;
-      heroContentContainer.innerHTML += `<div class="bullet-echo-container">
+      //! UNIQUE HERO PANEL
+      heroContentContainer.innerHTML += /*html*/ `<div class="unique-skin-container">
         <div class="cyber-panel">
           <div class="cyber-grid-bg"></div>
           <div class="cyber-corner-accent top-left"></div>
@@ -566,7 +564,9 @@ const getHeroPanelHTML = (hero) => `
 
           <div class="cyber-header">
             <div class="cyber-title-area">
-              <h1 class="cyber-hero-name">Unique ${hero.uniqueSkinName} Skin</h1>
+              <h1 class="cyber-hero-name">
+                Unique ${hero.uniqueSkinName} Skin
+              </h1>
               <div class="cyber-tag-wrapper">
                 <span class="cyber-tag tag-cyan">${hero.faction}</span>
                 <span class="cyber-tag tag-magenta">${hero.class}</span>
@@ -583,7 +583,10 @@ const getHeroPanelHTML = (hero) => `
                   <span class="cyber-dot-active"></span>
                   <h2>ABILITY</h2>
                 </div>
-                <img src="${hero.uniqueSkinAbilityImage}" alt="unique_ability_image" />
+                <img
+                  src="${hero.uniqueSkinAbilityImage}"
+                  alt="unique_ability_image"
+                />
                 <div class="cyber-sub-bar"></div>
               </div>
 
@@ -593,28 +596,37 @@ const getHeroPanelHTML = (hero) => `
                   <span class="cyber-dot-active pink-glow"></span>
                   <h2>PREVIEW</h2>
                 </div>
-                <img src="${hero.uniqueSkinGifSrc}" alt="unique_skin_presentation">
+                <img
+                  src="${hero.uniqueSkinGifSrc}"
+                  alt="unique_skin_presentation"
+                />
                 <div class="cyber-sub-bar"></div>
               </div>
 
-          ${
-            hero.uniqueSkinExtraInfo
-              ? `<div class="cyber-card card-cyan">
+              ${
+                hero.uniqueSkinExtraInfo
+                  ? `<div class="cyber-card card-cyan">
               <div class="cyber-card-indicator"></div>
               <p><span class="info-icon"><img src="../images/info_icon.png" /></span>
                 ${hero.uniqueSkinExtraInfo}
               </p>
             </div>`
-              : ""
-          }
+                  : ""
+              }
 
               <div class="cyber-badge-row">
                 <div class="cyber-icon-frame frame-cyan">
-                  <img src="../classes/${hero.class.toLowerCase()}.webp" alt="${hero.class}" />
+                  <img
+                    src="../classes/${hero.class.toLowerCase()}.webp"
+                    alt="${hero.class}"
+                  />
                   <div class="frame-corner"></div>
                 </div>
                 <div class="cyber-icon-frame frame-magenta">
-                  <img src="../factions/${hero.faction.toLowerCase()}.webp" alt="${hero.faction}" />
+                  <img
+                    src="../factions/${hero.faction.toLowerCase()}.webp"
+                    alt="${hero.faction}"
+                  />
                   <div class="frame-corner"></div>
                 </div>
               </div>
@@ -622,13 +634,12 @@ const getHeroPanelHTML = (hero) => `
 
             <div class="cyber-display-lane">
               <div class="cyber-viewshield">
-
                 <div class="cyber-moon-aura"></div>
 
-                <img 
-                  src="../skins/unique_${hero.name.toLocaleLowerCase()}.png" 
-                  alt="${hero.name}" 
-                  class="cyber-render-img" 
+                <img
+                  src="../skins/unique_${hero.name.toLocaleLowerCase()}.png"
+                  alt="${hero.name}"
+                  class="cyber-render-img"
                 />
 
                 <div class="cyber-tech-pedestal">
