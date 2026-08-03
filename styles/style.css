@@ -58,6 +58,7 @@ h1 {
 
 a {
   color: white;
+  word-break: break-all;
 }
 
 a[target="_blank"]::after {

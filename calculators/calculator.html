@@ -717,6 +717,54 @@
           </div>
 
           <div
+            id="drone-upgrade-cost-panel"
+            class="bekt-panel hidden trans-1-eio"
+          >
+            <h1 class="bekt-title">Drone upgrade cost calculator</h1>
+            <p>Select drone</p>
+            <div id="drone-select">
+              <img
+                src="../skins/drones/medpro.png"
+                alt="medpro"
+                id="medpro-image"
+                onclick="handleDroneSelect('Medpro')"
+              /><img
+                src="../skins/drones/agent.png"
+                alt="agent"
+                id="agent-image"
+                onclick="handleDroneSelect('Agent')"
+              /><img
+                src="../skins/drones/phantom.png"
+                alt="phantom"
+                id="phantom-image"
+                onclick="handleDroneSelect('Phantom')"
+              /><img
+                src="../skins/drones/zenith.png"
+                alt="zenith"
+                id="zenith-image"
+                onclick="handleDroneSelect('Zenith')"
+              /><img
+                src="../skins/drones/guard.png"
+                alt="guard"
+                id="guard-image"
+                onclick="handleDroneSelect('Guard')"
+              />
+            </div>
+            <br />
+            <p>Select base and final level</p>
+            <form id="drone-upgrade-cost-form" class="bekt-form-grid">
+              <select
+                name="upgrade-drone-base-level"
+                id="upgrade-drone-base-level"
+              ></select>
+              <select
+                name="upgrade-drone-final-level"
+                id="upgrade-drone-final-level"
+              ></select>
+            </form>
+          </div>
+
+          <div
             id="gear-upgrade-cost-panel"
             class="bekt-panel hidden trans-1-eio"
           >
@@ -852,7 +900,7 @@
       </p>
     </footer>
 
-    <script src="calculators.js"></script>
+    <script type="module" src="calculators.js"></script>
     <script src="../back_to_top_btn.js"></script>
   </body>
 </html>

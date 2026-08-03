@@ -71,7 +71,7 @@ Let's build the best knowledge base together!
 
 [#FF7034]Good luck on the battlefield[/#] and see you in the game!
 
-# Credits
+<h1 id="credits">Credits</h1>
 
 [#FF343E]RogueNinja[/#] - Deathglow Lynx Skin presentation - https://www.youtube.com/shorts/pcmg15ZL6hM<br>
 [#FF343E]ꪶ𒁍ᦔ-ＳＨＡＤＯＷ࿋[/#] - Padre Ramsay Skin presentation<br>
