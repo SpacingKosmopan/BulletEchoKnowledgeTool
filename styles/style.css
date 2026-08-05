@@ -808,10 +808,10 @@ html {
     border-color 0.2s ease;
   clip-path: polygon(
     0 0,
-    95% 0,
+    calc(100% - 20px) 0,
     100% 20px,
     100% 100%,
-    5% 100%,
+    20px 100%,
     0 calc(100% - 20px)
   );
 }
@@ -819,7 +819,7 @@ html {
 .news-tag {
   position: absolute;
   top: 10px;
-  left: 15px;
+  right: 25px;
   font-size: 0.85rem;
   font-weight: 900;
   text-transform: uppercase;
@@ -913,8 +913,8 @@ html {
 }
 
 .news-box-image {
-  width: 140px;
-  height: 90px;
+  height: 130px;
+  width: auto;
   object-fit: cover;
   border: 2px solid #26354a;
   clip-path: polygon(
