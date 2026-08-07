@@ -77,7 +77,6 @@ async function getAllNews() {
       return;
     }
 
-    console.log(data.allNews);
 
     data.allNews.forEach((news) => {
       const imageHTML = news.displayImageLink
