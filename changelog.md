@@ -1,6 +1,15 @@
-# v1.5
+# v1.5 Drone Upgrade Cost calculator and Mod Upgrade Tree improvement
 
-> XX.XX.2026
+> 07.08.2026
+
+In this update [#0099ff]Drone Upgrade Cost Calculator[/#] was added, which was possible thanks to [#ffaa00]DOM ZER0[/#]! Thank you really much for your help!
+
+You can now check how many <u>blueprints, cubes and plugins</u> you need to upgrade your drone to desired level. But that's not all!
+
+## Changes
+
+- Improved [#bf3eff]Mod Upgrade Cost calculator[/#]. It looks a little bit better, and now you can select more than one upgrade, that you want to buy!
+- Added word break to links in changelog, so they are better visible on mobile devices
 
 # v1.4 Page Responsiveness
 
