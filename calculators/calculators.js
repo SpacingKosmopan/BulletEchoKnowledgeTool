@@ -164,6 +164,7 @@ const tierColors = [
   "#fec901", // divine gold id=11
 ];
 
+//#region hero
 // * HERO UPGRADE COST * //
 
 function getHeroUpgradeCost(
@@ -602,87 +603,61 @@ DOMforms.heroUpgradeCost.form.addEventListener("submit", (e) => {
   e.preventDefault();
 });
 
+//#endregion
+
+//#region mods
+
 // * MOD UPGRADE COST * //
 const modsCost = [100, 50, 150, 250, 500];
 
-/**
- * calculates amount of coils needed to acquire specific level of weapon mod
- * @param {*} 1-5
- * @returns amount of coils needed to acquire specific level of weapon mod
- */
-function calculateModUpgradeCost(wantedLevel) {
-  if (wantedLevel < 1 || wantedLevel > 5) return 0;
-
+function calculateModUpgradeCost() {
   let totalCost = 0;
 
-  if (wantedLevel === 5) {
-    const branchCost = modsCost[0] + modsCost[1] + modsCost[2] + modsCost[3];
-    totalCost = 3 * branchCost + modsCost[4];
-  } else {
-    for (let i = 0; i < wantedLevel; i++) {
-      totalCost += modsCost[i];
-    }
+  for (let t = 0; t <= 4; t++) {
+    totalCost += activeTracks[t].length * modsCost[t];
   }
 
   return totalCost;
 }
 
 // * LEVEL TREE * //
-let activeTracks = { 0: null, 1: null, 2: null, 3: null, 4: null };
+let activeTracks = { 0: [], 1: [], 2: [], 3: [], 4: [] };
 
-function handleSkillSelection(tier, position) {
-  const cost = calculateModUpgradeCost(tier + 1);
-  DOM.resultPanel.innerHTML = `Cost: ${cost} <img src="./images/resources/coils.webp" class="resource-result-image">`;
+window.handleSkillSelection = function (tier, position) {
+  // 1. Zmiana stanu – dodaj lub usuń tylko ten jeden kliknięty element
+  const index = activeTracks[tier].indexOf(position);
+  if (index > -1) {
+    activeTracks[tier].splice(index, 1); // Jeśli był zaznaczony -> odznacz
+  } else {
+    activeTracks[tier].push(position); // Jeśli nie był zaznaczony -> zaznacz
+  }
 
-  activeTracks = { 0: null, 1: null, 2: null, 3: null, 4: null };
+  // 2. Obliczenie kosztu za pomocą dedykowanej funkcji
+  const totalCost = calculateModUpgradeCost();
+  DOM.resultPanel.innerHTML = `Cost: ${totalCost} <img src="./images/resources/coils.webp" class="resource-result-image">`;
+
+  // 3. Renderowanie – reset i podświetlenie aktywnych hexagonów
   document
     .querySelectorAll(".hexagon")
     .forEach((h) => h.classList.remove("active"));
 
-  if (tier === 0) {
-    activeTracks[0] = position;
-  } else if (tier === 1) {
-    activeTracks[0] = position;
-    activeTracks[1] = position;
-  } else if (tier === 2) {
-    activeTracks[0] = position;
-    activeTracks[1] = position;
-    activeTracks[2] = position;
-  } else if (tier === 3) {
-    activeTracks[0] = position;
-    activeTracks[1] = position;
-    activeTracks[2] = position;
-    activeTracks[3] = position;
-  } else if (tier === 4) {
-    activeTracks[0] = "all";
-    activeTracks[1] = "all";
-    activeTracks[2] = "all";
-    activeTracks[3] = "all";
-    activeTracks[4] = position;
-  }
-
   for (let t = 0; t <= 4; t++) {
-    const currentTrack = activeTracks[t];
-    if (!currentTrack) continue;
-
     const row = document.getElementById(`tier-${t}`);
     if (!row) continue;
 
-    if (currentTrack === "all") {
-      row
-        .querySelectorAll(".hexagon")
-        .forEach((h) => h.classList.add("active"));
-    } else {
+    activeTracks[t].forEach((currentTrack) => {
       const targetHex = row.querySelector(
         `.hexagon[onclick*="'${currentTrack}'"]`,
       );
       if (targetHex) {
         targetHex.classList.add("active");
       }
-    }
+    });
   }
+
+  // 4. Odświeżenie linii łączących
   refreshAllLines();
-}
+};
 
 function refreshAllLines() {
   const tier0Lines = ["line-left-0", "line-mid-0", "line-right-0"];
@@ -698,49 +673,41 @@ function refreshAllLines() {
     else el.classList.remove(className);
   };
 
+  // Resetowanie wszystkich linii przed nałożeniem nowych klas
   tier0Lines.forEach((id) => setClass(id, "active-gray", false));
   tier1Lines.forEach((id) => setClass(id, "active-green", false));
   tier2Lines.forEach((id) => setClass(id, "active-blue", false));
   tier3Lines.forEach((id) => setClass(id, "active-yellow", false));
   tier4Paths.forEach((id) => setClass(id, "active-orange", false));
 
-  // --- Tier 0 (Gray) ---
-  if (activeTracks[0] === "all") {
-    tier0Lines.forEach((id) => setClass(id, "active-gray", true));
-  } else if (activeTracks[0]) {
-    setClass(`line-${activeTracks[0]}-0`, "active-gray", true);
-  }
-
-  // --- Tier 1 (Green) ---
-  if (activeTracks[1] === "all") {
-    tier1Lines.forEach((id) => setClass(id, "active-green", true));
-  } else if (activeTracks[1]) {
-    setClass(`line-${activeTracks[1]}-1`, "active-green", true);
-  }
-
-  // --- Tier 2 (Blue) ---
-  if (activeTracks[2] === "all") {
-    tier2Lines.forEach((id) => setClass(id, "active-blue", true));
-  } else if (activeTracks[2]) {
-    setClass(`line-${activeTracks[2]}-2`, "active-blue", true);
-  }
-
-  // --- Tier 3 (Yellow) ---
-  if (activeTracks[3] === "all") {
-    tier3Lines.forEach((id) => setClass(id, "active-yellow", true));
-  } else if (activeTracks[3]) {
-    setClass(`line-${activeTracks[3]}-3`, "active-yellow", true);
-  }
+  // --- Tier 0-3: Sprawdzanie tablicy i podświetlanie pasujących linii ---
+  activeTracks[0].forEach((pos) =>
+    setClass(`line-${pos}-0`, "active-gray", true),
+  );
+  activeTracks[1].forEach((pos) =>
+    setClass(`line-${pos}-1`, "active-green", true),
+  );
+  activeTracks[2].forEach((pos) =>
+    setClass(`line-${pos}-2`, "active-blue", true),
+  );
+  activeTracks[3].forEach((pos) =>
+    setClass(`line-${pos}-3`, "active-yellow", true),
+  );
 
   // --- Tier 4 (Orange) ---
-  if (activeTracks[4] === "final-1") {
+  if (activeTracks[4].includes("final-1")) {
     setClass("path-final-1", "active-orange", true);
     setClass("path-final-2", "active-orange", true);
-  } else if (activeTracks[4] === "final-2") {
+  }
+  if (activeTracks[4].includes("final-2")) {
     setClass("path-final-1", "active-orange", true);
     setClass("path-final-4", "active-orange", true);
   }
 }
+
+//#endregion
+
+//#region gears
 
 // * GEAR UPGRADE COST * //
 DOMforms.gearUpgradeCost.form.addEventListener("submit", (e) => {
@@ -839,6 +806,10 @@ DOMforms.dmgToEnemy.form.addEventListener("submit", (e) => {
   `;
 });
 
+//#endregion
+
+//#region density
+
 // * DENSITY * //
 //TODO
 DOMforms.density.form.addEventListener("submit", (e) => {
@@ -861,6 +832,8 @@ DOMforms.density.form.addEventListener("submit", (e) => {
     inputValues.dmgPerShot * inputValues.armorPenetration * 100;
   const modifiedDmgToHealth = plainDmgToHealth * inputValues.healthDmgMod;
 });
+
+//#endregion
 
 //#region drone UC
 const droneBaseLevelSelect = DOM.droneUpgradeCostPanel.querySelector(
