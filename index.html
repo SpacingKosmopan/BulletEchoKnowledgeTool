@@ -58,32 +58,7 @@
     <div class="page-wrapper">
       <main>
         <div class="container">
-          <section class="news">
-            <div class="news-box" style="grid-column: 1 / -1">
-              <div class="new-box-info">
-                <span class="news-tag">🔥 News</span>
-                <h2>🔺ECHO ARENA🔺 - THE BIGGEST TOURNAMENT!</h2>
-                <p>
-                  Think your squad has what it takes to compete against the
-                  best? <br />
-                  💵 Huge Prize Pool <br />🎮 High-level 3v3 competition<br />
-                  📺 Live streamed matches <br />⏰ Registration closes on
-                  August 16, so don't miss your chance! Gather your team And
-                  Secure A Spot Before It’s Too Late.😁 <br />🔗 Join &
-                  Register:
-                  <a href="https://discord.gg/qEzWmgDS2r"
-                    >https://discord.gg/qEzWmgDS2r</a
-                  >
-                </p>
-              </div>
-
-              <img
-                src="./images/echo_arena.png"
-                alt="echo arena"
-                class="news-box-image"
-              />
-            </div>
-
+          <section id="news">
             <!--<div class="news-box">
               <div class="new-box-info">
                 <span class="news-tag">🔥 News</span>
@@ -105,26 +80,6 @@
                   alt="new hero trailer thumbnail"
                   class="news-box-image"
               /></a>
-            </div>
-
-            <div class="news-box">
-              <div class="new-box-info">
-                <span class="news-tag">🔥 News</span>
-                <h2>New June update is out!</h2>
-                <p>
-                  Read changelog here:
-                  <a
-                    href="https://zepto.helpshift.com/hc/en/10-bullet-echo/faq/1565-july-2026-new-season-new-hero/"
-                    target="_blank"
-                    >Read</a
-                  >
-                </p>
-              </div>
-              <img
-                src="./images/paradise_season.webp"
-                alt="new update thumbnail"
-                class="news-box-image"
-              />
             </div>
 
             <div class="news-box">
@@ -241,7 +196,7 @@
             <stripe-button id="calculators-text">Calculators</stripe-button>
           </summary>
           <nav class="dropdown-content" id="calculators-pages">
-            <stripe-button
+            <!--<stripe-button
               href="./calculators/calculator.html?type=density"
               color="#0066BB"
               >Density</stripe-button
@@ -258,7 +213,7 @@
               href="./calculators/calculator.html?type=hero_power"
               color="#0066BB"
               >Hero power</stripe-button
-            >
+            >-->
             <stripe-button
               href="./calculators/calculator.html?type=hero_upgrade"
               color="#0066BB"
@@ -305,7 +260,8 @@
         </details>
 
         <div id="changelog-wrapper">
-          <stripe-button href="./changelog.html">Changelog</stripe-button
+          <stripe-button href="./changelog.html"
+            >Changelog / Credits</stripe-button
           ><span
             class="update-tag hidden"
             id="changelog-update-tag"
@@ -380,7 +336,7 @@
       };
 
       const lastUpdate = localStorage.getItem("current-version");
-      const NEWEST_VERSION = "1.4";
+      const NEWEST_VERSION = "1.5";
 
       if (isNewerVersion(lastUpdate, NEWEST_VERSION)) {
         document
