@@ -53,6 +53,8 @@ if (calculatorType === "damage_to_enemy") {
   showPanel(DOM.modUpgradeCostPanel);
   DOM.resultPanel.innerHTML = `<p>Click desired mod to check how many <u>coils</u> and which <u>previous tiers</u> you need to get this upgrade</p>`;
   DOM.infoTipPanel.innerHTML = `
+   <p><span class="info-icon"><img src="../images/info_icon.png" /></span>If you want to buy some mod, you need to unlock all the previous ones first (they are above the one you want). If you want to buy the last, mythic mod, you need to unlock <u>all 3 columns</u> first.</p>
+<br />
    <p><span class="info-icon"><img src="../images/info_icon.png" /></span>Remember, that every mod (except for common ones) give both <span class="green-span">buffs</span> and <span class="red-span">debuffs</span> to your weapon. Remember to make your modbuild compatible with your gearbuild!</p>`;
   //* hero upgrade
 } else if (calculatorType === "hero_upgrade") {
@@ -624,19 +626,16 @@ function calculateModUpgradeCost() {
 let activeTracks = { 0: [], 1: [], 2: [], 3: [], 4: [] };
 
 window.handleSkillSelection = function (tier, position) {
-  // 1. Zmiana stanu – dodaj lub usuń tylko ten jeden kliknięty element
   const index = activeTracks[tier].indexOf(position);
   if (index > -1) {
-    activeTracks[tier].splice(index, 1); // Jeśli był zaznaczony -> odznacz
+    activeTracks[tier].splice(index, 1);
   } else {
-    activeTracks[tier].push(position); // Jeśli nie był zaznaczony -> zaznacz
+    activeTracks[tier].push(position);
   }
 
-  // 2. Obliczenie kosztu za pomocą dedykowanej funkcji
   const totalCost = calculateModUpgradeCost();
   DOM.resultPanel.innerHTML = `Cost: ${totalCost} <img src="./images/resources/coils.webp" class="resource-result-image">`;
 
-  // 3. Renderowanie – reset i podświetlenie aktywnych hexagonów
   document
     .querySelectorAll(".hexagon")
     .forEach((h) => h.classList.remove("active"));
@@ -655,7 +654,6 @@ window.handleSkillSelection = function (tier, position) {
     });
   }
 
-  // 4. Odświeżenie linii łączących
   refreshAllLines();
 };
 
@@ -673,14 +671,12 @@ function refreshAllLines() {
     else el.classList.remove(className);
   };
 
-  // Resetowanie wszystkich linii przed nałożeniem nowych klas
   tier0Lines.forEach((id) => setClass(id, "active-gray", false));
   tier1Lines.forEach((id) => setClass(id, "active-green", false));
   tier2Lines.forEach((id) => setClass(id, "active-blue", false));
   tier3Lines.forEach((id) => setClass(id, "active-yellow", false));
   tier4Paths.forEach((id) => setClass(id, "active-orange", false));
 
-  // --- Tier 0-3: Sprawdzanie tablicy i podświetlanie pasujących linii ---
   activeTracks[0].forEach((pos) =>
     setClass(`line-${pos}-0`, "active-gray", true),
   );
