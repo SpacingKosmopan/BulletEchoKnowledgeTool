@@ -354,8 +354,6 @@ heroes.sort((a, b) => {
 });
 
 const articlesContainer = document.querySelector("#hero-articles-container");
-const CMS_URL =
-  "https://eu-west-2.cdn.hygraph.com/content/cmrkl6g0n00c707wg6463avuw/master";
 
 const heroesCardsContainer = document.querySelector("#content-cards");
 const heroFilterWrapper = document.querySelector("#hero-filter-wrapper");
@@ -691,6 +689,9 @@ async function getAllArticles(currentHero) {
     console.error("Error downloading articles:", error);
   }
 }
+
+const CMS_URL =
+  "https://eu-west-2.cdn.hygraph.com/content/cmrkl6g0n00c707wg6463avuw/master";
 
 async function queryCMS(query, variables = {}) {
   const response = await fetch(CMS_URL, {

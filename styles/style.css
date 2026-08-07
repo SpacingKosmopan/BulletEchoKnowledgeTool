@@ -785,7 +785,7 @@ html {
 
 /** NEWS SECTION **/
 
-.news {
+#news {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
   gap: 20px;
@@ -932,7 +932,7 @@ html {
 }
 
 @media (max-width: 576px) {
-  .news {
+  #news {
     grid-template-columns: 1fr;
   }
 
