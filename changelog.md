@@ -1,3 +1,7 @@
+# v1.5
+
+> XX.XX.2026
+
 # v1.4 Page Responsiveness
 
 > 24.07.2026
@@ -73,6 +77,7 @@ Let's build the best knowledge base together!
 
 <h1 id="credits">Credits</h1>
 
+[#FF343E]DOM ZER0[/#] - Drones Upgrade Cost <br>
 [#FF343E]RogueNinja[/#] - Deathglow Lynx Skin presentation - https://www.youtube.com/shorts/pcmg15ZL6hM<br>
 [#FF343E]ꪶ𒁍ᦔ-ＳＨＡＤＯＷ࿋[/#] - Padre Ramsay Skin presentation<br>
 

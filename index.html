@@ -260,7 +260,8 @@
         </details>
 
         <div id="changelog-wrapper">
-          <stripe-button href="./changelog.html">Changelog</stripe-button
+          <stripe-button href="./changelog.html"
+            >Changelog / Credits</stripe-button
           ><span
             class="update-tag hidden"
             id="changelog-update-tag"
@@ -335,7 +336,7 @@
       };
 
       const lastUpdate = localStorage.getItem("current-version");
-      const NEWEST_VERSION = "1.4";
+      const NEWEST_VERSION = "1.5";
 
       if (isNewerVersion(lastUpdate, NEWEST_VERSION)) {
         document

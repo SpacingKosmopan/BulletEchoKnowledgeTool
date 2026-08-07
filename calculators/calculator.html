@@ -751,8 +751,12 @@
               />
             </div>
             <br />
-            <p>Select base and final level</p>
+
             <form id="drone-upgrade-cost-form" class="bekt-form-grid">
+              <p style="grid-column: 1 / -1; justify-self: start">
+                Select base and final drone level
+              </p>
+
               <select
                 name="upgrade-drone-base-level"
                 id="upgrade-drone-base-level"
@@ -760,6 +764,19 @@
               <select
                 name="upgrade-drone-final-level"
                 id="upgrade-drone-final-level"
+              ></select>
+
+              <p style="grid-column: 1 / -1; justify-self: start">
+                Select base and final module level
+              </p>
+
+              <select
+                name="upgrade-module-base-level"
+                id="upgrade-module-base-level"
+              ></select>
+              <select
+                name="upgrade-module-final-level"
+                id="upgrade-module-final-level"
               ></select>
             </form>
           </div>

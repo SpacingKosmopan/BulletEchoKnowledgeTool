@@ -4,6 +4,7 @@ import {
   talentUpgradeCost,
   divineUpgradeCost,
   droneUpgradeCost,
+  moduleUpgradeCost,
 } from "./upgrade_cost.js";
 
 const urlParams = new URLSearchParams(window.location.search);
@@ -71,7 +72,7 @@ if (calculatorType === "damage_to_enemy") {
   showPanel(DOM.heroUpgradeCostPanel);
   //* drone upgrade
 } else if (calculatorType === "drone_upgrade") {
-  DOM.resultPanel.innerHTML = `<p style="font-size:25px;font-family:'Consolas'">This page is being prepared</p>`;
+  DOM.resultPanel.innerHTML = `<p>Select <u>drone</u>, <u>drone level</u> and <u>module level</u> to calculate required <u>drone blueprints</u>, <u>drone cubes</u> and <u>module plugins</u></p>`;
   DOM.infoTipPanel.innerHTML = `
   <p>
     Remember to wait until "<span class="blue-span">Drone Rush</span>" discount begins, so you can
@@ -869,18 +870,38 @@ const droneFinalLevelSelect = DOM.droneUpgradeCostPanel.querySelector(
   "#upgrade-drone-final-level",
 );
 
+const moduleBaseLevelSelect = DOM.droneUpgradeCostPanel.querySelector(
+  "#upgrade-module-base-level",
+);
+const moduleFinalLevelSelect = DOM.droneUpgradeCostPanel.querySelector(
+  "#upgrade-module-final-level",
+);
+
 function getDroneUpgradeCost() {
   const baseLevel = Number(droneBaseLevelSelect.value);
   const finalLevel = Number(droneFinalLevelSelect.value);
 
-  if (baseLevel < 0 || finalLevel > 20 || baseLevel >= finalLevel)
-    return { cubes: 0, blueprints: 0 };
+  const baseModuleLevel = Number(moduleBaseLevelSelect.value);
+  const finalModuleLevel = Number(moduleFinalLevelSelect.value);
 
-  if (selectedDrone === "") return { cubes: 0, blueprints: 0 };
+  if (
+    baseLevel < 0 ||
+    finalLevel > 20 ||
+    baseLevel >= finalLevel ||
+    baseModuleLevel < 0 ||
+    finalModuleLevel > 20 ||
+    baseModuleLevel >= finalModuleLevel
+  ) {
+    DOM.resultPanel.innerHTML = `Incorrect values`;
+    return { cubes: 0, blueprints: 0, plugins: 0 };
+  }
 
-  let cost = { cubes: 0, blueprints: 0 };
+  if (selectedDrone === "") return { cubes: 0, blueprints: 0, plugins: 0 };
+
+  let cost = { cubes: 0, blueprints: 0, plugins: 0 };
 
   const singleDroneUpgradeCost = droneUpgradeCost[selectedDrone];
+  const singleModuleUpgradeCost = moduleUpgradeCost[selectedDrone];
 
   for (let i = baseLevel; i < finalLevel; i++) {
     const upgrade = singleDroneUpgradeCost[i];
@@ -889,8 +910,19 @@ function getDroneUpgradeCost() {
     cost.blueprints += upgrade.blueprints;
   }
 
+  for (let i = baseModuleLevel; i < finalModuleLevel; i++) {
+    const upgrade = singleModuleUpgradeCost[i];
+
+    cost.plugins += upgrade;
+  }
+
   console.log({ cost });
-  DOM.resultPanel.innerHTML = /*html*/ `<p>${JSON.stringify(cost)}</p>`;
+  DOM.resultPanel.innerHTML = /*html*/ `
+    COST: 
+      ${cost.cubes} <img src="./images/resources/cube.webp" class="resource-result-image"> 
+      ${cost.blueprints} <img src="./images/resources/drone_cards.webp" class="resource-result-image">
+      ${cost.plugins} <img src="./images/resources/plugin.webp" class="resource-result-image">
+    `;
   return cost;
 }
 
@@ -919,18 +951,30 @@ window.handleDroneSelect = function (drone) {
 };
 
 for (let i = 0; i <= 20; i++) {
-  if (i < 20)
+  if (i < 20) {
     droneBaseLevelSelect.insertAdjacentHTML(
       "beforeend",
       `<option value=${i}>${i}</option>`,
     );
-  if (i > 0)
+    moduleBaseLevelSelect.insertAdjacentHTML(
+      "beforeend",
+      `<option value=${i}>${i}</option>`,
+    );
+  }
+  if (i > 0) {
     droneFinalLevelSelect.insertAdjacentHTML(
       "beforeend",
       `<option value=${i}>${i}</option>`,
     );
+    moduleFinalLevelSelect.insertAdjacentHTML(
+      "beforeend",
+      `<option value=${i}>${i}</option>`,
+    );
+  }
 }
 
 droneBaseLevelSelect.addEventListener("change", getDroneUpgradeCost);
 droneFinalLevelSelect.addEventListener("change", getDroneUpgradeCost);
+moduleBaseLevelSelect.addEventListener("change", getDroneUpgradeCost);
+moduleFinalLevelSelect.addEventListener("change", getDroneUpgradeCost);
 //#endregion
