@@ -1,0 +1,41 @@
+#card-opening-screen {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  backdrop-filter: blur(3px);
+  overflow: hidden;
+}
+
+#hero-roulette-card {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  height: 200px;
+  width: 100px;
+  background-color: blue;
+  transform: translate(-50%, 120vh);
+  transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+#hero-roulette-card.ready {
+  transform: translate(-50%, -50%) rotate(0deg) scale(1);
+}
+
+#hero-roulette-card.stage-1 {
+  transform: translate(-50%, -50%) rotate(-10deg) scale(1.1);
+}
+
+#hero-roulette-card.stage-2 {
+  transform: translate(-50%, -50%) rotate(15deg) scale(1.2);
+}
+
+#hero-roulette-card.stage-3 {
+  transform: translate(-50%, -50%) rotate(-20deg) scale(1.3);
+}
+
+#hero-roulette-card.stage-4 {
+  transform: translate(-50%, -50%) rotate(0deg) scale(1.5);
+}
