@@ -421,14 +421,29 @@ function generateHeroesCards() {
       window.location.href = `index.html?hero=${hero.name.toLowerCase()}`;
     });
 
+    const factionGlow =
+      hero.faction.toLowerCase() === "force and arms"
+        ? "green-neo-border-glow"
+        : hero.faction.toLowerCase() === "skytech megacorp"
+          ? "blue-neo-border-glow"
+          : hero.faction.toLowerCase() === "pyro"
+            ? "red-neo-border-glow"
+            : hero.faction.toLowerCase() === "renegades"
+              ? "purple-neo-border-glow"
+              : "";
+
     heroCard.innerHTML = `
     <div class="new-hero-tag">NEW</div> 
-        <div class="content-card-badge">
-          <img src="../classes/${hero.class.toLowerCase()}.webp" alt="${hero.class}-icon">
-        </div>
-        <div class="unique-skin-star ${hero.hasUniqueSkin ? "" : "hidden"}" title="Unique Skin"></div>
-          <img src="../skins/${hero.name.toLowerCase()}.png" alt="${hero.name}-card" class="content-image hero-content-image zoom">
-        <div class="content-card-name">${hero.name}</div>
+
+    <div class="content-card-badge">
+      <img src="../classes/${hero.class.toLowerCase()}.webp" alt="${hero.class}-icon">
+    </div>
+
+    <div class="unique-skin-star ${hero.hasUniqueSkin ? "" : "hidden"}" title="Unique Skin"></div>
+
+    <img src="../skins/${hero.name.toLowerCase()}.png" alt="${hero.name}-card" class="content-image hero-content-image zoom ${factionGlow}">
+
+    <div class="content-card-name">${hero.name}</div>
     `;
     heroesCardsContainer.appendChild(heroCard);
   });
