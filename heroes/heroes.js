@@ -177,6 +177,10 @@ export const heroes = [
     abilityDescription:
       "Reveals the location of enemies withing range, increases weapon damage against revealed heroes",
     medkitType: medkitTypes.Stim,
+    hasUniqueSkin: true,
+    uniqueSkinName: "Omen Raven",
+    uniqueSkinGifSrc: "../skins/unique_raven_gif.gif",
+    uniqueSkinAbilityImage: "../skins/unique_raven_ability.png",
   },
   {
     name: "Molly",
@@ -273,6 +277,10 @@ export const heroes = [
     abilityName: "Rocket",
     abilityDescription: "-",
     medkitType: medkitTypes.TeamHealing,
+    hasUniqueSkin: true,
+    uniqueSkinName: "Maneki Doc",
+    uniqueSkinGifSrc: "../skins/unique_doc_gif.gif",
+    uniqueSkinAbilityImage: "../skins/unique_doc_ability.png",
   },
   {
     name: "Cyclops",
@@ -636,6 +644,7 @@ const CMS_URL =
                   <img
                     src="../classes/${hero.class.toLowerCase()}.webp"
                     alt="${hero.class}"
+                    class="hero-class-icon"
                   />
                   <div class="frame-corner"></div>
                 </div>
@@ -643,6 +652,7 @@ const CMS_URL =
                   <img
                     src="../factions/${hero.faction.toLowerCase()}.webp"
                     alt="${hero.faction}"
+                    class="hero-faction-icon"
                   />
                   <div class="frame-corner"></div>
                 </div>

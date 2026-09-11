@@ -8,7 +8,7 @@ Added two missing unique skins preview: [#fc5929]Maneki Doc[/#] and [#88c158]Ome
 
 ## Visual Changes
 
-- Added heroes neon glow in Heroes Page
+- Added [#0099ff]heroes neon glow[/#] in Heroes Page
 - Dimmered white font in changelog
 - Made font smaller in changelog and heroes articles on mobile devices
 - Adjusted size of Faction and Class icons in Hero Page to be similar size
@@ -104,6 +104,7 @@ Let's build the best knowledge base together!
 [#FF343E]DOM ZER0[/#] - Drones Upgrade Cost <br>
 [#FF343E]RogueNinja[/#] - Deathglow Lynx Skin presentation - https://www.youtube.com/shorts/pcmg15ZL6hM<br>
 [#FF343E]ꪶ𒁍ᦔ-ＳＨＡＤＯＷ࿋[/#] - Padre Ramsay Skin presentation<br>
+[#FF343E]Crowbar[/#] - Maneki Doc Skin presentation<br>
 
 ---
 
