@@ -456,7 +456,6 @@ const getHeroPanelHTML = (hero) => /*html*/ `
     <div class="character-panel">
       <div class="panel-layout">
         
-
         <div class="left-column">
           <div class="badges-row">
             <div class="hexagon-glow-wrap left">
@@ -465,6 +464,7 @@ const getHeroPanelHTML = (hero) => /*html*/ `
                 <img
                   src="../classes/${hero.class.toLowerCase()}.webp"
                   alt="${hero.class}-icon"
+                  class="hero-class-icon"
                 />
               </div>
             </div>
@@ -475,6 +475,7 @@ const getHeroPanelHTML = (hero) => /*html*/ `
                 <img
                   src="../factions/${hero.faction.toLowerCase()}.webp"
                   alt="${hero.faction}-icon"
+                  class="hero-faction-icon"
                 />
               </div>
             </div>

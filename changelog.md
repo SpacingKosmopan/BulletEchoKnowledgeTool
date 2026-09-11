@@ -1,3 +1,18 @@
+# v1.6
+
+> XX.XX.2026
+
+## Unique Skins
+
+Added two missing unique skins preview: [#fc5929]Maneki Doc[/#] and [#88c158]Omen Raven[/#].
+
+## Visual Changes
+
+- Added heroes neon glow in Heroes Page
+- Dimmered white font in changelog
+- Made font smaller in changelog and heroes articles on mobile devices
+- Adjusted size of Faction and Class icons in Hero Page to be similar size
+
 # v1.5 Drone Upgrade Cost calculator and Mod Upgrade Tree improvement
 
 > 07.08.2026

@@ -1,6 +1,6 @@
 .markdown-body {
   line-height: 1.6;
-  color: white;
+  color: #eee;
   width: 100%;
   padding: 20px;
 }
@@ -122,4 +122,35 @@
 
 .markdown-body strong {
   font-weight: bold;
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+  .markdown-body {
+    padding: 12px;
+  }
+  .markdown-body h1 {
+    font-size: 1.6em;
+  }
+  .markdown-body h2 {
+    font-size: 1.4em;
+  }
+  .markdown-body h3 {
+    font-size: 1.3em;
+  }
+  .markdown-body h4 {
+    font-size: 1.2em;
+  }
+  .markdown-body p {
+    font-size: 1.1rem;
+  }
+  .markdown-body ul,
+  .markdown-body ol {
+    font-size: 1.2rem;
+  }
+  .markdown-body th,
+  .markdown-body td {
+    font-size: 0.85rem;
+    padding: 6px 8px;
+  }
 }
