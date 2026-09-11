@@ -16,9 +16,10 @@
 
 .markdown-body h1 {
   font-size: 2em;
-  border-top: 2px solid #eaecef;
+  border-top: 3px solid #09f;
   padding-bottom: 0.3em;
   padding-top: 0.3em;
+  background-color: #09f9;
 }
 .markdown-body h2 {
   font-size: 1.8em;

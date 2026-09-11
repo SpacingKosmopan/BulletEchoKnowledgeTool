@@ -35,6 +35,7 @@ if (calculatorType === "damage_to_enemy") {
   DOM.resultPanel.innerHTML = `<p style="font-size:25px;font-family:'Consolas'">This page is being prepared</p>`;
   //* gear upgrade
 } else if (calculatorType === "gear_upgrade") {
+  const dates = predictNextRush("gear_rush");
   showPanel(DOM.gearUpgradeCostPanel);
   DOM.resultPanel.innerHTML = `<p>Select <u>base and final levels</u> and <u>gear type</u> to calculate the amount of <u>nuts</u> and <u>gear copies</u> you need to upgrade</p>`;
   DOM.infoTipPanel.innerHTML = `<p>
@@ -42,7 +43,8 @@ if (calculatorType === "damage_to_enemy") {
     <span class="green-span">save up to 10%</span> on resources! The discount appears every 6
     weeks, and along with it - leaderboard and special road with
     rewards!
-  </p>
+  </p><br /><hr /><br />
+    <p>The last Gear Rush was on <span class="orange-span">${dates.last}</span>, and the next one will be 42 days later - on <span class="orange-span">${dates.next}</span> (note that the time is estimated)</p>
   <img
     src="./images/gear_rush.webp"
     alt="content-card"
@@ -58,6 +60,7 @@ if (calculatorType === "damage_to_enemy") {
    <p><span class="info-icon"><img src="../images/info_icon.png" /></span>Remember, that every mod (except for common ones) give both <span class="green-span">buffs</span> and <span class="red-span">debuffs</span> to your weapon. Remember to make your modbuild compatible with your gearbuild!</p>`;
   //* hero upgrade
 } else if (calculatorType === "hero_upgrade") {
+  const dates = predictNextRush("hero_rush");
   DOM.resultPanel.innerHTML =
     "<p>Select <u>level</u> and <u>tier</u> to calculate required <u>hero cards</u> and <u>coins</u></p>";
   DOM.infoTipPanel.innerHTML = `<p>
@@ -65,7 +68,8 @@ if (calculatorType === "damage_to_enemy") {
     <span class="green-span">save up to 20%</span> on resources! The discount appears every 6
     weeks, and along with it - leaderboard and special road with
     rewards!
-  </p>
+  </p><br /><hr /><br />
+    <p>The last Hero Rush was on <span class="orange-span">${dates.last}</span>, and the next one will be 42 days later - on <span class="orange-span">${dates.next}</span> (note that the time is estimated)</p>
   <img
     src="./images/hero_rush.webp"
     alt="content-card"
@@ -74,6 +78,7 @@ if (calculatorType === "damage_to_enemy") {
   showPanel(DOM.heroUpgradeCostPanel);
   //* drone upgrade
 } else if (calculatorType === "drone_upgrade") {
+  const dates = predictNextRush("drone_rush");
   DOM.resultPanel.innerHTML = `<p>Select <u>drone</u>, <u>drone level</u> and <u>module level</u> to calculate required <u>drone blueprints</u>, <u>drone cubes</u> and <u>module plugins</u></p>`;
   DOM.infoTipPanel.innerHTML = `
   <p>
@@ -81,7 +86,9 @@ if (calculatorType === "damage_to_enemy") {
     <span class="green-span">save up to 20%</span> on resources! The discount appears every 6
     weeks, and along with it - leaderboard and special road with
     rewards!
-  </p>
+  </p><br /><hr /><br />
+    <p>The last Drone Rush was on <span class="orange-span">${dates.last}</span>, and the next one will be 42 days later - on <span class="orange-span">${dates.next}</span> (note that the time is estimated)</p>
+  
   <img
     src="./images/drone_update.webp"
     alt="content-card"
@@ -111,6 +118,51 @@ if (calculatorType === "damage_to_enemy") {
 
 function showPanel(panel) {
   panel.classList.remove("hidden");
+}
+
+function predictNextRush(eventName) {
+  let cycleDays = 42;
+  const config = {
+    hero_rush: { lastBase: new Date(2026, 8, 5) }, // 05.09.2026
+    gear_rush: { lastBase: new Date(2026, 7, 9) }, // 09.08.2026
+    drone_rush: { lastBase: new Date(2026, 7, 22) }, // 22.08.2026
+  };
+
+  const event = config[eventName];
+
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+
+  const formatDate = (d) => {
+    const pad = (num) => String(num).padStart(2, "0");
+    const daysOfWeek = [
+      "Sunday",
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Tuesday",
+      "Friday",
+      "Saturday",
+    ];
+
+    const dateStr = `${pad(d.getDate())}.${pad(d.getMonth() + 1)}.${d.getFullYear()}`;
+    const dayName = daysOfWeek[d.getDay()];
+
+    return `${dateStr} (${dayName})`;
+  };
+
+  const nextDate = new Date(event.lastBase);
+  while (nextDate <= today) {
+    nextDate.setDate(nextDate.getDate() + cycleDays);
+  }
+
+  const lastDate = new Date(nextDate);
+  lastDate.setDate(lastDate.getDate() - cycleDays);
+
+  return {
+    last: formatDate(lastDate),
+    next: formatDate(nextDate),
+  };
 }
 
 // * FORMS * //

@@ -1,16 +1,24 @@
-# v1.6
+# v1.6 Quality of Life
 
 > XX.XX.2026
 
-## Unique Skins
+## ✨ Unique Skins
 
 Added two missing unique skins preview: [#fc5929]Maneki Doc[/#] and [#88c158]Omen Raven[/#].
 
-## Visual Changes
+## 📅 Rush Events date prediction
+
+Now you can check under three calculators (Drone, Gear and Hero upgrade cost calculator) when was [#FFC106]the last[/#], and when will be [#FFC106]the next[/#] Rush Event of each type
+
+<span class="info-icon"><img src="./images/info_icon.png" /></span>note that those are only estimated dates and the event may occur on different day. Check social media to stay up-to-date
+
+## 👀 Visual Changes
 
 - Added [#0099ff]heroes neon glow[/#] in Heroes Page
-- Dimmered white font in changelog
-- Made font smaller in changelog and heroes articles on mobile devices
+- Changelog page upgrade
+  - Dimmered white font in changelog
+  - Made font smaller in changelog and heroes articles on mobile devices
+  - Added better headings to separate updates
 - Adjusted size of Faction and Class icons in Hero Page to be similar size
 
 # v1.5 Drone Upgrade Cost calculator and Mod Upgrade Tree improvement
@@ -61,7 +69,7 @@ Read it here: https://spacingkosmopan.github.io/BulletEchoKnowledgeTool/heroes/?
 
 Updated look of skins in Heroes Page so they are more consistent
 
-# v1.1 QOL
+# v1.1 Quality of Life
 
 > 21.07.2026
 
