@@ -1,6 +1,6 @@
 # v1.6 Quality of Life
 
-> XX.XX.2026
+> 11.09.2026
 
 ## ✨ Unique Skins
 
