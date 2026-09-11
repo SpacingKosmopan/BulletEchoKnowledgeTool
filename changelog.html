@@ -34,6 +34,23 @@
     <script src="./stripe_button_component.js" defer></script>
     <!--! tally form -->
     <script async src="https://tally.so/widgets/embed.js"></script>
+
+    <!-- Open Graph Tags -->
+    <meta property="og:title" content="Bullet Echo Knowledge Tool (BEKT)" />
+    <meta
+      property="og:description"
+      content="Analyze stats, estimate upgrade costs, and test your knowledge with interactive mini-games! Site made by one of the Content Creators: Spacing"
+    />
+    <meta
+      property="og:url"
+      content="https://spacingkosmopan.github.io/BulletEchoKnowledgeTool"
+    />
+    <meta
+      property="og:image"
+      content="https://spacingkosmopan.github.io/BulletEchoKnowledgeTool/images/bullet_echo_knowledge_tool_site_image.webp"
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Bullet Echo Knowledge Tool" />
   </head>
   <body>
     <button id="backToTop" class="back-to-top" title="Back">↑</button>
@@ -67,6 +84,8 @@
       <aside>
         <stripe-button href="./index.html"
           ><i class="bi bi-house-fill"></i> Home</stripe-button
+        ><stripe-button href="#credits"
+          ><i class="bi bi-arrow-down"></i> Credits</stripe-button
         >
       </aside>
     </div>
@@ -90,10 +109,56 @@
       function parseCustomColors(text) {
         return text.replace(
           /\[(#(?:[0-9a-fA-F]{3}){1,2})\](.*?)\[(?:\/#|#(?:[0-9a-fA-F]{3}){1,2})\]/g,
+          // _ - cały dopasowany ciąg znaków
+          // color - pierwsza zmienna z grupy przechwytującej
+          // content - druga zmienna z grupy przechwytującej
           (_, color, content) =>
             `<span style="color: ${color}">${content}</span>`,
         );
       }
+
+      /*
+/\[(#(?:[0-9a-fA-F]{3}){1,2})\](.*?)\[(?:\/#|#(?:[0-9a-fA-F]{3}){1,2})\]/g
+
+/                 - znak rozpoczęcia
+  \[              - otwarcie [
+  (               - początek grupy przechwytujacej                          < PIERWSZA - kolor tekstu (var color)
+  #                 - znak #
+    (?:             - grupa bez przechwytywania
+      [               - otwarcie klasy znaków
+        0-9a-fA-F     - cyfra, mała lub duża litera (system szesnastkowy)
+      ]               - zamknięcie klasy znaków
+      {3}             - kwantyfikator (powtórzenie n, tu: 3 razy) (abc)
+    )               - koniec grupy bez przechwytywania
+    {1,2}           - jedno lub dwa powtórzena (abc lub abcdef)
+  )               - koniec grupy przechwytującej
+  \]              - zamknięcie ]                                            > PIERWSZA - kolor tekstu
+  (               - grupa przechwytująca                                    < DRUGA - tekst (var content)
+    .               - dowolny pojedynczy znak
+    *               - zero lub więcej powtórzeń
+    ?               - Modyfikator leniwy (lazy/ungreedy). Zmusza gwiazdkę * do dopasowania jak najmniejszej liczby znaków. Zatrzymuje się, gdy tylko napotka następną część wzorca (znacznik zamykający).
+  )               - koniec grupy przechwytującej                            > DRUGA - tekst
+  \[              - otwarcie [
+  (?:             - grupa bez przechwycenia (zamknięcie)      nie zapamiętujemy
+    \/              - znak /
+    #               - znak # (do zamknięcia /#)
+    |               - lub
+    #               - znak # (do zamknięcia #hex trój or sześcio znakowy)
+    (?:             - grupa bez przechwycenia                 nie zapamiętujemy
+      [0-9a-fA-F]     - klasa znaków
+      {3}             - kwantyfikator
+    )               - koniec grupy bez przechwycenia
+    {1,2}           - jedno lub dwa powtózenia
+  )               - koniec grupy bez przechwycenia
+  \]            - znak zamknięcie ]
+/               - zakończenie wzorca wyszukiwania
+g               - Flaga globalna (global). Wyszukuje i podmienia wszystkie pasujące dopasowania w tekście, a nie tylko pierwsze z nich.
+
+          /////
+
+przechwycenie       : wzięcie tekstu i wpakowanie do zmiennej
+bez przechwycenia   : zwykłe pogrupowanie znaków
+          */
 
       async function loadMd() {
         const res = await fetch("changelog.md");
@@ -123,7 +188,7 @@
       };
 
       const lastUpdate = localStorage.getItem("current-version");
-      const NEWEST_VERSION = "1.4";
+      const NEWEST_VERSION = "1.5";
 
       if (isNewerVersion(lastUpdate, NEWEST_VERSION)) {
         localStorage.setItem("current-version", NEWEST_VERSION);

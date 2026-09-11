@@ -32,6 +32,23 @@
     <link rel="manifest" href="../site.webmanifest" />
 
     <script src="../stripe_button_component.js" defer></script>
+
+     <!-- Open Graph Tags -->
+    <meta property="og:title" content="Bullet Echo Knowledge Tool (BEKT)" />
+    <meta
+      property="og:description"
+      content="Analyze stats, estimate upgrade costs, and test your knowledge with interactive mini-games! Site made by one of the Content Creators: Spacing"
+    />
+    <meta
+      property="og:url"
+      content="https://spacingkosmopan.github.io/BulletEchoKnowledgeTool"
+    />
+    <meta
+      property="og:image"
+      content="https://spacingkosmopan.github.io/BulletEchoKnowledgeTool/images/bullet_echo_knowledge_tool_site_image.webp"
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Bullet Echo Knowledge Tool" />
   </head>
   <body>
     <button id="backToTop" class="back-to-top" title="Back">↑</button>
@@ -481,38 +498,33 @@
               <!-- Connecting SVG Paths -->
               <svg
                 class="lines"
-                viewBox="0 0 380 600"
+                viewBox="0 0 100 100"
                 preserveAspectRatio="none"
               >
-                <!--
-                M 69,430 (Move to)
-                L 69,460 (Line to)
-                -->
-                <!-- gray -->
-                <line id="line-left-0" x1="69" y1="50" x2="69" y2="136" />
-                <line id="line-mid-0" x1="187" y1="50" x2="187" y2="136" />
-                <line id="line-right-0" x1="305" y1="50" x2="305" y2="136" />
+                <!-- left column -->
+                <line id="line-left-0" x1="19" y1="10.5" x2="19" y2="28.5" />
+                <line id="line-left-1" x1="19" y1="28.5" x2="19" y2="46.5" />
+                <line id="line-left-2" x1="19" y1="46.5" x2="19" y2="64.5" />
+                <line id="line-left-3" x1="19" y1="64.5" x2="19" y2="71.5" />
 
-                <!-- green -->
-                <line id="line-left-1" x1="69" y1="136" x2="69" y2="243" />
-                <line id="line-mid-1" x1="187" y1="136" x2="187" y2="243" />
-                <line id="line-right-1" x1="305" y1="136" x2="305" y2="243" />
+                <!-- middle column -->
+                <line id="line-mid-0" x1="50" y1="10.5" x2="50" y2="28.5" />
+                <line id="line-mid-1" x1="50" y1="28.5" x2="50" y2="46.5" />
+                <line id="line-mid-2" x1="50" y1="46.5" x2="50" y2="64.5" />
+                <line id="line-mid-3" x1="50" y1="64.5" x2="50" y2="71.5" />
 
-                <!-- blue -->
-                <line id="line-left-2" x1="69" y1="243" x2="69" y2="351" />
-                <line id="line-mid-2" x1="187" y1="243" x2="187" y2="351" />
-                <line id="line-right-2" x1="305" y1="243" x2="305" y2="351" />
-
-                <line id="line-left-3" x1="69" y1="351" x2="69" y2="370" />
-                <line id="line-mid-3" x1="187" y1="351" x2="187" y2="370" />
-                <line id="line-right-3" x1="305" y1="351" x2="305" y2="370" />
+                <!-- right column -->
+                <line id="line-right-0" x1="81" y1="10.5" x2="81" y2="28.5" />
+                <line id="line-right-1" x1="81" y1="28.5" x2="81" y2="46.5" />
+                <line id="line-right-2" x1="81" y1="46.5" x2="81" y2="64.5" />
+                <line id="line-right-3" x1="81" y1="64.5" x2="81" y2="71.5" />
 
                 <path
                   id="path-final-1"
-                  d="M 69,430 L 69,460 L 187,460 L 187,430 M 187,460 L 305,460 L 305,430"
+                  d="M 19,71.5 L 19,76 L 50,76 L 50,71.5 M 50,76 L 81,76 L 81,71.5"
                 />
-                <path id="path-final-4" d="M 255,462 L 255,480" />
-                <path id="path-final-2" d="M 119,462 L 119,480" />
+                <path id="path-final-2" d="M 32,76.6 L 32,89.5" />
+                <path id="path-final-4" d="M 68,76.6 L 68,89.5" />
               </svg>
 
               <!-- Node Elements Structure -->
@@ -717,6 +729,71 @@
           </div>
 
           <div
+            id="drone-upgrade-cost-panel"
+            class="bekt-panel hidden trans-1-eio"
+          >
+            <h1 class="bekt-title">Drone upgrade cost calculator</h1>
+            <p>Select drone</p>
+            <div id="drone-select">
+              <img
+                src="../skins/drones/medpro.png"
+                alt="medpro"
+                id="medpro-image"
+                onclick="handleDroneSelect('Medpro')"
+              /><img
+                src="../skins/drones/agent.png"
+                alt="agent"
+                id="agent-image"
+                onclick="handleDroneSelect('Agent')"
+              /><img
+                src="../skins/drones/phantom.png"
+                alt="phantom"
+                id="phantom-image"
+                onclick="handleDroneSelect('Phantom')"
+              /><img
+                src="../skins/drones/zenith.png"
+                alt="zenith"
+                id="zenith-image"
+                onclick="handleDroneSelect('Zenith')"
+              /><img
+                src="../skins/drones/guard.png"
+                alt="guard"
+                id="guard-image"
+                onclick="handleDroneSelect('Guard')"
+              />
+            </div>
+            <br />
+
+            <form id="drone-upgrade-cost-form" class="bekt-form-grid">
+              <p style="grid-column: 1 / -1; justify-self: start">
+                Select base and final drone level
+              </p>
+
+              <select
+                name="upgrade-drone-base-level"
+                id="upgrade-drone-base-level"
+              ></select>
+              <select
+                name="upgrade-drone-final-level"
+                id="upgrade-drone-final-level"
+              ></select>
+
+              <p style="grid-column: 1 / -1; justify-self: start">
+                Select base and final module level
+              </p>
+
+              <select
+                name="upgrade-module-base-level"
+                id="upgrade-module-base-level"
+              ></select>
+              <select
+                name="upgrade-module-final-level"
+                id="upgrade-module-final-level"
+              ></select>
+            </form>
+          </div>
+
+          <div
             id="gear-upgrade-cost-panel"
             class="bekt-panel hidden trans-1-eio"
           >
@@ -852,7 +929,7 @@
       </p>
     </footer>
 
-    <script src="calculators.js"></script>
+    <script type="module" src="calculators.js"></script>
     <script src="../back_to_top_btn.js"></script>
   </body>
 </html>
