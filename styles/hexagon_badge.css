@@ -85,8 +85,12 @@
   max-height: 60%;
 }
 
-.hexagon-text img[src*="faction"] {
-  filter: brightness(1.1);
+.hexagon-text img.hero-class-icon {
+  transform: scale(0.8);
+}
+
+.hexagon-text img.hero-faction-icon {
+  transform: scale(1.2);
 }
 
 .rotated-hexagon-icon {

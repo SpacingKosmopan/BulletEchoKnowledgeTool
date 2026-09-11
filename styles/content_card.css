@@ -93,6 +93,46 @@
   z-index: 0;
 }
 
+.content-card .hero-content-image.green-neo-border-glow {
+  filter: /*four sides (single drop shadow can only be on one side)*/ drop-shadow(
+      1px 0px 0px #b1ffb3
+    )
+    drop-shadow(-1px 0px 0px #b1ffb3) drop-shadow(0px 1px 0px #b1ffb3)
+    drop-shadow(0px -1px 0px #b1ffb3) /* soft glow */
+    drop-shadow(0px 0px 3px #5dffb66d) /* second glow layer */
+    drop-shadow(0px 0px 3px rgba(0, 255, 85, 0.5));
+}
+
+.content-card .hero-content-image.blue-neo-border-glow {
+  filter: /*four sides (single drop shadow can only be on one side)*/ drop-shadow(
+      1px 0px 0px #b1ceff
+    )
+    drop-shadow(-1px 0px 0px #b1ceff) drop-shadow(0px 1px 0px #b1ceff)
+    drop-shadow(0px -1px 0px #b1ceff) /* soft glow */
+    drop-shadow(0px 0px 3px #5de1ff6d) /* second glow layer */
+    drop-shadow(0px 0px 3px rgba(0, 217, 255, 0.5));
+}
+
+.content-card .hero-content-image.red-neo-border-glow {
+  filter: /*four sides (single drop shadow can only be on one side)*/ drop-shadow(
+      1px 0px 0px #ffb1b1
+    )
+    drop-shadow(-1px 0px 0px #ffb1b1) drop-shadow(0px 1px 0px #ffb1b1)
+    drop-shadow(0px -1px 0px #ffb1b1) /* soft glow */
+    drop-shadow(0px 0px 3px #ff5da16d) /* second glow layer */
+    drop-shadow(0px 0px 3px rgba(255, 0, 106, 0.5));
+}
+
+.content-card .hero-content-image.purple-neo-border-glow {
+  filter: /*four sides (single drop shadow can only be on one side)*/ drop-shadow(
+      1px 0px 0px #f7b1ff
+    )
+    drop-shadow(-1px 0px 0px #f7b1ff) drop-shadow(0px 1px 0px #f7b1ff)
+    drop-shadow(0px -1px 0px #f7b1ff) /* soft glow */
+    drop-shadow(0px 0px 3px #fa5dff6d) /* second glow layer */
+    drop-shadow(0px 0px 3px rgba(255, 0, 251, 0.5));
+}
+
 .content-card-badge {
   position: absolute;
   top: 10px;
@@ -316,11 +356,6 @@
     0 0 35px rgba(255, 68, 0, 0.85),
     0 0 15px rgba(255, 204, 0, 0.5),
     inset 0 0 30px rgba(255, 51, 0, 0.5);
-}
-
-.content-card.new-hero:hover img {
-  filter: brightness(1.15) contrast(1.2) saturate(1.4)
-    drop-shadow(0 0 8px rgba(255, 68, 0, 0.3));
 }
 
 .content-card.new-hero:hover .content-card-name {

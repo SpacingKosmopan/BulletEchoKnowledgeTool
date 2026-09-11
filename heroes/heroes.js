@@ -177,6 +177,10 @@ export const heroes = [
     abilityDescription:
       "Reveals the location of enemies withing range, increases weapon damage against revealed heroes",
     medkitType: medkitTypes.Stim,
+    hasUniqueSkin: true,
+    uniqueSkinName: "Omen Raven",
+    uniqueSkinGifSrc: "../skins/unique_raven_gif.gif",
+    uniqueSkinAbilityImage: "../skins/unique_raven_ability.png",
   },
   {
     name: "Molly",
@@ -273,6 +277,10 @@ export const heroes = [
     abilityName: "Rocket",
     abilityDescription: "-",
     medkitType: medkitTypes.TeamHealing,
+    hasUniqueSkin: true,
+    uniqueSkinName: "Maneki Doc",
+    uniqueSkinGifSrc: "../skins/unique_doc_gif.gif",
+    uniqueSkinAbilityImage: "../skins/unique_doc_ability.png",
   },
   {
     name: "Cyclops",
@@ -419,14 +427,29 @@ function generateHeroesCards() {
       window.location.href = `index.html?hero=${hero.name.toLowerCase()}`;
     });
 
+    const factionGlow =
+      hero.faction.toLowerCase() === "force and arms"
+        ? "green-neo-border-glow"
+        : hero.faction.toLowerCase() === "skytech megacorp"
+          ? "blue-neo-border-glow"
+          : hero.faction.toLowerCase() === "pyro"
+            ? "red-neo-border-glow"
+            : hero.faction.toLowerCase() === "renegades"
+              ? "purple-neo-border-glow"
+              : "";
+
     heroCard.innerHTML = `
     <div class="new-hero-tag">NEW</div> 
-        <div class="content-card-badge">
-          <img src="../classes/${hero.class.toLowerCase()}.webp" alt="${hero.class}-icon">
-        </div>
-        <div class="unique-skin-star ${hero.hasUniqueSkin ? "" : "hidden"}" title="Unique Skin"></div>
-          <img src="../skins/${hero.name.toLowerCase()}.png" alt="${hero.name}-card" class="content-image hero-content-image zoom">
-        <div class="content-card-name">${hero.name}</div>
+
+    <div class="content-card-badge">
+      <img src="../classes/${hero.class.toLowerCase()}.webp" alt="${hero.class}-icon">
+    </div>
+
+    <div class="unique-skin-star ${hero.hasUniqueSkin ? "" : "hidden"}" title="Unique Skin"></div>
+
+    <img src="../skins/${hero.name.toLowerCase()}.png" alt="${hero.name}-card" class="content-image hero-content-image zoom ${factionGlow}">
+
+    <div class="content-card-name">${hero.name}</div>
     `;
     heroesCardsContainer.appendChild(heroCard);
   });
@@ -441,7 +464,6 @@ const getHeroPanelHTML = (hero) => /*html*/ `
     <div class="character-panel">
       <div class="panel-layout">
         
-
         <div class="left-column">
           <div class="badges-row">
             <div class="hexagon-glow-wrap left">
@@ -450,6 +472,7 @@ const getHeroPanelHTML = (hero) => /*html*/ `
                 <img
                   src="../classes/${hero.class.toLowerCase()}.webp"
                   alt="${hero.class}-icon"
+                  class="hero-class-icon"
                 />
               </div>
             </div>
@@ -460,6 +483,7 @@ const getHeroPanelHTML = (hero) => /*html*/ `
                 <img
                   src="../factions/${hero.faction.toLowerCase()}.webp"
                   alt="${hero.faction}-icon"
+                  class="hero-faction-icon"
                 />
               </div>
             </div>
@@ -620,6 +644,7 @@ const CMS_URL =
                   <img
                     src="../classes/${hero.class.toLowerCase()}.webp"
                     alt="${hero.class}"
+                    class="hero-class-icon"
                   />
                   <div class="frame-corner"></div>
                 </div>
@@ -627,6 +652,7 @@ const CMS_URL =
                   <img
                     src="../factions/${hero.faction.toLowerCase()}.webp"
                     alt="${hero.faction}"
+                    class="hero-faction-icon"
                   />
                   <div class="frame-corner"></div>
                 </div>

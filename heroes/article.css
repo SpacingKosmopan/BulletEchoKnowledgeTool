@@ -31,13 +31,6 @@
   line-height: 1.6;
 }
 
-#hero-articles-container p {
-  font-family: "Roboto", "Helvetica Neue", Arial, sans-serif;
-  font-weight: 300;
-  color: #e0e0e0;
-  font-size: 1.3rem;
-}
-
 #hero-articles-container strong {
   color: #ffffff;
   letter-spacing: 0.06rem;
@@ -49,6 +42,13 @@
 
 #hero-articles-container li::marker {
   font-family: "Roboto", "Helvetica Neue", Arial, sans-serif;
+  font-size: 1.3rem;
+}
+
+#hero-articles-container p {
+  font-family: "Roboto", "Helvetica Neue", Arial, sans-serif;
+  font-weight: 300;
+  color: #e0e0e0;
   font-size: 1.3rem;
 }
 
@@ -75,4 +75,30 @@
   max-width: 100%;
   box-shadow: 5px 5px 10px black;
   margin: 10px;
+}
+
+@media (max-width: 768px) {
+  #hero-articles-container h1,
+  #hero-articles-container h2,
+  #hero-articles-container h3,
+  #hero-articles-container h4 {
+    letter-spacing: 0.1rem;
+    margin-left: 0px;
+    text-decoration: underline;
+  }
+
+  #hero-articles-container h1 {
+    font-size: 1.6rem;
+  }
+
+  #hero-articles-container h2 {
+    font-size: 1.4rem;
+  }
+
+  #hero-articles-container p {
+    font-family: "Roboto", "Helvetica Neue", Arial, sans-serif;
+    font-weight: 300;
+    color: #e0e0e0;
+    font-size: 1rem;
+  }
 }

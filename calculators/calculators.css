@@ -534,6 +534,9 @@ span.red-span {
 span.green-span {
   color: #8c5;
 }
+span.orange-span {
+  color: #f73;
+}
 
 /* * * */
 #drone-select {
