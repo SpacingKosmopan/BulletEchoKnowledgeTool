@@ -998,3 +998,19 @@ html {
   opacity: 1;
   pointer-events: auto;
 }
+
+#loot-maps-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  max-width: 100%;
+}
+
+.loot-map-image-container img {
+  max-width: 100%;
+}
+
+@media (max-width: 768px) {
+  #loot-maps-container {
+    grid-template-columns: 1fr;
+  }
+}

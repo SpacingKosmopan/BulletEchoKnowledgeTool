@@ -203,14 +203,17 @@
         <details class="dropdown">
           <summary id="heroes-summary" class="show-arrow">
             <stripe-button id="heroes-text"
-              >Heroes tips and tricks</stripe-button
+              ><i class="bi bi-person-fill"></i> Heroes tips and
+              tricks</stripe-button
             >
           </summary>
           <nav class="dropdown-content" id="heroes-pages"></nav>
         </details>
         <details class="dropdown">
           <summary id="calculators-summary" class="show-arrow">
-            <stripe-button id="calculators-text">Calculators</stripe-button>
+            <stripe-button id="calculators-text"
+              ><i class="bi bi-calculator-fill"></i> Calculators</stripe-button
+            >
           </summary>
           <nav class="dropdown-content" id="calculators-pages">
             <!--<stripe-button
@@ -254,7 +257,9 @@
         </details>
         <details class="dropdown" id="minigames-details">
           <summary id="minigames-summary" class="show-arrow">
-            <stripe-button id="minigames-text">Minigames</stripe-button>
+            <stripe-button id="minigames-text"
+              ><i class="bi bi-joystick"></i> Minigames</stripe-button
+            >
           </summary>
           <nav class="dropdown-content" id="minigames-pages">
             <stripe-button href="./minigames/guess_the_map.html" color="#0066BB"
@@ -275,6 +280,9 @@
             >
           </nav>
         </details>
+        <stripe-button href="./loot-maps/index.html"
+          ><i class="bi bi-map-fill"></i> Loot maps</stripe-button
+        >
 
         <div id="changelog-wrapper">
           <stripe-button href="./changelog.html"
@@ -353,7 +361,7 @@
       };
 
       const lastUpdate = localStorage.getItem("current-version");
-      const NEWEST_VERSION = "1.6";
+      const NEWEST_VERSION = "1.7";
 
       if (isNewerVersion(lastUpdate, NEWEST_VERSION)) {
         document
