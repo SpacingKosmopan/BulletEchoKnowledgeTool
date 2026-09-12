@@ -4,8 +4,7 @@
 
 Added new [#FFC106]Loot Maps[/#], which show where are [#88c158]teams spawnpoints[/#] and [#bf3eff]purple[/#] and [#0099ff]blue[/#] chests
 
-<span class="info-icon"><img src="./images/info_icon.png" /></span> Please note that maps may not be 100% accurate and may be missing
-some chests
+<span class="info-icon"><img src="./images/info_icon.png" /></span> Please note that maps may not be 100% accurate and may be missing some chests
 
 # v1.6 Quality of Life
 
