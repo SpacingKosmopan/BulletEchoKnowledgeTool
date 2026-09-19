@@ -1,3 +1,21 @@
+# v1.7.1 Hotfix
+
+> 19.09.2026
+
+## 🦸‍♂️ Doc Guide
+
+<span class="info-icon"><img src="./images/info_icon.png" /></span> Because I programmed the website, so I don't have to update and rebuild the whole project when new article gets published, I can't make announcements about every new article here, because this changelog file is static. However, I made a couple of small fixes and I had to update the project anyway, so let me announce to you:
+
+[#FF343E]Doc Guide[/#] written by [#ffaa00]jusdabricot[/#]! Thank you for sharing your knowledge, as well as gearbuilds and modsets ❤
+
+Read it here: http://spacingkosmopan.github.io/BulletEchoKnowledgeTool/heroes/index.html?hero=doc#hero-article
+
+## 🐛 Small fixes
+
+- Fixed Article Author element style in Hero Guide articles
+- Updated font size and family in Hero Guide articles
+- Added missing Unique Maneki Doc skin ability image
+
 # v1.7 Loot Maps
 
 > 12.09.2026
@@ -120,7 +138,7 @@ Let's build the best knowledge base together!
 [#FF343E]DOM ZER0[/#] - Drones Upgrade Cost <br>
 [#FF343E]RogueNinja[/#] - Deathglow Lynx Skin presentation - https://www.youtube.com/shorts/pcmg15ZL6hM<br>
 [#FF343E]ꪶ𒁍ᦔ-ＳＨＡＤＯＷ࿋[/#] - Padre Ramsay Skin presentation<br>
-[#FF343E]Crowbar[/#] - Maneki Doc Skin presentation<br>
+[#FF343E]Crowbar & jusdabricot[/#] - Maneki Doc Skin presentation<br>
 
 ---
 
