@@ -749,7 +749,7 @@ async function showArticle(searchedSlug) {
       return;
     }
     articlesContainer.innerHTML += `
-      <span class="article-author">by ${data.post?.author}</span>
+      <div class="article-author"><span>by ${data.post?.author}</span></div>
       <article>${marked.parse(data.post.mdContent)}</article>
     `;
   } catch (error) {
