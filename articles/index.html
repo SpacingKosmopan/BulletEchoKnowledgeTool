@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Bullet Echo Knowledge</title>
+    <link rel="stylesheet" href="./articles.css" />
     <link rel="stylesheet" href="../styles/style.css" />
     <link rel="stylesheet" href="../styles/stripped_rectangle.css" />
 
@@ -73,7 +74,12 @@
     </header>
 
     <div class="page-wrapper">
-      <main><h1>Read articles about Bullet Echo</h1></main>
+      <main>
+        <div class="container">
+          <h1>Read articles about Bullet Echo</h1>
+          <div id="common-articles-container"></div>
+        </div>
+      </main>
 
       <aside>
         <stripe-button href="../index.html"
@@ -97,5 +103,6 @@
 
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <script src="../back_to_top_btn.js"></script>
+    <script src="./articles.js"></script>
   </body>
 </html>
