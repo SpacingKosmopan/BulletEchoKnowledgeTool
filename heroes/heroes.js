@@ -748,8 +748,9 @@ async function showArticle(searchedSlug) {
       articlesContainer.innerHTML = "<h2>Error 404: Article not found.</h2>";
       return;
     }
+
     articlesContainer.innerHTML += `
-      <div class="article-author"><span>by ${data.post?.author}</span></div>
+      <div class="article-author"></div>
       <article>${marked.parse(data.post.mdContent)}</article>
     `;
   } catch (error) {

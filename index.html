@@ -283,6 +283,7 @@
         <stripe-button href="./loot-maps/index.html"
           ><i class="bi bi-map-fill"></i> Loot maps</stripe-button
         >
+        <stripe-button href="./articles/index.html">Articles</stripe-button>
 
         <div id="changelog-wrapper">
           <stripe-button href="./changelog.html"
@@ -294,7 +295,7 @@
             >🔥 New update</span
           >
         </div>
-        <stripe-button>(soon) Articles</stripe-button>
+
         <stripe-button
           data-tally-open="D4yxlR"
           data-tally-overlay="1"
@@ -361,7 +362,7 @@
       };
 
       const lastUpdate = localStorage.getItem("current-version");
-      const NEWEST_VERSION = "1.7.1";
+      const NEWEST_VERSION = "1.8";
 
       if (isNewerVersion(lastUpdate, NEWEST_VERSION)) {
         document
