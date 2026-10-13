@@ -31,9 +31,13 @@ async function getAllArticles() {
             articleTitle
             author
             slug
-            thumbnail
+            thumbnail {
+              url
+            }
+            shortDescription
+            updatedAt
+          }
         }
-    }
   `;
 
   try {
@@ -45,17 +49,47 @@ async function getAllArticles() {
     }
 
     data.articles.forEach((article) => {
-      console.log(article);
+      //console.log(article);
+
+      const updatedAt = article.updatedAt
+        ? new Date(article.updatedAt)
+            .toLocaleString("en-GB", {
+              day: "2-digit",
+              month: "short",
+              year: "numeric",
+              hour: "2-digit",
+              minute: "2-digit",
+              hour12: false,
+            })
+            .replace(",", "")
+            .toUpperCase()
+        : "UNKNOWN";
 
       const html = /*html*/ `
         <div class="article-preview">
           <div class="article-content">
             <h2>${article.articleTitle}</h2>
-            <p>${article.author}</p>
+
+            <p class="article-short-description">
+              ${article.shortDescription || ""}
+            </p>
+
+            <p class="article-author">${article.author || "Unknown author"}</p>
+
+            <p class="article-updated">
+              <span class="article-updated-label">LAST UPDATED //</span>
+              <time datetime="${article.updatedAt || ""}">${updatedAt}</time>
+            </p>
+
             <a href="./article?slug=${article.slug}">Read</a>
           </div>
+
           <div class="article-image">
-            <img src="${article.}" alt="${article.slug}">
+            <img
+              src="${article.thumbnail.url}"
+              alt="${article.articleTitle}"
+              loading="lazy"
+            >
           </div>
         </div>
       `;
