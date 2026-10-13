@@ -30,6 +30,8 @@ async function getAllArticles() {
             markdownContent
             articleTitle
             author
+            slug
+            thumbnail
         }
     }
   `;
@@ -46,9 +48,15 @@ async function getAllArticles() {
       console.log(article);
 
       const html = /*html*/ `
-        <div>
+        <div class="article-preview">
+          <div class="article-content">
             <h2>${article.articleTitle}</h2>
             <p>${article.author}</p>
+            <a href="./article?slug=${article.slug}">Read</a>
+          </div>
+          <div class="article-image">
+            <img src="${article.}" alt="${article.slug}">
+          </div>
         </div>
       `;
 

@@ -1,3 +1,9 @@
+# v1.8 Articles
+
+## Vi Guide by
+
+### Rush Events date prediction upgrade
+
 # v1.7.1 Hotfix
 
 > 19.09.2026
