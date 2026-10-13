@@ -1,5 +1,9 @@
 # v1.8 Articles
 
+The wait is over! Read various articles about Bullet Echo and learn more tips about things other than heroes!
+
+Right know, all the articles are transcriptions from Spacing videos. But everyone can write their own one and send me on Discord to verify! (spacingkosmopan)
+
 ## Vi Guide by
 
 ### Rush Events date prediction upgrade
