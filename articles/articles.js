@@ -81,7 +81,7 @@ async function getAllArticles() {
               <time datetime="${article.updatedAt || ""}">${updatedAt}</time>
             </p>
 
-            <a href="./article?slug=${article.slug}">Read</a>
+            <a href="./article/?slug=${article.slug}">Read</a>
           </div>
 
           <div class="article-image">
