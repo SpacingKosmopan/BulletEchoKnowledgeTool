@@ -749,9 +749,19 @@ async function showArticle(searchedSlug) {
       return;
     }
 
-    articlesContainer.innerHTML += `
-      <div class="article-author"></div>
-      <article>${marked.parse(data.post.mdContent)}</article>
+    const author = data.post.author || "Unknown author";
+    const parsedContent = marked.parse(data.post.mdContent || "");
+
+    articlesContainer.innerHTML = `
+      <header class="article-meta">
+        <p class="article-author">
+          <span>${author}</span>
+        </p>
+      </header>
+
+      <article class="markdown-body">
+        ${parsedContent}
+      </article>
     `;
   } catch (error) {
     console.error("Downloading error:", error);

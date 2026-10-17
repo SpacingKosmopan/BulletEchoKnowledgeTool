@@ -4,15 +4,20 @@
   font-family: "BebasNeue-Regular";
   src: url("font/BebasNeue-Regular.ttf") format("truetype");
   font-weight: normal;
-  font-size: normal;
+  font-style: normal;
 }
 
-* {
-  font-family: "BebasNeue-Regular", sans-serif;
-  font-weight: lighter;
-  margin: 0;
-  padding: 0;
+*,
+*::before,
+*::after {
   box-sizing: border-box;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
 }
 
 body {
@@ -23,6 +28,9 @@ body {
   background: #111827;
   color: white;
   gap: 1rem;
+
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 400;
 }
 
 @media (max-width: 900px) {
@@ -44,7 +52,8 @@ body {
 }
 
 p {
-  font-size: 1.5rem;
+  font-size: 1rem;
+  line-height: 1.6;
 }
 
 footer p {
@@ -327,8 +336,8 @@ aside {
   flex-shrink: 0;
 }
 
-header,
-footer {
+body > header,
+body > footer {
   width: 100%;
 }
 

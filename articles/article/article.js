@@ -54,11 +54,28 @@ async function getArticle(slug) {
           .toUpperCase()
       : "UNKNOWN";
 
-    const parsedContent = marked.parse(article.markdownContent);
+    const author = article.author || "Unknown author";
 
-    const html = `${updatedAt} - ${parsedContent}`;
+    const parsedContent = marked.parse(article.markdownContent || "");
 
-    commonArticleWraper.insertAdjacentHTML("beforeend", html);
+    commonArticleWraper.innerHTML = `
+      <header class="article-meta">
+        <p class="article-author">
+          <span>${author}</span>
+        </p>
+
+        <p class="article-updated">
+          <span class="article-updated-label">LAST UPDATED //</span>
+          <time datetime="${article.updatedAt || ""}">
+            ${updatedAt}
+          </time>
+        </p>
+      </header>
+
+      <article class="markdown-body">
+        ${parsedContent}
+      </article>
+    `;
   } catch (error) {
     console.error("Error downloading articles:", error);
   }

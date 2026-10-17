@@ -4,6 +4,8 @@ The wait is over! Read various articles about Bullet Echo and learn more tips ab
 
 Right know, all the articles are transcriptions from Spacing videos. But everyone can write their own one and send me on Discord to verify! (spacingkosmopan)
 
+## Huge Style Update of articles
+
 ## Vi Guide by
 
 ### Rush Events date prediction upgrade

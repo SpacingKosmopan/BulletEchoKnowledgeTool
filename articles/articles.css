@@ -33,11 +33,6 @@
   box-shadow:
     0 0 10px rgba(0, 240, 255, 0.12),
     inset 0 0 18px rgba(0, 240, 255, 0.04);
-
-  transition:
-    transform 0.3s cubic-bezier(0.25, 1, 0.5, 1),
-    box-shadow 0.3s ease,
-    border-color 0.3s ease;
 }
 
 /* * GRID * */
@@ -50,15 +45,8 @@
   pointer-events: none;
 
   background-image:
-    linear-gradient(
-      rgba(0, 240, 255, 0.035) 1px,
-      transparent 1px
-    ),
-    linear-gradient(
-      90deg,
-      rgba(0, 240, 255, 0.035) 1px,
-      transparent 1px
-    );
+    linear-gradient(rgba(0, 240, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 240, 255, 0.035) 1px, transparent 1px);
 
   background-size: 12px 12px;
 }
@@ -130,13 +118,7 @@
   background: rgba(0, 240, 255, 0.06);
   border: 1px solid rgba(0, 240, 255, 0.65);
 
-  clip-path: polygon(
-    0 0,
-    calc(100% - 12px) 0,
-    100% 12px,
-    100% 100%,
-    0 100%
-  );
+  clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 0 100%);
 
   font-size: 0.8rem;
   font-weight: 800;
@@ -199,16 +181,8 @@
   pointer-events: none;
 
   background:
-    linear-gradient(
-      90deg,
-      rgba(9, 14, 23, 0.45),
-      transparent 35%
-    ),
-    linear-gradient(
-      0deg,
-      rgba(0, 240, 255, 0.12),
-      transparent 50%
-    );
+    linear-gradient(90deg, rgba(9, 14, 23, 0.45), transparent 35%),
+    linear-gradient(0deg, rgba(0, 240, 255, 0.12), transparent 50%);
 }
 
 .article-image::after {
@@ -219,15 +193,8 @@
   pointer-events: none;
 
   background-image:
-    linear-gradient(
-      rgba(0, 240, 255, 0.05) 1px,
-      transparent 1px
-    ),
-    linear-gradient(
-      90deg,
-      rgba(0, 240, 255, 0.05) 1px,
-      transparent 1px
-    );
+    linear-gradient(rgba(0, 240, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 240, 255, 0.05) 1px, transparent 1px);
 
   background-size: 12px 12px;
 }
@@ -242,12 +209,7 @@
   object-position: center;
 
   filter: brightness(0.78) contrast(1.1) saturate(0.85);
-
-  transition:
-    transform 0.5s cubic-bezier(0.25, 1, 0.5, 1),
-    filter 0.4s ease;
 }
-
 
 /* * RESPONSIVE * */
 
