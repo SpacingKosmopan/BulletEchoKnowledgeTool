@@ -52,7 +52,7 @@ body {
 }
 
 p {
-  font-size: 1rem;
+  font-size: 1.5rem;
   line-height: 1.6;
 }
 
@@ -1012,6 +1012,14 @@ html {
   display: grid;
   grid-template-columns: 1fr 1fr;
   max-width: 100%;
+}
+
+.loot-maps-wrapper p {
+  margin: 0 auto;
+}
+
+.loot-maps-wrapper ul {
+  margin: 0 auto;
 }
 
 .loot-map-image-container img {

@@ -10,6 +10,11 @@ Right know, all the articles are transcriptions from Spacing videos. But everyon
 
 ### Rush Events date prediction upgrade
 
+## Bug Fixes & Other Changes
+
+- fixed a Home button on Loot Maps page
+- added Gamemodes buttons on Loot Maps page
+
 # v1.7.1 Hotfix
 
 > 19.09.2026
