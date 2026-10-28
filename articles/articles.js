@@ -63,7 +63,13 @@ async function getAllArticles() {
               ${article.shortDescription || ""}
             </p>
 
-            <p class="article-author">${article.author || "Unknown author"}</p>
+            <div class="article-author">
+              <div class="trimmed-rectangle">
+                <span>by ${article.author || "Unknown author"}</span>
+              </div>
+              <div class="after-stripe op-7"></div>
+              <div class="after-stripe op-4"></div>
+            </div>
 
             <p class="article-updated">
               <span class="article-updated-label">LAST UPDATED //</span>
@@ -78,7 +84,7 @@ async function getAllArticles() {
               src="${article.thumbnail.url}"
               alt="${article.articleTitle}"
               loading="lazy"
-            >
+            />
           </div>
         </div>
       `;

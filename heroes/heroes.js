@@ -741,16 +741,18 @@ async function showArticle(searchedSlug) {
     const author = data.post.author || "Unknown author";
     const parsedContent = marked.parse(data.post.mdContent || "");
 
-    articlesContainer.innerHTML = `
+    articlesContainer.innerHTML = /*html*/ `
       <header class="article-meta">
-        <p class="article-author">
-          <span>${author}</span>
-        </p>
+        <div class="article-author">
+          <div class="trimmed-rectangle">
+            <span>by ${article.author || "Unknown author"}</span>
+          </div>
+          <div class="after-stripe op-7"></div>
+          <div class="after-stripe op-4"></div>
+        </div>
       </header>
 
-      <article class="markdown-body">
-        ${parsedContent}
-      </article>
+      <article class="markdown-body">${parsedContent}</article>
     `;
   } catch (error) {
     console.error("Downloading error:", error);

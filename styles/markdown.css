@@ -91,7 +91,7 @@
 .markdown-body p {
   margin: 0 0 1.35rem;
   color: #e0e0e0;
-  font-size: 1em;
+  font-size: 1.1em;
 }
 
 .markdown-body p:last-child {
@@ -146,7 +146,7 @@
 .markdown-body ol {
   margin: 0 0 1.5rem;
   padding-left: 1.75rem;
-  font-size: 1em;
+  font-size: 1.5rem;
 }
 
 .markdown-body li {

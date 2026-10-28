@@ -58,23 +58,23 @@ async function getArticle(slug) {
 
     const parsedContent = marked.parse(article.markdownContent || "");
 
-    commonArticleWraper.innerHTML = `
+    commonArticleWraper.innerHTML = /*html*/ `
       <header class="article-meta">
-        <p class="article-author">
-          <span>${author}</span>
-        </p>
+        <div class="article-author">
+          <div class="trimmed-rectangle">
+            <span>by ${author}</span>
+          </div>
+          <div class="after-stripe op-7"></div>
+          <div class="after-stripe op-4"></div>
+        </div>
 
         <p class="article-updated">
           <span class="article-updated-label">LAST UPDATED //</span>
-          <time datetime="${article.updatedAt || ""}">
-            ${updatedAt}
-          </time>
+          <time datetime="${article.updatedAt || ""}"> ${updatedAt} </time>
         </p>
       </header>
 
-      <article class="markdown-body">
-        ${parsedContent}
-      </article>
+      <article class="markdown-body">${parsedContent}</article>
     `;
   } catch (error) {
     console.error("Error downloading articles:", error);
