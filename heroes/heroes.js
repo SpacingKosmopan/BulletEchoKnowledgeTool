@@ -306,6 +306,10 @@ export const heroes = [
     abilityName: "Freezing Mine",
     abilityDescription: "-",
     medkitType: medkitTypes.Bandage,
+    hasUniqueSkin: true,
+    uniqueSkinName: "Enigma Blizzard",
+    uniqueSkinGifSrc: "../skins/unique_blizzard_gif.gif",
+    uniqueSkinAbilityImage: "../skins/unique_blizzard_ability.png",
   },
   {
     name: "Bertha",
@@ -346,6 +350,10 @@ export const heroes = [
     abilityName: "Throwing Shield",
     abilityDescription: "-",
     medkitType: medkitTypes.TeamRecovery,
+    hasUniqueSkin: true,
+    uniqueSkinName: "Furmarine Sratch",
+    uniqueSkinGifSrc: "../skins/unique_scratch_gif.gif",
+    uniqueSkinAbilityImage: "../skins/unique_scratch_ability.png",
   },
 ];
 export const newestHeroName = "Flynt";
