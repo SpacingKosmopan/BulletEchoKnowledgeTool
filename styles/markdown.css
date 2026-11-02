@@ -103,7 +103,9 @@
 .markdown-body strong,
 .markdown-body b {
   color: #ffffff;
-  font-weight: 750;
+  font-weight: 500;
+  letter-spacing: 0.1rem;
+  font-size: 120%;
 }
 
 .markdown-body em,

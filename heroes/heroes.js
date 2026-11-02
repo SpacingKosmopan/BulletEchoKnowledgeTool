@@ -753,7 +753,7 @@ async function showArticle(searchedSlug) {
       <header class="article-meta">
         <div class="article-author">
           <div class="trimmed-rectangle">
-            <span>by ${article.author || "Unknown author"}</span>
+            <span>by ${author}</span>
           </div>
           <div class="after-stripe op-7"></div>
           <div class="after-stripe op-4"></div>
