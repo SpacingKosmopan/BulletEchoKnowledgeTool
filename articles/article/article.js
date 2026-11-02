@@ -20,6 +20,7 @@ async function getArticle(slug) {
   const query = `
     query MyQuery {
         article(where: {slug: "${slug}"}) {
+            articleTitle
             author
             updatedAt
             markdownContent
@@ -56,7 +57,9 @@ async function getArticle(slug) {
 
     const author = article.author || "Unknown author";
 
-    const parsedContent = marked.parse(article.markdownContent || "");
+    const parsedContent = marked.parse(
+      `# ${article.articleTitle} \n` + article.markdownContent || "",
+    );
 
     commonArticleWraper.innerHTML = /*html*/ `
       <header class="article-meta">

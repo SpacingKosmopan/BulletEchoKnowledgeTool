@@ -64,11 +64,7 @@ async function getAllArticles() {
             </p>
 
             <div class="article-author">
-              <div class="trimmed-rectangle">
-                <span>by ${article.author || "Unknown author"}</span>
-              </div>
-              <div class="after-stripe op-7"></div>
-              <div class="after-stripe op-4"></div>
+                <span>${article.author || "Unknown author"}</span>
             </div>
 
             <p class="article-updated">

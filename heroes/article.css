@@ -52,7 +52,7 @@
 
 /* * ARTICLE METADATA * */
 
-#common-article-wrapper .article-meta {
+.article-meta {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -61,11 +61,11 @@
   min-width: 0;
 }
 
-#common-article-wrapper .article-author {
+.article-author {
   --neon-color: #09f;
   --height: 30px;
   --cut: 15px;
-  --stripe-width: 35px;
+  --stripe-width: 30px;
 
   display: flex;
   align-items: stretch;
@@ -83,7 +83,7 @@
   overflow: visible;
 }
 
-#common-article-wrapper .article-author .trimmed-rectangle {
+.article-author .trimmed-rectangle {
   position: relative;
 
   flex: 1 1 auto;
@@ -93,7 +93,7 @@
   filter: drop-shadow(0 0 3px var(--neon-color));
 }
 
-#common-article-wrapper .article-author .trimmed-rectangle::before {
+.article-author .trimmed-rectangle::before {
   content: "";
   position: absolute;
   inset: 0;
@@ -103,7 +103,7 @@
   clip-path: polygon(0 0, 100% 0, calc(100% - var(--cut)) 100%, 0 100%);
 }
 
-#common-article-wrapper .article-author .after-stripe {
+.article-author .after-stripe {
   position: relative;
 
   display: block;
@@ -113,12 +113,13 @@
   height: 100%;
 
   margin: 0;
+  margin-left: -8px;
   padding: 0;
 
   filter: drop-shadow(0 0 3px var(--neon-color));
 }
 
-#common-article-wrapper .article-author .after-stripe::before {
+.article-author .after-stripe::before {
   content: "";
   position: absolute;
   inset: 0;
@@ -133,19 +134,19 @@
   );
 }
 
-#common-article-wrapper .article-author .after-stripe.op-7 {
+.article-author .after-stripe.op-7 {
   opacity: 0.7;
 }
 
-#common-article-wrapper .article-author .after-stripe.op-4 {
+.article-author .after-stripe.op-4 {
   opacity: 0.4;
 }
 
-#common-article-wrapper .article-author span {
+.article-author span {
   position: absolute;
   top: 50%;
   left: 12px;
-  transform: translateY(-50%);
+  transform: translateY(-47%);
   z-index: 1;
 
   display: block;
