@@ -7,6 +7,14 @@
   font-style: normal;
 }
 
+* {
+  font-family: "BebasNeue-Regular", sans-serif;
+  font-weight: lighter;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 *,
 *::before,
 *::after {
@@ -144,6 +152,7 @@ h1.welcome-header-text {
   transform: translate(-50%, -50%);
   text-align: center;
   /*width: 90%;*/
+  font-weight: 300;
   margin: 0;
 }
 
