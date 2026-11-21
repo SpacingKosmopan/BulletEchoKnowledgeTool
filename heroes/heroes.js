@@ -1,3 +1,5 @@
+import { queryCMS } from "../CMS/index.js";
+
 const medkitTypes = {
   None: { name: "None", description: "None" },
   Stim: {
@@ -306,6 +308,10 @@ export const heroes = [
     abilityName: "Freezing Mine",
     abilityDescription: "-",
     medkitType: medkitTypes.Bandage,
+    hasUniqueSkin: true,
+    uniqueSkinName: "Enigma Blizzard",
+    uniqueSkinGifSrc: "../skins/unique_blizzard_gif.gif",
+    uniqueSkinAbilityImage: "../skins/unique_blizzard_ability.png",
   },
   {
     name: "Bertha",
@@ -346,9 +352,22 @@ export const heroes = [
     abilityName: "Throwing Shield",
     abilityDescription: "-",
     medkitType: medkitTypes.TeamRecovery,
+    hasUniqueSkin: true,
+    uniqueSkinName: "Furmarine Sratch",
+    uniqueSkinGifSrc: "../skins/unique_scratch_gif.gif",
+    uniqueSkinAbilityImage: "../skins/unique_scratch_ability.png",
+  },
+  {
+    name: "Jackie",
+    faction: "Renegades",
+    class: "Enforcer",
+    abilityName: "Throwing Knives",
+    abilityDescription:
+      "When Jackie gains an ability charge, she creates a throwing knife. The number of knives matches her current number of ability charges. The knives passively orbit her, dealing damage to enemies on contact. When she activates the ability, she throws a knife forward. The knife can get stuck in an obstacle or an enemy. On hitting an enemy, it deals damage, reduces their max health, and applies bleeding, which deals damage based on max health per second (for several seconds).",
+    medkitType: medkitTypes.TeamRecovery,
   },
 ];
-export const newestHeroName = "Flynt";
+export const newestHeroName = "Jackie";
 
 heroes.sort((a, b) => {
   const aNew = a.name === newestHeroName;
@@ -528,9 +547,6 @@ const getHeroPanelHTML = (hero) => /*html*/ `
   </div>
 </div>
 `;
-
-const CMS_URL =
-  "https://eu-west-2.cdn.hygraph.com/content/cmrkl6g0n00c707wg6463avuw/master";
 
 (async () => {
   const urlParams = new URLSearchParams(window.location.search);
@@ -719,16 +735,6 @@ async function getAllArticles(currentHero) {
   }
 }
 
-async function queryCMS(query, variables = {}) {
-  const response = await fetch(CMS_URL, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ query, variables }),
-  });
-  const json = await response.json();
-  return json.data;
-}
-
 async function showArticle(searchedSlug) {
   const query = `
     query GetPost($slug: String!) {
@@ -748,9 +754,22 @@ async function showArticle(searchedSlug) {
       articlesContainer.innerHTML = "<h2>Error 404: Article not found.</h2>";
       return;
     }
-    articlesContainer.innerHTML += `
-      <div class="article-author"><span>by ${data.post?.author}</span></div>
-      <article>${marked.parse(data.post.mdContent)}</article>
+
+    const author = data.post.author || "Unknown author";
+    const parsedContent = marked.parse(data.post.mdContent || "");
+
+    articlesContainer.innerHTML = /*html*/ `
+      <header class="article-meta">
+        <div class="article-author">
+          <div class="trimmed-rectangle">
+            <span>by ${author}</span>
+          </div>
+          <div class="after-stripe op-7"></div>
+          <div class="after-stripe op-4"></div>
+        </div>
+      </header>
+
+      <article class="markdown-body">${parsedContent}</article>
     `;
   } catch (error) {
     console.error("Downloading error:", error);

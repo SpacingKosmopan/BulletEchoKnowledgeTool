@@ -9,6 +9,8 @@ import {
 
 const urlParams = new URLSearchParams(window.location.search);
 const calculatorType = urlParams.get("type");
+const CMS_URL =
+  "https://eu-west-2.cdn.hygraph.com/content/cmrkl6g0n00c707wg6463avuw/master";
 
 const DOM = {
   resultPanel: document.querySelector("#results-panel"),
@@ -24,6 +26,43 @@ const DOM = {
   densityPanel: document.querySelector("#density-panel"),
 };
 
+async function queryCMS(query, variables = {}) {
+  const response = await fetch(CMS_URL, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ query, variables }),
+  });
+  const json = await response.json();
+  return json.data;
+}
+
+async function getLastRushEventDate(eventName) {
+  const query = `
+    query MyQuery {
+      recentRushEvents {
+        eventName
+        lastOccured
+      }
+    }
+  `;
+
+  try {
+    const data = await queryCMS(query);
+
+    if (!data) {
+      console.log(`Recent rush events dates not found.`);
+      return;
+    }
+
+    console.log(data);
+    return data.recentRushEvents.find((date) => date.eventName === eventName)
+      .lastOccured;
+  } catch (error) {
+    console.error("Downloading error:", error);
+    articlesContainer.innerHTML = "Couldn't load content.";
+  }
+}
+
 //* dmg to enemy
 if (calculatorType === "damage_to_enemy") {
   showPanel(DOM.damageToEnemyPanel);
@@ -35,7 +74,9 @@ if (calculatorType === "damage_to_enemy") {
   DOM.resultPanel.innerHTML = `<p style="font-size:25px;font-family:'Consolas'">This page is being prepared</p>`;
   //* gear upgrade
 } else if (calculatorType === "gear_upgrade") {
-  const dates = predictNextRush("gear_rush");
+  const lastDate = await getLastRushEventDate("gear_rush");
+  const dates = predictNextRush(lastDate);
+
   showPanel(DOM.gearUpgradeCostPanel);
   DOM.resultPanel.innerHTML = `<p>Select <u>base and final levels</u> and <u>gear type</u> to calculate the amount of <u>nuts</u> and <u>gear copies</u> you need to upgrade</p>`;
   DOM.infoTipPanel.innerHTML = `<p>
@@ -50,6 +91,7 @@ if (calculatorType === "damage_to_enemy") {
     alt="content-card"
     style="max-width: 100%; padding: 5px"
   />`;
+
   //* mod upgrade
 } else if (calculatorType === "mod_upgrade") {
   showPanel(DOM.modUpgradeCostPanel);
@@ -60,7 +102,9 @@ if (calculatorType === "damage_to_enemy") {
    <p><span class="info-icon"><img src="../images/info_icon.png" /></span>Remember, that every mod (except for common ones) give both <span class="green-span">buffs</span> and <span class="red-span">debuffs</span> to your weapon. Remember to make your modbuild compatible with your gearbuild!</p>`;
   //* hero upgrade
 } else if (calculatorType === "hero_upgrade") {
-  const dates = predictNextRush("hero_rush");
+  const lastDate = await getLastRushEventDate("hero_rush");
+  const dates = predictNextRush(lastDate);
+
   DOM.resultPanel.innerHTML =
     "<p>Select <u>level</u> and <u>tier</u> to calculate required <u>hero cards</u> and <u>coins</u></p>";
   DOM.infoTipPanel.innerHTML = `<p>
@@ -78,7 +122,9 @@ if (calculatorType === "damage_to_enemy") {
   showPanel(DOM.heroUpgradeCostPanel);
   //* drone upgrade
 } else if (calculatorType === "drone_upgrade") {
-  const dates = predictNextRush("drone_rush");
+  const lastDate = await getLastRushEventDate("drone_rush");
+  const dates = predictNextRush(lastDate);
+
   DOM.resultPanel.innerHTML = `<p>Select <u>drone</u>, <u>drone level</u> and <u>module level</u> to calculate required <u>drone blueprints</u>, <u>drone cubes</u> and <u>module plugins</u></p>`;
   DOM.infoTipPanel.innerHTML = `
   <p>
@@ -120,15 +166,11 @@ function showPanel(panel) {
   panel.classList.remove("hidden");
 }
 
-function predictNextRush(eventName) {
-  let cycleDays = 42;
-  const config = {
-    hero_rush: { lastBase: new Date(2026, 8, 5) }, // 05.09.2026
-    gear_rush: { lastBase: new Date(2026, 7, 9) }, // 09.08.2026
-    drone_rush: { lastBase: new Date(2026, 7, 22) }, // 22.08.2026
-  };
+function predictNextRush(baseDateStr) {
+  const cycleDays = 42;
 
-  const event = config[eventName];
+  const baseDate = new Date(baseDateStr);
+  baseDate.setHours(0, 0, 0, 0);
 
   const today = new Date();
   today.setHours(0, 0, 0, 0);
@@ -140,18 +182,18 @@ function predictNextRush(eventName) {
       "Monday",
       "Tuesday",
       "Wednesday",
-      "Tuesday",
+      "Thursday",
       "Friday",
       "Saturday",
     ];
 
-    const dateStr = `${pad(d.getDate())}.${pad(d.getMonth() + 1)}.${d.getFullYear()}`;
+    const dateStr = `${pad(d.getDate())}/${pad(d.getMonth() + 1)}/${d.getFullYear()}`;
     const dayName = daysOfWeek[d.getDay()];
 
     return `${dateStr} (${dayName})`;
   };
 
-  const nextDate = new Date(event.lastBase);
+  const nextDate = new Date(baseDate);
   while (nextDate <= today) {
     nextDate.setDate(nextDate.getDate() + cycleDays);
   }

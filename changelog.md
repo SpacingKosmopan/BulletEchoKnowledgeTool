@@ -1,3 +1,40 @@
+# v1.8 Articles, Two Unique Skins Preview, Jackie
+
+> 21.11.2026
+
+The wait is over! Another huge update has just appeared. [#FF7034]Read various articles[/#] about Bullet Echo and learn more tips about things other than heroes! And if you're curious - check out how [#bf3eff]two new unique skins[/#] look in the game! And don't forget about the newest hero - [#bf3eff]Jackie[/#] - who's got her own page.
+
+## 📝 Common Articles about everything in general
+
+Not only about heroes! Right know, all the articles are transcriptions from [#0A89E7]Spacing videos[/#]. But everyone can write their own one and send me on Discord to verify! (spacingkosmopan)
+
+## 🤩 Two New Unique Skin Previews
+
+[#C4FDFF]Furmarine Scratch[/#] and [#95CBF5]Enigma Blizzard[/#] - aren't they beautiful??
+
+## 🦸‍♀️ Meet Jackie
+
+Read the article (if someone writes it) here:
+
+https://spacingkosmopan.github.io/BulletEchoKnowledgeTool/heroes/index.html?hero=jackie
+
+## ✨ Style Update of articles
+
+A little bit of refreshments and standardization of styles
+
+## ⚔ [#bf3eff]Vi Guide[/#] by joo00mo
+
+Published a while ago, not yet announced
+
+### ⏰ Rush Events date prediction upgrade
+
+Now they will import data from CMS and will not require page updating and building while changing dates
+
+## 🐛 Bug Fixes & 🔄 Other Changes
+
+- fixed a Home button on Loot Maps page
+- added Gamemodes buttons on Loot Maps page
+
 # v1.7.1 Hotfix
 
 > 19.09.2026
@@ -139,6 +176,8 @@ Let's build the best knowledge base together!
 [#FF343E]RogueNinja[/#] - Deathglow Lynx Skin presentation - https://www.youtube.com/shorts/pcmg15ZL6hM<br>
 [#FF343E]ꪶ𒁍ᦔ-ＳＨＡＤＯＷ࿋[/#] - Padre Ramsay Skin presentation<br>
 [#FF343E]Crowbar & jusdabricot[/#] - Maneki Doc Skin presentation<br>
+[#FF343E]DuduDo[/#] - Furmarine Scratch Skin presentation<br>
+[#FF343E]Nożownik[/#] - Enigma Blizzard Skin presentation<br>
 
 ---
 

@@ -4,7 +4,7 @@
   font-family: "BebasNeue-Regular";
   src: url("font/BebasNeue-Regular.ttf") format("truetype");
   font-weight: normal;
-  font-size: normal;
+  font-style: normal;
 }
 
 * {
@@ -15,6 +15,19 @@
   box-sizing: border-box;
 }
 
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
 body {
   display: flex;
   flex-direction: column;
@@ -23,6 +36,9 @@ body {
   background: #111827;
   color: white;
   gap: 1rem;
+
+  font-family: "BebasNeue-Regular";
+  font-weight: 300;
 }
 
 @media (max-width: 900px) {
@@ -45,6 +61,7 @@ body {
 
 p {
   font-size: 1.5rem;
+  line-height: 1.6;
 }
 
 footer p {
@@ -135,6 +152,7 @@ h1.welcome-header-text {
   transform: translate(-50%, -50%);
   text-align: center;
   /*width: 90%;*/
+  font-weight: 300;
   margin: 0;
 }
 
@@ -327,8 +345,8 @@ aside {
   flex-shrink: 0;
 }
 
-header,
-footer {
+body > header,
+body > footer {
   width: 100%;
 }
 
@@ -1003,6 +1021,14 @@ html {
   display: grid;
   grid-template-columns: 1fr 1fr;
   max-width: 100%;
+}
+
+.loot-maps-wrapper p {
+  margin: 0 auto;
+}
+
+.loot-maps-wrapper ul {
+  margin: 0 auto;
 }
 
 .loot-map-image-container img {

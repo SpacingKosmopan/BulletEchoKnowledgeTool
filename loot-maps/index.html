@@ -74,7 +74,7 @@
 
     <div class="page-wrapper">
       <main>
-        <div class="container">
+        <div class="container loot-maps-wrapper">
           <h1>Loot Maps</h1>
           <p>Check where the teams spawn and places with the best loot!</p>
           <p>
@@ -93,7 +93,7 @@
           </p>
 
           <br />
-          <ul style="font-size: 1.5rem; margin-left: 50px">
+          <ul style="font-size: 1.5rem" id="battle-royale-loot-maps">
             <li>Battle Royale</li>
           </ul>
           <div id="loot-maps-container">
@@ -221,7 +221,8 @@
             </div>
           </div>
 
-          <ul style="font-size: 1.5rem; margin-left: 50px">
+          <hr />
+          <ul style="font-size: 1.5rem" id="king-of-the-hill-loot-maps">
             <li>King of The Hill</li>
           </ul>
           <div id="loot-maps-container">
@@ -268,7 +269,8 @@
             </div>
           </div>
 
-          <ul style="font-size: 1.5rem; margin-left: 50px">
+          <hr />
+          <ul style="font-size: 1.5rem" id="team-deathmatch-loot-maps">
             <li>Team Deathmatch</li>
           </ul>
           <div id="loot-maps-container">
@@ -312,8 +314,17 @@
       </main>
 
       <aside>
-        <stripe-button href="./index.html"
+        <stripe-button href="../index.html"
           ><i class="bi bi-house-fill"></i> Home</stripe-button
+        >
+        <stripe-button href="#battle-royale-loot-maps"
+          >Battle Royale</stripe-button
+        >
+        <stripe-button href="#king-of-the-hill-loot-maps"
+          >King of the Hill</stripe-button
+        >
+        <stripe-button href="#team-deathmatch-loot-maps"
+          >Team Deathmatch</stripe-button
         >
       </aside>
     </div>
