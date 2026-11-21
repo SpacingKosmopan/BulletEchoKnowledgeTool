@@ -1,8 +1,8 @@
-# v1.8 Articles, Two Unique Skins Preview
+# v1.8 Articles, Two Unique Skins Preview, Jackie
 
 > 21.11.2026
 
-The wait is over! Another huge update just appeared. [#FF7034]Read various articles[/#] about Bullet Echo and learn more tips about things other than heroes! And if you're curious - check out how [#bf3eff]two new unique skins[/#] look in the game!
+The wait is over! Another huge update has just appeared. [#FF7034]Read various articles[/#] about Bullet Echo and learn more tips about things other than heroes! And if you're curious - check out how [#bf3eff]two new unique skins[/#] look in the game! And don't forget about the newest hero - [#bf3eff]Jackie[/#] - who's got her own page.
 
 ## 📝 Common Articles about everything in general
 
@@ -12,11 +12,17 @@ Not only about heroes! Right know, all the articles are transcriptions from [#0A
 
 [#C4FDFF]Furmarine Scratch[/#] and [#95CBF5]Enigma Blizzard[/#] - aren't they beautiful??
 
-## ✨ Huge Style Update of articles
+## 🦸‍♀️ Meet Jackie
+
+Read the article (if someone writes it) here:
+
+https://spacingkosmopan.github.io/BulletEchoKnowledgeTool/heroes/index.html?hero=jackie
+
+## ✨ Style Update of articles
 
 A little bit of refreshments and standardization of styles
 
-## ⚔ [#bf3eff]Vi Guide by[/#] joo00mo
+## ⚔ [#bf3eff]Vi Guide[/#] by joo00mo
 
 Published a while ago, not yet announced
 

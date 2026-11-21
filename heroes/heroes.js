@@ -357,8 +357,17 @@ export const heroes = [
     uniqueSkinGifSrc: "../skins/unique_scratch_gif.gif",
     uniqueSkinAbilityImage: "../skins/unique_scratch_ability.png",
   },
+  {
+    name: "Jackie",
+    faction: "Renegades",
+    class: "Enforcer",
+    abilityName: "Throwing Knives",
+    abilityDescription:
+      "When Jackie gains an ability charge, she creates a throwing knife. The number of knives matches her current number of ability charges. The knives passively orbit her, dealing damage to enemies on contact. When she activates the ability, she throws a knife forward. The knife can get stuck in an obstacle or an enemy. On hitting an enemy, it deals damage, reduces their max health, and applies bleeding, which deals damage based on max health per second (for several seconds).",
+    medkitType: medkitTypes.TeamRecovery,
+  },
 ];
-export const newestHeroName = "Flynt";
+export const newestHeroName = "Jackie";
 
 heroes.sort((a, b) => {
   const aNew = a.name === newestHeroName;
