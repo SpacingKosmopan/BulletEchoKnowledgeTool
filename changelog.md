@@ -1,4 +1,6 @@
-# v1.8 Articles, Two Unique Skins Previewv
+# v1.8 Articles, Two Unique Skins Preview
+
+> 21.11.2026
 
 The wait is over! Another huge update just appeared. [#FF7034]Read various articles[/#] about Bullet Echo and learn more tips about things other than heroes! And if you're curious - check out how [#bf3eff]two new unique skins[/#] look in the game!
 
